@@ -1,0 +1,38 @@
+"","Dataset","PMID","Dataset_accession","Platform_description","Platform","Notes","patients","genes","probes"
+"1","CAL","17157792","E-TABM-158","Affymetrix HGU","Affymetrix HGU","Dataset of breast cancer patients from the University of California, San Francisco and the California Pacific Medical Center (United States)",118,12688,21169
+"2","DFHCC","20098429","GSE19615","Affymetrix HGU","GPL570","Dana-Farber Harvard Cancer Center (United States)",115,20282,42447
+"3","DFHCC2","20100965","GSE18864","Affymetrix HGU","GPL570","Dana-Farber Harvard Cancer Center (United States)",84,20282,42447
+"4","DFHCC3","16473279","GSE3744","Affymetrix HGU","GPL570","Dana-Farber Harvard Cancer Center (United States)",40,20282,42447
+"5","DUKE","16273092","GSE3143","Affymetrix HGU95","GPL8300","Duke university hospital (United States)",171,8836,12085
+"6","DUKE2","18024211","GSE6861","Affymetrix X3P","GPL1352","Duke university hospital (United States)",160,19700,45490
+"7","EMC2","19421193","GSE12276","Affymetrix HGU","GPL570","Erasmus Medical Center (The Netherlands)",204,20282,42447
+"8","EORTC10994","15897907","GSE1561","Affymetrix HGU","GPL96","Trial number 10994 from the European Organization for Research and Treatment of Cancer Breast Cancer (Europe)",49,12752,20967
+"9","EXPO","n/a","GSE2109","Affymetrix HGU","GPL570","Expression project for oncology, large dataset of microarray data published by the International Genomics Consortium",353,20282,42447
+"10","FNCLCC","17659439","GSE7017","In-house cDNA","GPL4819","Fédération Nationale des Centres de Lutte contre le Cancer (France)",150,5107,6064
+"11","HLP","19688261","E-TABM-543","Illumina","Illumina","University Hospital La Paz (Spain)",53,19451,26536
+"12","IRB","18498629","GSE6532","Affymetrix HGU","GPL96///GPL97///GPL570","",129,20282,42447
+"13","KOO","12747878","Authors' website","Affymetrix HGU95","Affymetrix HGU95","Koo Foundation Sun Yat-Sen Cancer Centre (Taiwan)",88,254,280
+"14","LUND","18430221","GSE31863","Swegene","GPL14374","Lund University Hospital (Sweden)",143,10388,11154
+"15","LUND2","17452630","GSE5325","Swegene","GPL3883","Lund University Hospital (Sweden)",105,7913,22008
+"16","MAINZ","18593943","GSE11121","Affymetrix HGU","GPL96","Mainz hospital (Germany)",200,12752,20967
+"17","MAQC2","20064235","GSE16716","Affymetrix HGU","GPL96///GPL570///GPL1261","Microarray quality control consortium (United States)",230,12752,20967
+"18","MCCC","19960244","GSE19177","Illumina","GPL6106","Peter MacCallum Cancer Centre (Australia)",75,14953,19048
+"19","MDA4","16896004","MDACC DB","Affymetrix HGU","Affymetrix HGU","MD Anderson Cancer Center (United States)",129,12688,21169
+"20","MSK","16049480","GSE2603","Affymetrix HGU","GPL96","Memorial Sloan-Kettering (United States)",99,12752,20967
+"21","MUG","18592372","GSE10510","Operon","GPL6486","Medical University of Graz (Austria)",152,10715,14288
+"22","NCCS","18636107","GSE5364","Affymetrix HGU","GPL96","National Cancer Centre of Singapore (Singapore)",183,12752,20967
+"23","NCI","12917485","Authors' website","In-house cDNA","In-house cDNA","National Cancer Institute (United States)",99,4112,5154
+"24","NKI","12490681, 11823860","Rosetta Inpharmatics","Agilent","Agilent","National Kanker Instituut (The Netherlands)",337,13116,14960
+"25","PNC","GSE20711, PMID 21910250","GSE20711","Affymetrix HGU","GPL570","",92,20282,42447
+"26","STK","16280042","GSE1456","Affymetrix HGU","GPL97///GPL96","Stockholm",159,18434,36178
+"27","STNO2","12829800","GSE4382","In-house cDNA","GPL180///GPL2776///GPL2777","Stanford/Norway (United States and Norway)",118,3228,3663
+"28","SUPERTAM_HGU133A","18498629, 20697068, 18821012","","Affymetrix HGU","Affymetrix HGU","",856,12688,21169
+"29","SUPERTAM_HGU133PLUS2","18498629","","Affymetrix HGU","Affymetrix HGU","",517,19803,42369
+"30","TRANSBIG","17545524","GSE7390","Affymetrix HGU","GPL96","Dataset collected by the TransBIG consortium (Europe)",198,12752,20967
+"31","UCSF","17428335, 14612510","Authors' website","In-house cDNA","In-house cDNA","University of California, San Francisco (United States)",162,6275,8015
+"32","UNC4","20813035","GSE18229","Agilent","GPL885///GPL887///GPL1390","University of Northern California (United States)",305,5025,5420
+"33","UNT","16478745, 17401012","GSE2990","Affymetrix HGU","Affymetrix HGU","Cohort of untreated breast cancer patients from the Oxford Radcliffe (United Kingdom) and Karolinska (Sweden) hospital",133,18009,36084
+"34","UPP","16141321","GSE3494","Affymetrix HGU","GPL570","Uppsala hospital (Sweden)",251,18434,36178
+"35","VDX","17420468, 15721472","GSE2034/GSE5327","Affymetrix HGU","Affymetrix HGU","Veridex (The Netherlands)",344,12688,21169
+"36","METABRIC","","","METABRIC","METABRIC","",2136,24924,36155
+"37","TCGA","","","TCGA","TCGA","",1073,19405,19504
