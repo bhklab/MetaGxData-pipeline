@@ -1,4 +1,4 @@
-source("/Users/Natchar/Documents/curatedBreastData/lwaldron-curatedbreastdata/curation/functions.R")
+source("/Users/Natchar/Desktop/MetaGxData/MetaGxBreast/curation/functions.R")
 
 if (!file.exists("../curated"))
     dir.create("../curated")
