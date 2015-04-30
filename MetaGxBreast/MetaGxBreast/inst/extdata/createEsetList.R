@@ -32,9 +32,9 @@ library(Biobase)
 # loginfo("Inside script createEsetList.R - inputArgs =")
 # loginfo(inputArgs)
 
-# if (!exists("package.name")) package.name <- "curatedOvarianData"
+if (!exists("package.name")) package.name <- "MetaGxBreast"
 
-# library(package.name, character.only=TRUE)
+library(package.name, character.only=TRUE)
 
 # loginfo(paste("Loading", package.name, sessionInfo()$otherPkgs[[package.name]]$Version))
 
@@ -85,12 +85,12 @@ expandProbesets <- function (eset, sep = "///"){
 ## -----------------------------------------------------------------------------
 ##load the esets
 ## -----------------------------------------------------------------------------
-# data(list=data(package=package.name)[[3]][,3])
-lapply(paste("./esets/mapped_esets2/", list.files("./esets/mapped_esets2"), sep=""), load, .GlobalEnv)
+data(list=data(package=package.name)[[3]][,3])
+# lapply(paste("./esets/mapped_esets/", list.files("./esets/mapped_esets"), sep=""), load, .GlobalEnv)
 
 # strEsets <- ls(pattern="^.*_eset$")
-strEsets <- sub(pattern="_eset.rda", x=list.files("./esets/mapped_esets2"), replacement="")
-
+# strEsets <- sub(pattern="_eset.rda", x=list.files("./esets/mapped_esets"), replacement="")
+strEsets <- as.character(data(package=package.name)[[3]][,3])
 esets <- list()
 ## -----------------------------------------------------------------------------
 ##Explicit removal of datasets:

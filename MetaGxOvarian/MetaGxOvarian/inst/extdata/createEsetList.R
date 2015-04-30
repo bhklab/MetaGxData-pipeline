@@ -32,9 +32,9 @@ library(Biobase)
 # loginfo("Inside script createEsetList.R - inputArgs =")
 # loginfo(inputArgs)
 
-if (!exists("package.name")) package.name <- "MetaGxBreast"
+ if (!exists("package.name")) package.name <- "MetaGxOvarian"
 
-library(package.name, character.only=TRUE)
+ library(package.name, character.only=TRUE)
 
 # loginfo(paste("Loading", package.name, sessionInfo()$otherPkgs[[package.name]]$Version))
 
@@ -85,7 +85,7 @@ expandProbesets <- function (eset, sep = "///"){
 ## -----------------------------------------------------------------------------
 ##load the esets
 ## -----------------------------------------------------------------------------
-data(list=data(package=package.name)[[3]][,3])
+ data(list=data(package=package.name)[[3]][,3])
 # lapply(paste("./esets/mapped_esets/", list.files("./esets/mapped_esets"), sep=""), load, .GlobalEnv)
 
 # strEsets <- ls(pattern="^.*_eset$")
