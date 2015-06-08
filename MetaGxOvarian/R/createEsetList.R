@@ -123,7 +123,7 @@ delim <- ":"   ##This is the delimiter used to specify dataset:sample,
 #     }
 # }
 
-if(exists("remove.duplicates")){
+if(exists("remove.duplicates") && remove.duplicates){
     ## same as used in metagx getbrcadata
     load(system.file("extdata", "BenDuplicate.rda", package="MetaGxOvarian"))
 
