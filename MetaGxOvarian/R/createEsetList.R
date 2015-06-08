@@ -124,27 +124,38 @@ delim <- ":"   ##This is the delimiter used to specify dataset:sample,
 # }
 
 if(exists("remove.duplicates")){
-  load("./esets/removeSamples.rda")
-  for(i in 1:length(remove)){
-  datasetnames <- gsub(remove[[i]], pattern="\\..*$", replacement="")
-  if(remove.duplicates =="keep.smallest"){
-    remove[[i]] <- remove[[i]][-which.min(lapply(datasetnames, function(x){length(sampleNames(get(x)))}))]
-  } else if(remove.duplicates =="keep.largest"){
-    remove[[i]] <- remove[[i]][-which.max(lapply(datasetnames, function(x){length(sampleNames(get(x)))}))]
-  }
-  }
-remove <- unique(gsub("\\.", replacement=":", x=unlist(remove)))
-remove.samples.delim <- grep(delim, remove, fixed=TRUE, value=TRUE)
+    ## same as used in metagx getbrcadata
+    load(system.file("extdata", "BenDuplicate.rda", package="MetaGxOvarian"))
 
-  if(length(remove.samples.delim) > 0){
-    datasets <- gsub(paste(delim, ".+", sep=""), "", remove.samples.delim)
-    # datasets <- gsub(paste(delim, ".+", sep=""), "", remove.samples.delim)
-    samples <- gsub(paste(".+", delim, sep=""), "", remove.samples.delim)
-    remove.samples.delim <- lapply(unique(datasets), function(ds){
-      samples[datasets %in% ds]
-    })
-    names(remove.samples.delim) <- unique(datasets)
+  rmix <- duplicates
+  ii <- 1
+  while (length(rmix) > ii){
+    rmix <- rmix [!is.element(names(rmix), rmix[[ii]])]
+    ii <- ii+1
   }
+  rmix <- unique(unlist(rmix))
+
+
+#  for(i in 1:length(remove)){
+#  datasetnames <- gsub(remove[[i]], pattern="\\..*$", replacement="")
+#  if(remove.duplicates =="keep.smallest"){
+#    remove[[i]] <- remove[[i]][-which.min(lapply(datasetnames, function(x){length(sampleNames(get(x)))}))]
+#  } else if(remove.duplicates =="keep.largest"){
+#    remove[[i]] <- remove[[i]][-which.max(lapply(datasetnames, function(x){length(sampleNames(get(x)))}))]
+#  }
+#  }
+#remove <- unique(gsub("\\.", replacement=":", x=unlist(remove)))
+#remove.samples.delim <- grep(delim, remove, fixed=TRUE, value=TRUE)
+
+#  if(length(remove.samples.delim) > 0){
+#    datasets <- gsub(paste(delim, ".+", sep=""), "", remove.samples.delim)
+#    # datasets <- gsub(paste(delim, ".+", sep=""), "", remove.samples.delim)
+#    samples <- gsub(paste(".+", delim, sep=""), "", remove.samples.delim)
+#    remove.samples.delim <- lapply(unique(datasets), function(ds){
+#      samples[datasets %in% ds]
+#    })
+#    names(remove.samples.delim) <- unique(datasets)
+#  }
 }
 
 message("Clean up the esets.")
@@ -160,7 +171,7 @@ for (strEset in strEsets){
     #         eset <- expandProbesets(eset)
     #     }
     # }
-  if(exists("probe.gene.mapping")){
+  if(exists("probe.gene.mapping") && probe.gene.mapping){
     Biobase::exprs(eset) <- exprs(eset)[fData(eset)$best_probe,]
     Biobase::fData(eset) <- fData(eset)[fData(eset)$best_probe,]
     rownames(fData(eset)) <- rownames(exprs(eset)) <- paste("geneid.", fData(eset)$EntrezGene.ID, sep="")
@@ -207,8 +218,15 @@ for (strEset in strEsets){
             this.remove[ is.na(eset[[ get(one.rule)[1] ]]) ] <- FALSE
         remove[this.remove] <- TRUE
     }
+
+    if(exists("remove.duplicates") && remove.duplicates){
+        keepix <- setdiff(Biobase::sampleNames(eset), rmix)
+        Biobase::exprs(eset) <- Biobase::exprs(eset)[, keepix, drop=FALSE]
+        Biobase::pData(eset) <- Biobase::pData(eset)[keepix, , drop=FALSE]
+
+    }
     ##remove samples pre-specified for removal, that have a dataset specified:
-    if(exists("remove.samples.delim")){
+    if(exists("remove.samples.delim") ){
         if (strEset %in% names(remove.samples.delim)){
             remove[as.character(sampleNames(eset)) %in% as.character(remove.samples.delim[[strEset]])] <- TRUE
         }

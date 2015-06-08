@@ -87,11 +87,11 @@ if(!file.exists("./esets/summary/ovarian")){
 
 ############## REMOVING DUPLICATES. keeping ALL ##############
 
-
-source("./patientselection.config")
+library(MetaGxOvarian)
+source(system.file("extdata", "patientselection.config", package="MetaGxOvarian"))
 min.number.of.genes <- 0
 rm(remove.duplicates)
-source("./R/createEsetList.R")
+source(system.file("extdata", "createEsetList.R", package="MetaGxOvarian"))
 
 ##---------------------------
 ## Number of samples

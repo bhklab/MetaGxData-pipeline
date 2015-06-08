@@ -219,13 +219,23 @@ save(feature, file="./annotations/GPL7264.rda")
 
 gpl <- getGEO("GPL2986", destdir ="./platforms")
 feature <- Table(gpl)
-feature <- data.frame(probeset = feature$SPOT_ID, GB_LIST = feature$GB_LIST)
+feature <- data.frame(probeset=feature$ID, gene=feature[,"Gene Symbol"], EntrezGene.ID =feature$GENE)
+rownames(feature) <- feature$probeset
+save(feature, file="./annotations/GPL2986.rda")
 
+## -------
+## GPL5689
+##---------
+
+gpl <- getGEO("GPL5689", destdir="./platforms")
+feature <- Table(gpl)
+feature <- data.frame(probeset = feature$ID, GB_LIST=feature$GB_ACC)
 x<- toTable(org.Hs.egACCNUM2EG)
 common <- unlist(strsplit(x=as.character(feature$GB_LIST), split=","))
 x <-x[is.element(x$accession,common),]
 EntrezGene.ID <- list()
 EntrezGene.ID <- rep(NA, nrow(feature))
+
 for(i in 1:nrow(x)){
   EntrezGene.ID[grep(x=feature$GB_LIST, pattern=as.character(x$accession[i]))] <- x$gene_id[i]  
 }
@@ -241,7 +251,26 @@ for(i in 1:nrow(feature)){
 }
 gene <- unlist(gene)
 feature <- data.frame(probeset = feature$probeset, gene = gene, EntrezGene.ID = feature$EntrezGene.ID)
-save(feature, file="./annotations/GPL2986.rda")
+save(feature, file="./annotations/GPL5689.rda")
+
+## -------
+## Illumina
+## -------
+
+library(org.Hs.eg.db)
+
+load("./FULLVdata/TCGA.RNASeqV2_eset.rda")
+annot <- fData(TCGA.RNASeqV2_eset)
+save(annot, file="./annotations/TCGA.RNASeqV2_annot.rda")
+EntrezGene.ID <- gsub(pattern = ".+[[:punct:]]", replacement="", x=annot$probeset)
+x <- toTable(org.Hs.egSYMBOL2EG)
+x <- x[is.element(x$gene_id, EntrezGene.ID),]
+probeset <- NULL
+for(i in 1:nrow(x)){
+  probeset <- c(probeset, annot$probeset[which(EntrezGene.ID == x$gene_id[i])])
+}
+feature <- data.frame(probeset=probeset, gene=x$symbol, EntrezGene.ID=x$gene_id, row.names=probeset)
+save(feature, file="./annotations/Illumina.rda")
 
 
 

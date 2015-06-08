@@ -13,7 +13,8 @@ library(Biobase)
 library(GEOquery)  
 library(WGCNA) 
 datasets <- read.csv("datasets.csv")
-dataset.names <- datasets$Dataset[-23] ## not including TCGA.mirna.8x15kv2_eset
+n <- which(datasets$Dataset == "TCGA-mirna-8x15kv2")
+dataset.names <- datasets$Dataset[-n] ## not including TCGA.mirna.8x15kv2_eset
 eset <- NULL
 
 if(!file.exists("./esets/mapped_esets")){
@@ -101,6 +102,7 @@ for(i in (1:length(dataset.names))){
 ## identify duplicates and annotate pData
 source("./R/benDuplicateFinder.R")
 message("Duplicates Identified. Annotating pData.")
+load("./esets/removeSamples.rda")
 for(i in 1:length(remove)){
   replicates <- remove[[i]]
   for(n in 1:length(replicates)){

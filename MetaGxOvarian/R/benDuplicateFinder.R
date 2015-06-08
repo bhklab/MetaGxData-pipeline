@@ -9,13 +9,15 @@ filenames <- paste("./esets/mapped_esets/", list.files("./esets/mapped_esets"),s
 lapply(filenames, load, .GlobalEnv)
 
 datasets <- read.csv("datasets.csv")
-dataset.names <- datasets$Dataset[-23] ## ## not including TCGA.mirna.8x15kv2_eset
+n <- which(datasets$Dataset == "TCGA-mirna-8x15kv2")
+dataset.names <- datasets$Dataset[-n] ## ## not including TCGA.mirna.8x15kv2_eset
 
 esets <- lapply(as.character(dataset.names), get)
 names(esets) <- dataset.names
 
 for(i in 1:length(esets)){
-  sampleNames(esets[[i]]) <- paste(dataset.names[i], ":", sampleNames(esets[[i]]), sep="")
+  message(i)
+  sampleNames(esets[[i]]) <- paste(names(esets)[i], ":", colnames(exprs(esets[[i]])), sep="")
 }
  #save(esets, file="./esets/esets.rda")
 # load("./esets/esets.rda")

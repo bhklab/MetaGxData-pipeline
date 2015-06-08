@@ -1,5 +1,6 @@
 ## getDatafromEsets.R
 ### assuming esets from FULLVdata are in folder FULLVdata
+### reads names of esets from datalist file in FULLVdata
 
 `datasetMerging` <- 
   function (esets, method=c("union", "intersect"), nthread=1) {
@@ -88,6 +89,9 @@ if(!file.exists("./FULLVdata/expr")){
 }
 
 datasets <- read.table("./FULLVdata/datalist")[,1]
+n <- which(datasets == "TCGA.mirna.8x15kv2_eset")
+datasets <- datasets[-n]
+
 ## load all the datasets
 for(i in 1:length(datasets)){
 	dataset <- as.character(datasets[i])
@@ -97,6 +101,7 @@ for(i in 1:length(datasets)){
 for(i in 1:length(datasets)){
 
 	dataset <- as.character(datasets[i])
+  dn <- gsub(pattern="_eset", replacement="", x=dataset)
 	if(dataset == "GSE19829.GPL570_eset" | dataset== "GSE19829.GPL8300_eset"){
 		## these will be merged and dealt with separately
 		next
@@ -104,7 +109,8 @@ for(i in 1:length(datasets)){
 	load(paste("./FULLVdata/", dataset, ".rda", sep=""))
 	## get expression data
 	expr <- exprs(get(dataset))
-
+    colnames(expr) <- paste(dn, "_", colnames(expr), sep="")
+    
 	if(dataset == "GSE32062.GPL6480_eset"){
 		write.table(expr, file="./FULLVdata/expr/GSE32062_eset_exprs.txt", sep="\t")
 		PData <- pData(get(dataset))
@@ -125,9 +131,10 @@ names(esetsToMerge) <- c("GSE19829.GPL570_eset", "GSE19829.GPL8300_eset")
 GSE19829_eset <- datasetMerging(esetsToMerge, method="union", nthread =nthread)
 dataset <- "GSE19829_eset"
 expr <- exprs(get(dataset))
-write.table(expr, paste("./FULLVdata/expr/",dataset,"_exprs.txt", sep=""), sep="\t")
+colnames(expr) <- paste("GSE19829_", colnames(expr), sep="")
+write.table(expr, paste("./FULLVdata/expr/GSE19829_eset_exprs.txt", sep=""), sep="\t")
 PData <- pData(get(dataset))
-write.table(PData, paste("./FULLVdata/clinicalinfo/", dataset,"_pdata.txt", sep=""), sep="\t")
+write.table(PData, paste("./FULLVdata/clinicalinfo/GSE19829_eset_pdata.txt", sep=""), sep="\t")
 experimentData(GSE19829_eset) <- experimentData(GSE19829.GPL8300_eset)
 save(GSE19829_eset, file="./FULLVdata/GSE19829_eset.rda")
 
