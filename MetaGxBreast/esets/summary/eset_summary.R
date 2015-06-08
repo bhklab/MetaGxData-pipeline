@@ -32,11 +32,11 @@ if(!file.exists("./esets/summary/breast")){
 	dir.create("./esets/summary/breast", recursive=T)
 }
 
-
-source("./patientselection.config")
+library(MetaGxBreast)
+source(system.file("extdata", "patientselection.config", package="MetaGxBreast"))
 min.number.of.genes <- 0
 rm(remove.duplicates)
-source("./R/createEsetList2.R")
+source(system.file("extdata", "createEsetList.R", package="MetaGxBreast"))
 esets.mapped <- esets
 
 

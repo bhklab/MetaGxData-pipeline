@@ -98,7 +98,8 @@ for(i in (1:length(dataset.names))){
                                 other=list(summary = as.character(eData[dataset.name, "Short.Summary.of.Results"]),
                                            version=as.character(Sys.time()), 
                                            mapping.method=mapping.method, 
-                                           mapping.group=mapping.group))
+                                           mapping.group=mapping.group,
+                                           preprocessing= "As published by original author."))
   assign(as.character(dataset.name), eset)
 
   save(list=as.character(dataset.name), file =paste("esets/mapped_esets2/",dataset.names[i], "_eset.rda", sep=""))
