@@ -1,5 +1,7 @@
 # To do
-- [ ] For dataset CAL (and others): investigate whether the survival event for dmfs_status is "distant metastasis" or "distant metastasis OR death". In the case that a patient is deceased and did not experience distant metastasis, what is the expected event status?
-- [ ] TCGA days_to_death: for patients with status "living", populate days to last follow-up instead of NA
-- [ ] When merging data sets with rbind: ensure there are factors do not get coerced into integers
-- [ ] METABRIC has recurrence_status but no days_to_recurrence
+- [ ] Add additional clinical information to MUG
+
+Example, _IDC_A001 has NA values for almost all fields (also in /Users/Natchar/Desktop/MetaGxData/MetaGxBreast/curation/breast/uncurated/MUG.csv), but on GEO we have:
+
+http://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSM265557
+Alter = 72, Year_of_Diagnosis = 1990, Gender = f, pT = 1C, pN = 1BI, pM = X, Number_of_asported_lymphnodes = NA, Number_of_positive_lyphnodes = NA, Level_Estrogen_receptor_IHC = 3, Level_Progesteron_receptor_IHC = 3, Diagnosis = IDC, Lymphocyte_infiltration = NA, Status = NA, Reason_of_death = NA, DFS_Months = 111, OS_Months = 111, , Epithel_Percentage = NA, Menopausal_status_at_First_Tumor_Diagnosis = NA, Surgical_method = MRM,_axill._Lymphadenektomie, Her2neu_DAKO = NA, Neoadjuvant_PCT_with_Anthracyclin = NA, Neoadjuvant_PCT_without_Anthracyclin = NA, Postoperative_Radiation = yes, Postop_adjuvant_Hormontherapy = NA, Adjuvant_PCT_with_Anthracyclin = NA, Adjuvant_PCT_without_Anthracyclin = NA
