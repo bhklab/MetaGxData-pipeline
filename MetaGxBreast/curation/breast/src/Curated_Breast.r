@@ -117,16 +117,16 @@ for(ds.name in ds.names){
   }  #don't use uncurated$id at all for SUPERTAM_HGU133A and TRANSBIG.
 
   ##er
-  curated$er[uncurated$er=="0"] <- "negative"
-  curated$er[uncurated$er=="1"] <- "positive"
+  curated$er[uncurated$er==0] <- "negative"
+  curated$er[uncurated$er==1] <- "positive"
 
   ##pgr
-  curated$pgr[uncurated$pgr=="0"] <- "negative"
-  curated$pgr[uncurated$pgr=="1"] <- "positive"
+  curated$pgr[uncurated$pgr==0] <- "negative"
+  curated$pgr[uncurated$pgr==1] <- "positive"
 
   ##her2
-  curated$her2[uncurated$her2=="0"] <- "negative"
-  curated$her2[uncurated$her2=="1"] <- "positive"
+  curated$her2[uncurated$her2==0] <- "negative"
+  curated$her2[uncurated$her2==1] <- "positive"
 
   ##tumor_size
   tmp <- uncurated$size
@@ -149,8 +149,8 @@ for(ds.name in ds.names){
 
   ##dmfs_status
   tmp <- uncurated$e.dmfs
-  tmp[tmp=="0"] <- "living_norecurrence"
-  tmp[tmp=="1"] <- "deceased_or_recurrence"
+  tmp[tmp==0] <- "living_norecurrence"
+  tmp[tmp==1] <- "deceased_or_recurrence"
   curated$dmfs_status <- tmp
 
 
@@ -159,8 +159,8 @@ for(ds.name in ds.names){
 
   ##recurrence_status
   tmp <-uncurated$e.rfs
-  tmp[tmp=="0"] <- "living_norecurrence"
-  tmp[tmp=="1"] <- "deceased_or_recurrence"
+  tmp[tmp==0] <- "living_norecurrence"
+  tmp[tmp==1] <- "deceased_or_recurrence"
   curated$recurrence_status <- tmp
 
   ##days_to_death
@@ -168,24 +168,24 @@ for(ds.name in ds.names){
 
   ##vital_status
   tmp <-uncurated$e.os
-  tmp[tmp=="0"] <- "living"
-  tmp[tmp=="1"] <- "deceased"
+  tmp[tmp==0] <- "living"
+  tmp[tmp==1] <- "deceased"
   curated$vital_status <- tmp
 
   ##asmple_type
   tmp <- uncurated$tissue
-  tmp[tmp=="1"] <- "tumor"
-  tmp[tmp=="0"] <- "healthy"
+  tmp[tmp==1] <- "tumor"
+  tmp[tmp==0] <- "healthy"
   curated$sample_type<-tmp
 
   ##treatment
   tmp<-uncurated$treatment
-  tmp[tmp=="0"] <- "untreated"
-  tmp[tmp=="1"] <- "chemotherapy"
-  tmp[tmp=="2"] <- "hormonotherapy"
-  tmp[tmp=="5"] <- "endocrine"
-  tmp[tmp=="6"] <- "chemo.plus.hormono"
-  tmp[tmp=="99"] <- NA
+  tmp[tmp==0] <- "untreated"
+  tmp[tmp==1] <- "chemotherapy"
+  tmp[tmp==2] <- "hormonotherapy"
+  tmp[tmp==5] <- "endocrine"
+  tmp[tmp==6] <- "chemo.plus.hormono"
+  tmp[tmp==99] <- NA
   curated$treatment <-tmp
   
   ##series
