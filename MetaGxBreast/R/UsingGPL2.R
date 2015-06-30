@@ -12,10 +12,10 @@ mapping.group <- match.arg(mapping.group)
 library(Biobase)
 library(GEOquery)  
 library(WGCNA) 
-datasets <- read.csv("datasets.csv")
+datasets <- read.csv("datasets.csv", stringsAsFactors=FALSE)
 dataset.names <- datasets$Dataset
 eset <- NULL
-eData <- read.csv("./etc/Breast Cancer Database Literature Review.csv")
+eData <- read.csv("./etc/Breast Cancer Database Literature Review.csv", stringsAsFactors=FALSE)
 if(!file.exists("./esets")){
   dir.create("./esets")
   dir.create("./esets/mapped_esets2")
@@ -81,7 +81,7 @@ for(i in (1:length(dataset.names))){
   duplicates <- rep(NA, each=nrow(pData))
   pData <- cbind(pData, duplicates)
   pData <- AnnotatedDataFrame(pData)
-  rownames(pData) <- colnames(expr)
+  rownames(attributes(pData)$data) <- colnames(expr)
   
   #!!! expression set MUST BE MATRIX
   # !!! Colnames of exprs must match rownames of pData (no transpose of exprs!)
@@ -91,11 +91,13 @@ for(i in (1:length(dataset.names))){
     sampleNames(eset) <- paste(dataset.name, "_", sampleNames(eset), sep="")
   }
 
-  experimentData(eset) <- MIAME(pubMedIds=as.character(eData[dataset.name, "PMID"]), 
-                                contact=as.character(eData[dataset.name, "Paper"]),
-                                url=as.character(eData[dataset.name, "Link.to.original.dataset"]),
-                                abstract=as.character(eData[dataset.name, "Objectives"]),
-                                other=list(summary = as.character(eData[dataset.name, "Short.Summary.of.Results"]),
+	browser()
+
+  experimentData(eset) <- MIAME(pubMedIds=as.character(eData[eData$Dataset == dataset.name, "PMID"]), 
+                                contact=as.character(eData[eData$Dataset == dataset.name, "Paper"]),
+                                url=as.character(eData[eData$Dataset == dataset.name, "Link.to.original.dataset"]),
+                                abstract=as.character(eData[eData$Dataset == dataset.name, "Objectives"]),
+                                other=list(summary = as.character(eData[eData$Dataset == dataset.name, "Short.Summary.of.Results"]),
                                            version=as.character(Sys.time()), 
                                            mapping.method=mapping.method, 
                                            mapping.group=mapping.group,
@@ -120,7 +122,7 @@ for(i in 1:length(remove)){
   }
 }
 for(e in 1:length(dataset.names)){
-  save(list=as.character(dataset.names[e]), file =paste("esets/mapped_esets2/",dataset.names[e], "_eset.rda", sep=""))
+#  save(list=as.character(dataset.names[e]), file =paste("esets/mapped_esets2/",dataset.names[e], "_eset.rda", sep=""))
 }
 
 }
