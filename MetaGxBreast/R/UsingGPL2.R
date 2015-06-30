@@ -120,7 +120,7 @@ for(i in 1:length(remove)){
   }
 }
 for(e in 1:length(dataset.names)){
-#  save(list=as.character(dataset.names[e]), file =paste("esets/mapped_esets2/",dataset.names[e], "_eset.rda", sep=""))
+  save(list=as.character(dataset.names[e]), file =paste("esets/mapped_esets2/",dataset.names[e], "_eset.rda", sep=""))
 }
 
 }
