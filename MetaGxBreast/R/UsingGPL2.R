@@ -87,11 +87,9 @@ for(i in (1:length(dataset.names))){
   # !!! Colnames of exprs must match rownames of pData (no transpose of exprs!)
   eset <- ExpressionSet(assayData=(as.matrix(expr)), featureData=feature.df, phenoData=pData)
   
-  if(is.element(dataset.name, c("EXPO", "TRANSBIG", 'SUPERTAM_HGU133A', "SUPERTAM_HGU133PLUS2") )){
+  if(is.element(dataset.name, c("EXPO", "TRANSBIG") )){
     sampleNames(eset) <- paste(dataset.name, "_", sampleNames(eset), sep="")
   }
-
-	browser()
 
   experimentData(eset) <- MIAME(pubMedIds=as.character(eData[eData$Dataset == dataset.name, "PMID"]), 
                                 contact=as.character(eData[eData$Dataset == dataset.name, "Paper"]),
