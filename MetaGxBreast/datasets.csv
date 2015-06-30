@@ -26,13 +26,11 @@
 "25","PNC","21910250","GSE20711","Affymetrix HGU","GPL570","",92,20282,42447,2011
 "26","STK","16280042","GSE1456","Affymetrix HGU","GPL97///GPL96","Stockholm",159,18434,36178,2005
 "27","STNO2","12829800","GSE4382","In-house cDNA","GPL180///GPL2776///GPL2777","Stanford/Norway (United States and Norway)",118,3228,3663,2003
-"28","SUPERTAM_HGU133A","18498629, 20697068, 18821012","","Affymetrix HGU","Affymetrix HGU","",856,12688,21169,2008
-"29","SUPERTAM_HGU133PLUS2","18498629","","Affymetrix HGU","Affymetrix HGU","",517,19803,42369,2008
-"30","TRANSBIG","17545524","GSE7390","Affymetrix HGU","GPL96","Dataset collected by the TransBIG consortium (Europe)",198,12752,20967,2007
-"31","UCSF","17428335, 14612510","Authors' website","In-house cDNA","In-house cDNA","University of California, San Francisco (United States)",162,6275,8015,2007
-"32","UNC4","20813035","GSE18229","Agilent","GPL885///GPL887///GPL1390","University of Northern California (United States)",305,5025,5420,2007
-"33","UNT","16478745, 17401012","GSE2990","Affymetrix HGU","Affymetrix HGU","Cohort of untreated breast cancer patients from the Oxford Radcliffe (United Kingdom) and Karolinska (Sweden) hospital",133,18009,36084,2010
-"34","UPP","16141321","GSE3494","Affymetrix HGU","GPL570","Uppsala hospital (Sweden)",251,18434,36178,2005
-"35","VDX","17420468, 15721472","GSE2034/GSE5327","Affymetrix HGU","Affymetrix HGU","Veridex (The Netherlands)",344,12688,21169,2007
-"36","METABRIC","22522925","","METABRIC","METABRIC","",2136,24924,36155,2012
-"37","TCGA","25267403","","TCGA","TCGA","The Cancer Genome Atlas",1073,19405,19504,2014
+"28","TRANSBIG","17545524","GSE7390","Affymetrix HGU","GPL96","Dataset collected by the TransBIG consortium (Europe)",198,12752,20967,2007
+"29","UCSF","17428335, 14612510","Authors' website","In-house cDNA","In-house cDNA","University of California, San Francisco (United States)",162,6275,8015,2007
+"30","UNC4","20813035","GSE18229","Agilent","GPL885///GPL887///GPL1390","University of Northern California (United States)",305,5025,5420,2007
+"31","UNT","16478745, 17401012","GSE2990","Affymetrix HGU","Affymetrix HGU","Cohort of untreated breast cancer patients from the Oxford Radcliffe (United Kingdom) and Karolinska (Sweden) hospital",133,18009,36084,2010
+"32","UPP","16141321","GSE3494","Affymetrix HGU","GPL570","Uppsala hospital (Sweden)",251,18434,36178,2005
+"33","VDX","17420468, 15721472","GSE2034/GSE5327","Affymetrix HGU","Affymetrix HGU","Veridex (The Netherlands)",344,12688,21169,2007
+"34","METABRIC","22522925","","METABRIC","METABRIC","",2136,24924,36155,2012
+"35","TCGA","25267403","","TCGA","TCGA","The Cancer Genome Atlas",1073,19405,19504,2014
