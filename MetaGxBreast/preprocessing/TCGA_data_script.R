@@ -122,7 +122,7 @@ ClinicalTCGA<-read.delim("nationwidechildrens.org_clinical_patient_brca.txt")
 ClinicalTCGA_sub<-ClinicalTCGA[,c(1,2,12,14,15,16,17,21,44,50,56,93,109)]
 
     #TCGA_annot_sub<-TCGA_annot[,c(1,4,8,10,11,31,32,43)]
-
+write.csv(ClinicalTCGA_sub, "../curation/breast/uncurated/TCGA.csv")
 #Final Cleanups
 test<-TCGA_exprs
 rownames(test)<-gsub(rownames(test),pattern=".01",replacement="")
