@@ -119,7 +119,7 @@ save(TCGA_exprs,TCGA_annot,file="TCGAeset.RData")
 #Read in the Data from the Cancer Genome Atlas Data Portal (Clinical Info on Patients, most up-to-date)
 #Select from the pData what you need to match the curatedBreastDatasets
 ClinicalTCGA<-read.delim("nationwidechildrens.org_clinical_patient_brca.txt")
-ClinicalTCGA_sub<-ClinicalTCGA[,c(1,2,12,14,16,17,21,44,50,56,93,109)]
+ClinicalTCGA_sub<-ClinicalTCGA[,c(1,2,12,14,15,16,17,21,44,50,56,93,109)]
 
     #TCGA_annot_sub<-TCGA_annot[,c(1,4,8,10,11,31,32,43)]
 

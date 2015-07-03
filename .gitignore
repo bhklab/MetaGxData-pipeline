@@ -13,3 +13,4 @@ MetaGxBreast/MetaGxBreast_1.0.tar.gz
 MetaGxBreast/data/*
 MetaGxBreast/curation/breast/uncurated/*
 MetaGxBreast/curation/breast/curated/*
+MetaGxBreast/preprocessing/nationwidechildrens.org_clinical_patient_brca.txt
