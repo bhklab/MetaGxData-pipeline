@@ -80,7 +80,7 @@ for(ds.name in ds.names){
 	  ##batch
 	  tmp <- rep("TCGA", each=length(curated$alt_sample_name))
 	  curated$batch <- tmp
-	    } else {
+  } else {
 	
 	  ##--------------------
 	  ##start the mappings
@@ -147,51 +147,44 @@ for(ds.name in ds.names){
 	  curated$dmfs_days <- uncurated$t.dmfs
 	
 	  ##dmfs_status
-	  tmp <- uncurated$e.dmfs
-	  tmp[tmp==0] <- "living_norecurrence"
-	  tmp[tmp==1] <- "deceased_or_recurrence"
-	  curated$dmfs_status <- tmp
-	
+	  curated$dmfs_status[uncurated$e.dmfs==0] <- "norecurrence"
+	  curated$dmfs_status[uncurated$e.dmfs==1] <- "recurrence"
 	
 	  ##days_to_tumor_recurrence
 	  curated$days_to_tumor_recurrence <- uncurated$t.rfs
 	
 	  ##recurrence_status
-	  tmp <-uncurated$e.rfs
-	  tmp[tmp==0] <- "living_norecurrence"
-	  tmp[tmp==1] <- "deceased_or_recurrence"
-	  curated$recurrence_status <- tmp
+	  curated$recurrence_status[uncurated$e.rfs==0] <- "norecurrence"
+	  curated$recurrence_status[uncurated$e.rfs==1] <- "recurrence"
 	
 	  ##days_to_death
 	  curated$days_to_death <- uncurated$t.os
 	
 	  ##vital_status
-	  tmp <-uncurated$e.os
-	  tmp[tmp==0] <- "living"
-	  tmp[tmp==1] <- "deceased"
-	  curated$vital_status <- tmp
+	  curated$vital_status[uncurated$e.os==0] <- "living"
+	  curated$vital_status[uncurated$e.os==1] <- "deceased"
 	
 	  ##asmple_type
-	  tmp <- uncurated$tissue
-	  tmp[tmp==1] <- "tumor"
-	  tmp[tmp==0] <- "healthy"
-	  curated$sample_type<-tmp
+	  curated$sample_type[uncurated$tissue==1] <- "tumor"
+	  curated$sample_type[uncurated$tissue==0] <- "healthy"
 	
 	  ##treatment
-	  tmp<-uncurated$treatment
-	  tmp[tmp==0] <- "untreated"
-	  tmp[tmp==1] <- "chemotherapy"
-	  tmp[tmp==2] <- "hormonotherapy"
-	  tmp[tmp==5] <- "endocrine"
-	  tmp[tmp==6] <- "chemo.plus.hormono"
-	  tmp[tmp==99] <- NA
-	  curated$treatment <-tmp
+	  curated$treatment[uncurated$treatment==0] <- "untreated"
+	  curated$treatment[uncurated$treatment==1] <- "chemotherapy"
+	  curated$treatment[uncurated$treatment==2] <- "hormonotherapy"
+	  curated$treatment[uncurated$treatment==5] <- "endocrine"
+	  curated$treatment[uncurated$treatment==6] <- "chemo.plus.hormono"
+	  curated$treatment[uncurated$treatment==99] <- NA
 	  
 	  ##series
 	  curated$batch <- uncurated$series
 	
+	  # For consistency of the definition of dmfs and rfs across datasets: for TRANSBIG, if the days_to_death and recurrence/distant metastasis are the same, then set recurrence/distant metastasis to "no event" (i.e. death is not an event)
+	  if(ds.name == "TRANSBIG") {
+	  	curated$dmfs_status[curated$dmfs_days == curated$days_to_death & curated$vital_status == "deceased" & curated$dmfs_status == "recurrence"] <- "norecurrence"
+	  	curated$recurrence_status[curated$days_to_tumor_recurrence == curated$days_to_death & curated$vital_status == "deceased" & curated$recurrence_status == "recurrence"] <- "norecurrence"
+	  }
   }
-  rm(tmp)
   curated <- postProcess(curated, uncurated)
 
   write.table(curated, file=outfile, row.names=FALSE, sep="\t")
