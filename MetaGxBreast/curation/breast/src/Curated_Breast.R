@@ -1,6 +1,6 @@
 source("../../functions.R")
 
-lif (!file.exists("../curated"))
+if (!file.exists("../curated"))
     dir.create("../curated")
 
 ##Read files named xyz1111.csv, xyz2222.csv, etc.
