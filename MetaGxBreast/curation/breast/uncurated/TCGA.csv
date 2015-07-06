@@ -1,6 +1,4 @@
 "","bcr_patient_uuid","bcr_patient_barcode","history_neoadjuvant_treatment","vital_status","last_contact_days_to","death_days_to","radiation_treatment_adjuvant","age_at_diagnosis","er_status_by_ihc","pr_status_by_ihc","her2_status_by_ihc","clinical_N","tumor_tissue_site"
-"1","bcr_patient_uuid","bcr_patient_barcode","history_of_neoadjuvant_treatment","vital_status","days_to_last_followup","days_to_death","radiation_therapy","age_at_initial_pathologic_diagnosis","breast_carcinoma_estrogen_receptor_status","breast_carcinoma_progesterone_receptor_status","lab_proc_her2_neu_immunohistochemistry_receptor_status","clinical_N","tumor_tissue_site"
-"2","CDE_ID:","CDE_ID:2673794","CDE_ID:3382737","CDE_ID:5","CDE_ID:3008273","CDE_ID:3165475","CDE_ID:2005312","CDE_ID:2006657","CDE_ID:2957359","CDE_ID:2957357","CDE_ID:2957563","CDE_ID:3440330","CDE_ID:3427536"
 "3","6E7D5EC6-A469-467C-B748-237353C23416","TCGA-3C-AAAU","No","Alive","3767","[Not Applicable]","NO","55","Positive","Positive","Negative","[Not Applicable]","Breast"
 "4","55262FCB-1B01-4480-B322-36570430C917","TCGA-3C-AALI","No","Alive","3801","[Not Applicable]","YES","50","Positive","Positive","Positive","[Not Applicable]","Breast"
 "5","427D0648-3F77-4FFC-B52C-89855426D647","TCGA-3C-AALJ","No","Alive","1228","[Not Applicable]","NO","62","Positive","Positive","Indeterminate","[Not Applicable]","Breast"
