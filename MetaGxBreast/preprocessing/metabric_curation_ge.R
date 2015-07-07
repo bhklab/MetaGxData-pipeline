@@ -10,6 +10,9 @@
 ## remove all existing objects from your workspace
 rm(list=ls())
 
+original.dir <- getwd()
+setwd("/mnt/work1/users/bhklab/Data/METABRIC")
+
 ## create a directory to save all the results we generate
 saveres <- "datasets"
 if(!file.exists(saveres)) { dir.create(file.path(saveres), showWarnings=FALSE) }
@@ -228,6 +231,7 @@ sample.info <- data.frame(matrix(NA, nrow=nrow(tumor.info) + nrow(normal.info), 
 sample.info <- setcolclass.df(df=sample.info, colclass=class.col, factor.levels=class.lev)
 sample.info[rownames(tumor.info), colnames(tumor.info)] <- tumor.info
 sample.info[rownames(normal.info), colnames(normal.info)] <- normal.info
+
 save(list=c("sample.ge", "annot.ge", "sample.info"), compress=TRUE, file=file.path(saveres, "METABRIC_GE_MERGED_FULL.RData"))
 
 ## concatenate the adjacent normal samples to the tumor datasets
@@ -246,3 +250,5 @@ colnames(tumor.ge) <- colnames(normal.ge) <- rownames(annot.ge) <- names(rr$gene
 message("Save ENTREZ dataset ...")
 save(list=c("tumor.ge", "normal.ge", "annot.ge", "tumor.info", "normal.info"), compress=TRUE, file=file.path(saveres, "METABRIC_GE_ENTREZ.RData"))
 
+setwd(original.dir)
+write.csv(sample.info, file="../curation/breast/uncurated/METABRIC.csv")
