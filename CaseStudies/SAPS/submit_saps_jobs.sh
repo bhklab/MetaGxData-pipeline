@@ -1,5 +1,4 @@
-# Generate pooled.eset.intersecting.genes.RData, to be used in child jobs
-Rscript saps_parallel_init.R
+module load R
 
 for subtype in All Basal Her2 LumB LumA
 do

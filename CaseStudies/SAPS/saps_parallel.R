@@ -1,3 +1,4 @@
+.libPaths(c("/mnt/work1/users/bhklab/Rlib", .libPaths()))
 days.per.month <- 30.4368
 days.per.year <- 365.242
 par.original <- par()

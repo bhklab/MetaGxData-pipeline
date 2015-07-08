@@ -1,3 +1,4 @@
+.libPaths(c("/mnt/work1/users/bhklab/Rlib", .libPaths()))
 library(knitr)
 library(gdata)
 library(annotate)
