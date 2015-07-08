@@ -42,7 +42,12 @@ if(subtype != "All") {
 
 GO.gene.sets.matrix <- GO.gene.sets.matrix[gene.set.index,,drop=FALSE]
 
-out <- saps(GO.gene.sets.matrix, t(exprs(pooled.eset.intersecting.genes)), pooled.eset.intersecting.genes$days_to_death, as.integer(pooled.eset.intersecting.genes$vital_status == "deceased"))
+out <- saps(
+  GO.gene.sets.matrix, 
+  t(exprs(pooled.eset.intersecting.genes)), 
+  pooled.eset.intersecting.genes$days_to_death, 
+  as.integer(pooled.eset.intersecting.genes$vital_status == "deceased"),
+  compute_qvalue = TRUE)
 
 var.name <- paste0(rownames(GO.gene.sets.matrix), "_", subtype)
 
