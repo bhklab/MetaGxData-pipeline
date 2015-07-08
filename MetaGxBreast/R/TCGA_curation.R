@@ -1,5 +1,5 @@
 library(org.Hs.eg.db)
-load("./TCGAcurations.RData")
+load("./preprocessing/TCGAcurations.RData")
 expr <- TCGA_exprs
 
 ## if symbol is duplicated, rename to be __.2 for expr

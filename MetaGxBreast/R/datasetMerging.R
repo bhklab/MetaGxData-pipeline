@@ -1,3 +1,18 @@
+rescale <- function (x, na.rm = FALSE, q = 0) 
+{
+    if (q == 0) {
+        ma <- max(x, na.rm = na.rm)
+        mi <- min(x, na.rm = na.rm)
+    }
+    else {
+        ma <- quantile(x, probs = 1 - (q/2), na.rm = na.rm)
+        mi <- quantile(x, probs = q/2, na.rm = na.rm)
+    }
+    xx <- (x - mi)/(ma - mi)
+    attributes(xx) <- list(names = names(x), q1 = mi, q2 = ma)
+    return(xx)
+}
+
 
 `datasetMerging` <- 
   function (esets, method=c("union", "intersect"), nthread=1) {
@@ -55,11 +70,11 @@ annotation(eset.merged) <- "mixed"
  ## robust scaling followed by quantile normalization
  ee <- exprs(eset.merged)
  
- # ee <- apply(ee, 2, genefu::rescale)
+ # ee <- apply(ee, 2, rescale)
  splitix <- parallel::splitIndices(nx=ncol(ee), ncl=nthread)
  mcres <- parallel::mclapply(splitix, function(x, data) {
    res <- apply(data[ , x, drop=FALSE], 2, function (dx) {
-     return ((genefu::rescale(dx, q=0.05, na.rm=TRUE) - 0.5) * 2)
+     return ((rescale(dx, q=0.05, na.rm=TRUE) - 0.5) * 2)
    })
    return (res)
  }, data=ee, mc.cores=nthread)

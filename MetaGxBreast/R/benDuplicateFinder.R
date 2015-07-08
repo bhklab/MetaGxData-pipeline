@@ -5,7 +5,7 @@ availcore <- parallel::detectCores()
 if (nthread > availcore) { nthread <- availcore }
 options("mc.cores"=nthread)
 
-filenames <- paste("./esets/mapped_esets2/", list.files("./esets/mapped_esets2"),sep="")
+filenames <- paste("./esets/mapped_esets2/", list.files("./esets/mapped_esets2", pattern = "\\.rda$"),sep="")
 lapply(filenames, load, .GlobalEnv)
 
 datasets <- read.csv("datasets.csv")
