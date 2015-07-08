@@ -1,4 +1,4 @@
-
+library(Biobase)
 eset.dir <- "./esets/mapped_esets2/"
 
 
@@ -27,7 +27,7 @@ for (iFile in 1:length(eset.files)){
   cat("\n")
   cat(paste("\\docType{data}"))
   cat("\n")
-  cat(paste("\\title{", cleanText(experimentData(eset)@title), "}"))
+  cat(paste("\\title{", eset.name, "}"))
   cat("\n")
   if (abstract(eset) != ""){
     cat(paste("\\description{", cleanText(experimentData(eset)@abstract), "}"))

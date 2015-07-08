@@ -3,12 +3,14 @@
 ## April 14, 2015
 ###################################
 
-`createEsets` <- function(mapping.method = c("maxRowVariance", "maxMean"), mapping.group = c("EntrezGene.ID", "gene")){
+mapping.method <- "maxRowVariance"
+#mapping.method <- "maxMean"
+mapping.group <- "EntrezGene.ID"
+#mapping.group <- "gene"
+
 ## ----------------------------------------
 ## Create expression sets from each dataset
 ## ----------------------------------------
-mapping.method <- match.arg(mapping.method)
-mapping.group <- match.arg(mapping.group)
 library(Biobase)
 library(GEOquery)  
 library(WGCNA) 
@@ -22,8 +24,12 @@ if(!file.exists("./esets")){
 }
 
 ## map each eset using GPL or existing annotation
-
-for(i in (1:length(dataset.names))){
+if(Sys.getenv("SGE_TASK_ID") == "") {
+	vals.to.run <- 1:length(dataset.names)
+} else {
+	vals.to.run <- as.integer(Sys.getenv("SGE_TASK_ID"))
+}
+for(i in vals.to.run) {
   message(i)
   dataset.name <- dataset.names[i]
   expr <- read.table(paste("./data/", dataset.name, "/PROCESSED/DEFAULT/", dataset.name, "_default_curated_exprs.txt", sep=""))
@@ -74,7 +80,7 @@ for(i in (1:length(dataset.names))){
   feature <- feature[match(rownames(expr),rownames(feature)),]
   ### create the expressionsets
   feature.df <- AnnotatedDataFrame(feature)
-  pData <- read.table(paste("./curation/breast/curated/",dataset.names[i], "_curated.txt", sep="" ), header=TRUE)
+  pData <- read.table(paste("./curation/breast/curated/",dataset.names[i], "_curated.txt", sep=""), header=TRUE, stringsAsFactors=FALSE)
   if(dataset.name == "TCGA"){
     pData <- pData[is.element(gsub("-", "\\.",pData[,"sample_name"]), colnames(expr)), ]
   }
@@ -96,7 +102,7 @@ for(i in (1:length(dataset.names))){
                                 url=as.character(eData[eData$Dataset == dataset.name, "Link.to.original.dataset"]),
                                 abstract=as.character(eData[eData$Dataset == dataset.name, "Objectives"]),
                                 other=list(summary = as.character(eData[eData$Dataset == dataset.name, "Short.Summary.of.Results"]),
-                                           version=as.character(Sys.time()), 
+        
                                            mapping.method=mapping.method, 
                                            mapping.group=mapping.group,
                                            preprocessing= "As published by original author."))
@@ -106,22 +112,23 @@ for(i in (1:length(dataset.names))){
   
 }
 
-## identify duplicates and annotate pData
-source("./R/benDuplicateFinder.R")
-message("Duplicates Identified. Annotating pData.")
-for(i in 1:length(remove)){
-  replicates <- remove[[i]]
-  for(n in 1:length(replicates)){
-#     dataset.name <- as.character(gsub("\\..+", "", replicates)[n])
-    dataset.name <- as.character(unlist(strsplit(x=replicates[n], split="\\."))[1])
-    eset <- get(dataset.name)
-    pData(eset)[paste(as.character(unlist(strsplit(x=replicates[n], split="\\."))[-1]), collapse="."), "duplicates"] <- paste(replicates[-n], collapse="///")
-    assign(as.character(dataset.name), eset)
+# If run in parallel, this code section needs to be run separately after the above finishes
+if(Sys.getenv("SGE_TASK_ID") == "") {
+  ## identify duplicates and annotate pData
+  source("./R/benDuplicateFinder.R")
+  message("Duplicates Identified. Annotating pData.")
+  for(i in 1:length(remove)){
+    replicates <- remove[[i]]
+    for(n in 1:length(replicates)){
+  #     dataset.name <- as.character(gsub("\\..+", "", replicates)[n])
+      dataset.name <- as.character(unlist(strsplit(x=replicates[n], split="\\."))[1])
+      eset <- get(dataset.name)
+      pData(eset)[paste(as.character(unlist(strsplit(x=replicates[n], split="\\."))[-1]), collapse="."), "duplicates"] <- paste(replicates[-n], collapse="///")
+      assign(as.character(dataset.name), eset)
+    }
   }
-}
-for(e in 1:length(dataset.names)){
-  save(list=as.character(dataset.names[e]), file =paste("esets/mapped_esets2/",dataset.names[e], "_eset.rda", sep=""))
-}
-
+  for(e in 1:length(dataset.names)){
+    save(list=as.character(dataset.names[e]), file =paste("esets/mapped_esets2/",dataset.names[e], "_eset.rda", sep=""))
+  }
 }
 

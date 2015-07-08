@@ -1,9 +1,11 @@
 Package: MetaGxBreast
 Type: Package
-Title: What the package does (short line)
-Version: 1.0
-Date: 2015-04-29
-Author: Who wrote it
-Maintainer: Who to complain to <yourfault@somewhere.net>
-Description: More about what it does (maybe more than one line)
+Title: Breast Cancer Compedium Dataset
+Version: 2.0
+Date: 2015-07-07
+Author: Deena Mohamad Ameen Gendoo, Natchar Ratanasirigulchai, Gregory M. Chen, Levi Waldron, Benjamin Haibe-Kains
+Maintainer: Deena M.A. Gendoo <deena.gendoo@utoronto.ca>
+Description: Gene Expression Datasets for Breast Cancer
 License: What license is it under?
+Depends: Biobase
+
