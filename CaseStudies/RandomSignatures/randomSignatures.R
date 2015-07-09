@@ -54,7 +54,7 @@ bootstrap.sample.size <- min(table(pooled.eset.intersecting.genes$subtype))
     )
     return(mean(bootstrap.pvals))
   })
-  return(pvals)
+  return(log.rank.pvals)
 }
 
 all.pvals <- .getPVals(pooled.eset.intersecting.genes)
