@@ -1,6 +1,6 @@
 .libPaths(c("/mnt/work1/users/bhklab/Rlib", .libPaths()))
 
-options(echo=TRUE) # if you want see commands in output file
+options(echo=TRUE)
 args <- commandArgs(trailingOnly = TRUE)
 
 subtype <- args[1]
@@ -53,4 +53,4 @@ var.name <- paste0(rownames(GO.gene.sets.matrix), "_", subtype)
 
 assign(var.name, out)
 
-save(list=var.name, file=paste0(var.name, ".RData"))
+save(list=var.name, file=paste0("saps_output/", var.name, ".RData"))
