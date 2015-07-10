@@ -10,7 +10,7 @@ args <- commandArgs(trailingOnly = TRUE)
 
 subtype <- args[1]
 
-out.dir <- "randomsigs_out_500genesets_100resamples"
+out.dir <- "randomsigs_out_500genesets_100resamples_500genes"
 
 library(knitr)
 library(gdata)
@@ -21,19 +21,19 @@ library(saps)
 library(genefu)
 library(hgu133plus2.db)
 
-load("pooled.eset.intersecting.genes.RData")
+load("pooled.eset.over.5000.genes.RData")
 
 # Print patients on first two principal components
 
-#pc.out <- prcomp(t(exprs(pooled.eset.intersecting.genes)))
+#pc.out <- prcomp(t(exprs(pooled.eset.over.5000.genes)))
 #scatterplot.data <- as.data.frame(pc.out$x[,c(1,2)])
-#scatterplot.data$data.source <- pooled.eset.intersecting.genes$data.source
+#scatterplot.data$data.source <- pooled.eset.over.5000.genes$data.source
 #pca.scatterplot <- ggplot(scatterplot.data, aes(x=PC1, y=PC2, colour=data.source)) + 
 #  geom_point(shape=1) +
 #  scale_colour_hue(l=50) +
 #  ggtitle("PCA")
 #ggsave(pca.scatterplot, filename = "pca.brca.datasets.png", width=13, height=13)
-genes.in.pooled.intersect <- rownames(fData(pooled.eset.intersecting.genes))
+genes.in.pooled.intersect <- rownames(fData(pooled.eset.over.5000.genes))
 genes.in.pooled.intersect <- sub("^", "geneid.", genes.in.pooled.intersect)
 
 nki.sample.size <- 295
@@ -66,11 +66,11 @@ nki.sample.size <- 295
 }
 
 if(subtype=="All") {
-	pvals <- .getPVals(pooled.eset.intersecting.genes)
+	pvals <- .getPVals(pooled.eset.over.5000.genes)
 } else if (subtype=="Random") {
-	pvals <- .getPVals(pooled.eset.intersecting.genes[,seq(1, ncol(exprs(pooled.eset.intersecting.genes)), 4)])
+	pvals <- .getPVals(pooled.eset.over.5000.genes[,seq(1, ncol(exprs(pooled.eset.over.5000.genes)), 4)])
 } else {
-	pvals <- .getPVals(pooled.eset.intersecting.genes, random=TRUE)
+	pvals <- .getPVals(pooled.eset.over.5000.genes, random=TRUE)
 }
  
 var.name <- paste0("pvals.", subtype, ".", gene.set.size)
