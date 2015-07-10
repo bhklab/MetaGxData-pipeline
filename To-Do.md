@@ -8,3 +8,5 @@ Alter = 72, Year_of_Diagnosis = 1990, Gender = f, pT = 1C, pN = 1BI, pM = X, Num
 
 - [ ] Add the datasets previously in SUPERTAM_HGU133A, SUPERTAM_HGU133PLUS2
 - [ ] Ovarian dataset: GSE53963
+- [ ] Add overall survival to dataset STK (PMID:16280042, GSE1456) 
+- [ ] In dataset DUKE (PMID:16273092,GSE3143) add recurrence status (mentioned in the paper)
