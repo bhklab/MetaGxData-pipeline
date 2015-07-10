@@ -5,7 +5,12 @@ set.seed(6400 + task.id * 100)
 
 gene.set.size <- task.id
 
-out.dir <- "randomsigs_out"
+options(echo=TRUE)
+args <- commandArgs(trailingOnly = TRUE)
+
+subtype <- args[1]
+
+out.dir <- "randomsigs_out_500genesets_100resamples"
 
 library(knitr)
 library(gdata)
@@ -31,15 +36,19 @@ load("pooled.eset.intersecting.genes.RData")
 genes.in.pooled.intersect <- rownames(fData(pooled.eset.intersecting.genes))
 genes.in.pooled.intersect <- sub("^", "geneid.", genes.in.pooled.intersect)
 
-bootstrap.sample.size <- min(table(pooled.eset.intersecting.genes$subtype))
+nki.sample.size <- 295
 
-.getPVals <- function(eset) {
-# now create output matrix by lengthening rows
+.getPVals <- function(eset, random=FALSE) {
   log.rank.pvals <- sapply(1:500, function(x) {
+    print(x)
+
+    if(random == TRUE) {
+       eset <- eset[,sample(1:ncol(exprs(eset)), 1000)]
+    }
+    
     random.gene.indices <- sample(1:nrow(exprs(eset)), gene.set.size)
-    system.time(
-    bootstrap.pvals <- sapply(1:500, function(x) {
-      samples.to.include <- sample(1:ncol(exprs(eset)), bootstrap.sample.size, replace=TRUE)
+    resampled.pvals <- sapply(1:100, function(y) {
+      samples.to.include <- sample(1:ncol(exprs(eset)), nki.sample.size, replace=FALSE)
       current.eset <- eset[random.gene.indices,samples.to.include]
       expression.matrix <- t(exprs(current.eset))
       pc.out <- prcomp(expression.matrix)
@@ -51,26 +60,21 @@ bootstrap.sample.size <- min(table(pooled.eset.intersecting.genes$subtype))
       pval <- summary(coxph.out)$sctest["pvalue"]
       return(pval)
     })
-    )
-    return(mean(bootstrap.pvals))
+    return(mean(resampled.pvals))
   })
   return(log.rank.pvals)
 }
 
-all.pvals <- .getPVals(pooled.eset.intersecting.genes)
-basal.pvals <- .getPVals(pooled.eset.intersecting.genes[,pooled.eset.intersecting.genes$subtype=="Basal"])
-her2.pvals <- .getPVals(pooled.eset.intersecting.genes[,pooled.eset.intersecting.genes$subtype=="Her2"])
-lumA.pvals <- .getPVals(pooled.eset.intersecting.genes[,pooled.eset.intersecting.genes$subtype=="LumA"])
-lumB.pvals <- .getPVals(pooled.eset.intersecting.genes[,pooled.eset.intersecting.genes$subtype=="LumB"])
-  
-pvals.list <- list(All=all.pvals.out,
-                   Basal=basal.pvals,
-                   Her2=her2.pvals,
-                   LumA=lumA.pvals,
-                   LumB=lumB.pvals)
+if(subtype=="All") {
+	pvals <- .getPVals(pooled.eset.intersecting.genes)
+} else if (subtype=="Random") {
+	pvals <- .getPVals(pooled.eset.intersecting.genes[,seq(1, ncol(exprs(pooled.eset.intersecting.genes)), 4)])
+} else {
+	pvals <- .getPVals(pooled.eset.intersecting.genes, random=TRUE)
+}
+ 
+var.name <- paste0("pvals.", subtype, ".", gene.set.size)
 
-var.name <- paste0("pvals.list.", gene.set.size)
-
-assign(var.name, pvals.list)
+assign(var.name, pvals)
 
 save(list=var.name, file=paste0(out.dir, "/", var.name, ".RData"))
