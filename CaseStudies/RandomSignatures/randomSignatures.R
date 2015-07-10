@@ -41,15 +41,15 @@ nki.sample.size <- 295
 .getPVals <- function(eset, random=FALSE) {
   log.rank.pvals <- sapply(1:500, function(x) {
     print(x)
-
+    current.eset <- eset
     if(random == TRUE) {
-       eset <- eset[,sample(1:ncol(exprs(eset)), 1000)]
+       current.eset <- current.eset[,sample(1:ncol(exprs(current.eset)), 1000)]
     }
     
-    random.gene.indices <- sample(1:nrow(exprs(eset)), gene.set.size)
+    random.gene.indices <- sample(1:nrow(exprs(current.eset)), gene.set.size)
     resampled.pvals <- sapply(1:100, function(y) {
-      samples.to.include <- sample(1:ncol(exprs(eset)), nki.sample.size, replace=FALSE)
-      current.eset <- eset[random.gene.indices,samples.to.include]
+      samples.to.include <- sample(1:ncol(exprs(current.eset)), nki.sample.size, replace=FALSE)
+      current.eset <- current.eset[random.gene.indices,samples.to.include]
       expression.matrix <- t(exprs(current.eset))
       pc.out <- prcomp(expression.matrix)
       pc1 <- pc.out$x[,1]
