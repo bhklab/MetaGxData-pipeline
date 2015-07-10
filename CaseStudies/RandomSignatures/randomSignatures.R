@@ -10,7 +10,7 @@ args <- commandArgs(trailingOnly = TRUE)
 
 subtype <- args[1]
 
-out.dir <- "randomsigs_out_500genesets_100resamples_500genes"
+out.dir <- "randomsigs_out_500genesets_100resamples_5000genes"
 
 library(knitr)
 library(gdata)

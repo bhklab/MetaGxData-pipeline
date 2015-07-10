@@ -38,6 +38,7 @@ esets$TCGA <- esets$TCGA[apply(exprs(esets$TCGA), 1, function(x) all(!is.na(x)))
 ## For NKI, remove genes with NA values
 esets$NKI <- esets$NKI[apply(exprs(esets$NKI), 1, function(x) all(!is.na(x))),]
 
+esets$METABRIC <- esets$METABRIC[apply(exprs(esets$METABRIC), 1, function(x) all(!is.na(x))),]
 
 ## Remove datasets that are empty
 esets <- esets[sapply(esets, function(x) ncol(exprs(x)) > 0)]
