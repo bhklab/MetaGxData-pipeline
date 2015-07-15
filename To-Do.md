@@ -1,4 +1,12 @@
 # To do
+## General:
+- [ ] Add a data accessor function. E.g. my.eset.list <- MetaGxBreast::getExpressionSets(c("DUKE", "TRANSBIG"), rescale=FALSE, probe.gene.mapping=TRUE)
+
+##MetaGxOvarian:
+- [ ] Check that MetaGxOvarian has the datasets in the following: http://cancerres.aacrjournals.org/content/early/2015/06/27/0008-5472.CAN-14-3242.short (pg 12-13)
+
+##MetaGxBreast:
+- [ ] Include DCIS data: http://cancerres.aacrjournals.org/content/72/17/4574.long
 - [ ] Add additional clinical information to MUG
 
 Example, _IDC_A001 has NA values for almost all fields (also in /Users/Natchar/Desktop/MetaGxData/MetaGxBreast/curation/breast/uncurated/MUG.csv), but on GEO we have:
