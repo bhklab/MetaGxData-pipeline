@@ -122,7 +122,7 @@ delim <- ":"   ##This is the delimiter used to specify dataset:sample,
 #         names(remove.samples.delim) <- unique(datasets)
 #     }
 # }
-if(exists("remove.duplicates")){
+if(exists("remove.duplicates") && remove.duplicates){
     ## same as used in metagx getbrcadata
     load(system.file("extdata", "BenDuplicate.rda", package="MetaGxBreast"))
 
@@ -171,7 +171,7 @@ for (strEset in strEsets){
     #         eset <- expandProbesets(eset)
     #     }
     # }
-  if(exists("probe.gene.mapping")){
+  if(exists("probe.gene.mapping") && probe.gene.mapping){
     Biobase::exprs(eset) <- exprs(eset)[fData(eset)$best_probe,]
     Biobase::fData(eset) <- fData(eset)[fData(eset)$best_probe,]
     rownames(fData(eset)) <- rownames(exprs(eset)) <- paste("geneid.", fData(eset)$EntrezGene.ID, sep="")
