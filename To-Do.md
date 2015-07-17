@@ -6,6 +6,7 @@
 - [ ] Check that MetaGxOvarian has the datasets in the following: http://cancerres.aacrjournals.org/content/early/2015/06/27/0008-5472.CAN-14-3242.short (pg 12-13)
 - [ ] Ovarian dataset: GSE53963
 - [ ] Add sample number to Crijns dataset (differs from tumor sample #)
+- [ ] For the Crijns dataset (GSE13876), include Ovarian tumor sample number, assigned unique patient id, and sample nr
 
 ##MetaGxBreast:
 - [ ] Include DCIS data: http://cancerres.aacrjournals.org/content/72/17/4574.long
