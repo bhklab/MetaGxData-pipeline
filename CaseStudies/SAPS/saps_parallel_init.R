@@ -30,14 +30,18 @@ esets <- lapply(esets, function(x) {
 esets <- lapply(esets, function(eset) eset[,!is.na(eset$days_to_death) & !is.na(eset$vital_status)])
 
 # The gene expression matrix of UCSF is over 8% NAs
-esets <- esets[-which(names(esets) == "UCSF")]
+#esets <- esets[-which(names(esets) == "UCSF")]
+esets$UCSF <- esets$UCSF[apply(exprs(esets$UCSF), 1, function(x) all(!is.na(x))),]
 
 # For TCGA, remove the 169 genes with NA values
 esets$TCGA <- esets$TCGA[apply(exprs(esets$TCGA), 1, function(x) all(!is.na(x))),]
 
-esets$NKI <- esets$NKI[apply(exprs(esets$NKI), 1, function(x) sum(is.na(x)) < 20),]
-esets$NKI <- esets$NKI[,apply(exprs(esets$NKI), 2, function(x) sum(is.na(x))) < 5]
-esets$NKI <- esets$NKI[apply(exprs(esets$NKI), 1, function(x) sum(is.na(x)) == 0),]
+## For NKI, remove genes with NA values
+esets$NKI <- esets$NKI[apply(exprs(esets$NKI), 1, function(x) all(!is.na(x))),]
+
+#esets$NKI <- esets$NKI[apply(exprs(esets$NKI), 1, function(x) sum(is.na(x)) < 20),]
+#esets$NKI <- esets$NKI[,apply(exprs(esets$NKI), 2, function(x) sum(is.na(x))) < 5]
+#esets$NKI <- esets$NKI[apply(exprs(esets$NKI), 1, function(x) sum(is.na(x)) == 0),]
 
 ## Remove datasets that are empty
 esets <- esets[sapply(esets, function(x) ncol(exprs(x)) > 0)]

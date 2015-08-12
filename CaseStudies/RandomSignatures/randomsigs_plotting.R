@@ -1,10 +1,9 @@
-library(reshape)
-
-for(filename in paste0("randomsigs_out_1000genesets_1000resamples/", grep(".RData", list.files("randomsigs_out_1000genesets_1000resamples/"), value = TRUE))) {
+library(reshape) 
+for(filename in paste0("randomsigs_out_500genesets_100resamples_5000genes/", grep(".RData", list.files("randomsigs_out_500genesets_100resamples_5000genes/"), value = TRUE))) {
   load(filename)
 }
 
-gene.set.sizes <- seq(10, 80, 10)
+gene.set.sizes <- seq(10, 100, 10)
 #
 #nki.sample.size <- 295
 #for(gene.set.size in gene.set.sizes) {
@@ -85,16 +84,20 @@ proportion.below.cutoff.matrix <- as.matrix(do.call(rbind, proportion.below.cuto
   p <- ggplot(stat.vals.m, aes(Subtype, GeneSet)) + 
     geom_tile(aes(fill = value), colour = "white") + 
     scale_fill_gradient(name=stat.name, low="#58A4DE", high="black") + 
-    ggtitle("Significance Analysis of Prognostic Signatures") +
+    ggtitle("Random Signatures Heatmap") +
     theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(), panel.background = element_blank())
   
   return(p)
 }
 
 .getHeatmap(proportion.below.cutoff.matrix, "Proportion with p < 0.10", cluster=FALSE) + theme(axis.text.y = element_text(size=20)) + geom_text(label=as.character(proportion.below.cutoff.matrix), colour="white")
-.getHeatmap(pval.mean.matrix, "Mean p-value", cluster=FALSE) + theme(axis.text.y = element_text(size=20))  + geom_text(label=sprintf("%.3f", pval.mean.matrix), colour="white")
+heatmap.fig <- .getHeatmap(pval.mean.matrix, "Mean p-value", cluster=FALSE) + theme(axis.text.y = element_text(size=20))  + geom_text(label=sprintf("%.3f", pval.mean.matrix), colour="white")
+ggsave(heatmap.fig, filename = "randomsig_heatmap.png", width=10, height=9)
 
-par(mfrow=c(2,4))
+png("randomsig_boxplots.png", width=2200, height=1320)
+par(mfrow=c(2,5))
 lapply(names(pval.list.by.size), function(pval.list.name) {
   boxplot(value ~ variable, melt(pval.list.by.size[pval.list.name]), main=pval.list.name)
   })
+
+dev.off()

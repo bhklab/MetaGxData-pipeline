@@ -25,14 +25,15 @@ load("pooled.eset.over.5000.genes.RData")
 
 # Print patients on first two principal components
 
-#pc.out <- prcomp(t(exprs(pooled.eset.over.5000.genes)))
-#scatterplot.data <- as.data.frame(pc.out$x[,c(1,2)])
-#scatterplot.data$data.source <- pooled.eset.over.5000.genes$data.source
-#pca.scatterplot <- ggplot(scatterplot.data, aes(x=PC1, y=PC2, colour=data.source)) + 
-#  geom_point(shape=1) +
-#  scale_colour_hue(l=50) +
-#  ggtitle("PCA")
-#ggsave(pca.scatterplot, filename = "pca.brca.datasets.png", width=13, height=13)
+pc.out <- prcomp(t(exprs(pooled.eset.over.5000.genes)))
+scatterplot.data <- as.data.frame(pc.out$x[,c(1,2)])
+scatterplot.data$data.source <- pooled.eset.over.5000.genes$data.source
+scatterplot.data <- scatterplot.data[sample(1:nrow(scatterplot.data)),]
+pca.scatterplot <- ggplot(scatterplot.data, aes(x=PC1, y=PC2, colour=data.source)) + 
+  geom_point(shape=1) +
+  scale_colour_hue(l=50) +
+  ggtitle("PCA")
+ggsave(pca.scatterplot, filename = "pca.brca.datasets.png", width=13, height=13)
 genes.in.pooled.intersect <- rownames(fData(pooled.eset.over.5000.genes))
 genes.in.pooled.intersect <- sub("^", "geneid.", genes.in.pooled.intersect)
 

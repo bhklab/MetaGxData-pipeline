@@ -45,20 +45,26 @@ p.random <- lapply(all.out, function(x) lapply(x, function(y) y$genesets[[1]]$sa
 p.random <- sapply(p.random, unlist)
 rownames(p.random) <- sub(".p_random$", "", rownames(p.random))
 
-.getHeatmap <- function(stat.matrix, stat.name) {
-  ord <- hclust(dist(stat.matrix, method="euclidean"))$order
-  
+.getHeatmap <- function(stat.matrix, stat.name, cluster=TRUE) {
+  if(cluster==TRUE) {
+    ord <- hclust(dist(stat.matrix, method="euclidean"))$order
+  }
   stat.vals.m <- melt(stat.matrix)
   colnames(stat.vals.m) <- c("GeneSet", "Subtype", "value")
   
-  #Set order of factor levels, which is reflected in the heatmap order for genesets
-  stat.vals.m$GeneSet <- factor(stat.vals.m$GeneSet, levels = levels(stat.vals.m$GeneSet)[ord])
+  if(cluster==TRUE) {
+    #Set order of factor levels, which is reflected in the heatmap order for genesets
+    stat.vals.m$GeneSet <- factor(stat.vals.m$GeneSet, levels = levels(stat.vals.m$GeneSet)[ord])
+  } else {
+    #Retain original order of rows
+    stat.vals.m$GeneSet <- factor(stat.vals.m$GeneSet, levels = levels(stat.vals.m$GeneSet)[match(rownames(stat.matrix), levels(stat.vals.m$GeneSet))])
+  }
   
   p <- ggplot(stat.vals.m, aes(Subtype, GeneSet)) + 
     geom_tile(aes(fill = value), colour = "white") + 
     scale_fill_gradient(name=stat.name, low="#58A4DE", high="#000000") + 
     ggtitle("Significance Analysis of Prognostic Signatures") +
-    theme(axis.text.y = element_text(size=7), panel.grid.major = element_blank(), panel.grid.minor = element_blank(), panel.background = element_blank())
+    theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(), panel.background = element_blank())
   
   return(p)
 }
