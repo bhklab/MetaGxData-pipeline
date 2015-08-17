@@ -47,7 +47,7 @@ out <- saps(
   t(exprs(pooled.ovca.eset.intersecting.genes)), 
   pooled.ovca.eset.intersecting.genes$days_to_death, 
   as.integer(pooled.ovca.eset.intersecting.genes$vital_status == "deceased"),
-  compute_qvalue = TRUE)
+  compute_qvalue = FALSE)
 
 var.name <- paste0(rownames(GO.gene.sets.matrix), "_", subtype)
 
