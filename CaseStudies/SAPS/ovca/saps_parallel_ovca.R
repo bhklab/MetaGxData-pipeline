@@ -23,7 +23,7 @@ library(hgu133plus2.db)
 
 load("pooled.ovca.eset.intersecting.genes.RData")
 
-source("../GeneSetListGenerator.R")
+source("../GeneSetListGenerator.R", chdir=TRUE)
 genes.in.pooled.intersect <- as.character(fData(pooled.ovca.eset.intersecting.genes)$EntrezGene.ID)
 GO.gene.sets.intersect <- lapply(CompleteLists, function(x) intersect(x, genes.in.pooled.intersect))
 GO.gene.sets.intersect <- GO.gene.sets.intersect[sapply(GO.gene.sets.intersect, function(x) length(x) >= 15)]
@@ -37,7 +37,7 @@ GO.gene.sets.matrix <- do.call(rbind, lapply(GO.gene.sets.intersect, function(x)
 
 ## Subset by the subtype to consider
 if(subtype != "All") {
-  pooled.ovca.eset.intersecting.genes <- pooled.ovca.eset.intersecting.genes[,pooled.ovca.eset.intersecting.genes$subtype == subtype]
+  pooled.ovca.eset.intersecting.genes <- pooled.ovca.eset.intersecting.genes[,pooled.ovca.eset.intersecting.genes$Bentink.subtypes == subtype]
 }
 
 GO.gene.sets.matrix <- GO.gene.sets.matrix[gene.set.index,,drop=FALSE]
@@ -53,4 +53,4 @@ var.name <- paste0(rownames(GO.gene.sets.matrix), "_", subtype)
 
 assign(var.name, out)
 
-save(list=var.name, file=paste0("saps_output_brca/", var.name, ".RData"))
+save(list=var.name, file=paste0("saps_output_ovca/", var.name, ".RData"))

@@ -44,6 +44,14 @@ esets$GSE8842 <- esets$GSEGSE8842[apply(exprs(esets$GSE8842), 1, function(x) all
 ## Remove datasets that are empty
 esets <- esets[sapply(esets, function(x) ncol(exprs(x)) > 0)]
 
+for(i in 1:length(esets)) {
+  expression.matrix <- t(exprs(esets[[i]]))
+  annot <- fData(esets[[i]])
+  colnames(annot)[which(colnames(annot) == "EntrezGene.ID")] <- "entrezgene"
+  angio <- genefu::ovcAngiogenic(data = expression.matrix, annot=annot, gmap="entrezgene", do.mapping = TRUE)
+  esets[[i]]$Bentink.subtypes <- angio$subtype$subtype
+}
+
 pooled.ovca.eset.intersecting.genes <- datasetMerging(esets, method='intersect', nthread=parallel::detectCores())
 
 save(pooled.ovca.eset.intersecting.genes, file="pooled.ovca.eset.intersecting.genes.RData")
