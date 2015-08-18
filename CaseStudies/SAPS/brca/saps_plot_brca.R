@@ -72,9 +72,40 @@ rownames(p.random) <- sub(".p_random$", "", rownames(p.random))
   
   return(p)
 }
+.getHeatmapCategorical <- function(stat.matrix, stat.name, cluster=TRUE, breaks=c(0,0.05,0.25,1)) {
+  if(cluster==TRUE) {
+    ord <- hclust(dist(stat.matrix, method="euclidean"))$order
+  }
+  original.rownames <- rownames(stat.matrix)
+  stat.matrix <- apply(stat.matrix, 2, cut, breaks=breaks)
+  rownames(stat.matrix) <- original.rownames
+  stat.vals.m <- melt(stat.matrix)
+  colnames(stat.vals.m) <- c("GeneSet", "Subtype", "value")
+  
+  if(cluster==TRUE) {
+    #Set order of factor levels, which is reflected in the heatmap order for genesets
+    stat.vals.m$GeneSet <- factor(stat.vals.m$GeneSet, levels = levels(stat.vals.m$GeneSet)[ord])
+  } else {
+    #Retain original order of rows
+    stat.vals.m$GeneSet <- factor(stat.vals.m$GeneSet, levels = levels(stat.vals.m$GeneSet)[match(rownames(stat.matrix), levels(stat.vals.m$GeneSet))])
+  }
+  
+  p <- ggplot(stat.vals.m, aes(Subtype, GeneSet)) + 
+    geom_tile(aes(fill = value), colour = "white") + 
+    scale_fill_discrete(name=stat.name) + 
+    ggtitle("Significance Analysis of Prognostic Signatures") +
+    theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(), panel.background = element_blank())
+  
+  return(p)
+}
 
-saps.plot <- .getHeatmap(saps.scores, "SAPS score")
+p.random.fdr <- apply(p.random, 2, p.adjust, method="fdr")
+p.random.fdr.cutoffs <- apply(p.random.fdr, 2, cut, breaks=c(0,0.05, 0.25,1))
+rownames(p.random.fdr.cutoffs) <- rownames(p.random.fdr)
+
 p.random.plot <- .getHeatmap(-log10(p.random), "-log(p-random)")
+
+p.random.plot.fdr.cutoffs <- .getHeatmapCategorical(p.random.fdr, "p-value fdr")
 
 #ggsave(saps.plot, filename = "saps.png", width=13, height=15)
 ggsave(p.random.plot, filename = "p-random_brca_intersect.png", width=13, height=15)
