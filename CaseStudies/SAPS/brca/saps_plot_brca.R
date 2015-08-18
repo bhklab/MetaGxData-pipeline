@@ -27,6 +27,10 @@ all.out <- list(All=all.subtypes.saps.output,
                 LumB=lumB.saps.output
                 )
 
+
+intersecting.gene.set.names <- scan("../intersecting.gene.sets.txt", what=character(0))
+all.out <- lapply(all.out, function(x) x[intersecting.gene.set.names])
+
 # Make sure names are all equal
 my.names <- lapply(all.out, names)
 if(!(all.equal(my.names[[1]], my.names[[2]])
@@ -72,5 +76,5 @@ rownames(p.random) <- sub(".p_random$", "", rownames(p.random))
 saps.plot <- .getHeatmap(saps.scores, "SAPS score")
 p.random.plot <- .getHeatmap(-log10(p.random), "-log(p-random)")
 
-ggsave(saps.plot, filename = "saps.png", width=13, height=15)
-ggsave(p.random.plot, filename = "p-random.png", width=13, height=15)
+#ggsave(saps.plot, filename = "saps.png", width=13, height=15)
+ggsave(p.random.plot, filename = "p-random_brca_intersect.png", width=13, height=15)

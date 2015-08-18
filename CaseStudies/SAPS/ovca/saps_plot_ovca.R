@@ -1,45 +1,37 @@
 library(reshape)
 
-for(filename in paste0("saps_output_brca/", grep(".RData", list.files("saps_output_brca/"), value = TRUE))) {
+for(filename in paste0("saps_output_ovca/", grep(".RData", list.files("saps_output_ovca/"), value = TRUE))) {
   load(filename)
 }
 
 all.subtypes.saps.output <- mget(sort(grep("_All", ls(), value = TRUE)))
 rm(list=grep("_All$", ls(), value = TRUE))
 names(all.subtypes.saps.output) <- sub("_All$", "", names(all.subtypes.saps.output))
-basal.saps.output <- mget(sort(grep("_Basal", ls(), value = TRUE)))
-rm(list=grep("_Basal$", ls(), value = TRUE))
-names(basal.saps.output) <- sub("_Basal$", "", names(all.subtypes.saps.output))
-her2.saps.output <- mget(sort(grep("_Her2", ls(), value = TRUE)))
-rm(list=grep("_Her2$", ls(), value = TRUE))
-names(her2.saps.output) <- sub("_Her2$", "", names(all.subtypes.saps.output))
-lumB.saps.output <- mget(sort(grep("_LumB", ls(), value = TRUE)))
-rm(list=grep("_LumB$", ls(), value = TRUE))
-names(lumB.saps.output) <- sub("_LumB$", "", names(all.subtypes.saps.output))
-lumA.saps.output <- mget(sort(grep("_LumA", ls(), value = TRUE)))
-rm(list=grep("_LumA$", ls(), value = TRUE))
-names(lumA.saps.output) <- sub("_LumA$", "", names(all.subtypes.saps.output))
+
+angiogenic.saps.output <- mget(sort(grep("_Angiogenic", ls(), value = TRUE)))
+rm(list=grep("_Angiogenic$", ls(), value = TRUE))
+names(angiogenic.saps.output) <- sub("_Angiogenic$", "", names(angiogenic.saps.output))
+
+nonAngiogenic.saps.output <- mget(sort(grep("_nonAngiogenic", ls(), value = TRUE)))
+rm(list=grep("_nonAngiogenic$", ls(), value = TRUE))
+names(nonAngiogenic.saps.output) <- sub("_nonAngiogenic$", "", names(nonAngiogenic.saps.output))
 
 all.out <- list(All=all.subtypes.saps.output,
-                Basal=basal.saps.output,
-                Her2=her2.saps.output,
-                LumA=lumA.saps.output,
-                LumB=lumB.saps.output
+                Angiogenic=angiogenic.saps.output,
+                nonAngiogenic=nonAngiogenic.saps.output
                 )
+# order alphabetically
+all.out <- lapply(all.out, function(x) x[order(names(x))])
+
+intersecting.gene.set.names <- scan("../intersecting.gene.sets.txt", what=character(0))
+all.out <- lapply(all.out, function(x) x[intersecting.gene.set.names])
 
 # Make sure names are all equal
 my.names <- lapply(all.out, names)
-if(!(all.equal(my.names[[1]], my.names[[2]])
-    && all.equal(my.names[[1]], my.names[[3]])
-    && all.equal(my.names[[1]], my.names[[4]])
-    && all.equal(my.names[[1]], my.names[[5]]))) {
+if(!( all.equal(my.names[[1]], my.names[[2]])
+    && all.equal(my.names[[1]], my.names[[3]]))) {
   stop("Names of saps output are not equal - are all RData files present?")
 }
-
-saps.scores <- lapply(all.out, function(x) lapply(x, function(y) y$genesets[[1]]$saps_unadjusted["saps_score"]))
-saps.scores <- sapply(saps.scores, unlist)
-saps.scores <- abs(saps.scores)
-rownames(saps.scores) <- sub(".saps_score$", "", rownames(saps.scores))
 
 p.random <- lapply(all.out, function(x) lapply(x, function(y) y$genesets[[1]]$saps_unadjusted["p_random"]))
 p.random <- sapply(p.random, unlist)
@@ -69,8 +61,6 @@ rownames(p.random) <- sub(".p_random$", "", rownames(p.random))
   return(p)
 }
 
-saps.plot <- .getHeatmap(saps.scores, "SAPS score")
 p.random.plot <- .getHeatmap(-log10(p.random), "-log(p-random)")
 
-ggsave(saps.plot, filename = "saps.png", width=13, height=15)
-ggsave(p.random.plot, filename = "p-random.png", width=13, height=15)
+ggsave(p.random.plot, filename = "p-random_ovca_intersect.png", width=13, height=15)
