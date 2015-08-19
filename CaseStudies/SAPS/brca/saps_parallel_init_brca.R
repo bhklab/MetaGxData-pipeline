@@ -18,33 +18,22 @@ source("~/repos/MetaGx/R/setSubtype.R")
 source("~/repos/MetaGx/R/subtypeClassification.R")
 source("~/repos/MetaGx/R/stripWhiteSpace.R")
 
-# TODO? order by publication date. Note that EXPO was set to the year it was public on GEO (2005).
-
 esets <- lapply(esets, function(x) {
   factor.indices <- sapply(pData(x), is.factor)
   pData(x)[factor.indices] <- lapply(pData(x)[factor.indices], as.character)
   return(x)
 })
 
-# only keep patients with survival data
-esets <- lapply(esets, function(eset) eset[,!is.na(eset$days_to_death) & !is.na(eset$vital_status)])
+# only keep patients with rfs data
+esets <- lapply(esets, function(eset) eset[,!is.na(eset$recurrence_status) & !is.na(eset$days_to_tumor_recurrence)  |  !is.na(eset$dmfs_status) & !is.na(eset$dmfs_days)])
 
-# The gene expression matrix of UCSF is over 8% NAs
-#esets <- esets[-which(names(esets) == "UCSF")]
-esets$UCSF <- esets$UCSF[apply(exprs(esets$UCSF), 1, function(x) all(!is.na(x))),]
-
-# For TCGA, remove the 169 genes with NA values
-esets$TCGA <- esets$TCGA[apply(exprs(esets$TCGA), 1, function(x) all(!is.na(x))),]
-
-## For NKI, remove genes with NA values
-esets$NKI <- esets$NKI[apply(exprs(esets$NKI), 1, function(x) all(!is.na(x))),]
-
-#esets$NKI <- esets$NKI[apply(exprs(esets$NKI), 1, function(x) sum(is.na(x)) < 20),]
-#esets$NKI <- esets$NKI[,apply(exprs(esets$NKI), 2, function(x) sum(is.na(x))) < 5]
-#esets$NKI <- esets$NKI[apply(exprs(esets$NKI), 1, function(x) sum(is.na(x)) == 0),]
+esets <- lapply(esets, function(eset) eset[apply(exprs(eset), 1, function(x) all(!is.na(x))),])
 
 ## Remove datasets that are empty
 esets <- esets[sapply(esets, function(x) ncol(exprs(x)) > 0)]
+
+# Only keep datasets with at least 10000 genes
+esets <- esets[sapply(esets, function(x) nrow(x) > 10000)]
 
 esets <- lapply(esets, function(x) {
   x <- subtypeClassification(x, model = "scmod2")
@@ -53,5 +42,11 @@ esets <- lapply(esets, function(x) {
 })
 
 pooled.eset.intersecting.genes <- datasetMerging(esets, method='intersect', nthread=parallel::detectCores())
+
+# impute rfs with dmfs if rfs is not available
+use.dmfs.logical <- is.na(pooled.eset.intersecting.genes$days_to_tumor_recurrence) & is.na(pooled.eset.intersecting.genes$recurrence_status) & !is.na(pooled.eset.intersecting.genes$dmfs_days) & !is.na(pooled.eset.intersecting.genes$dmfs_status)
+
+pooled.eset.intersecting.genes$days_to_tumor_recurrence[use.dmfs.logical] <- pooled.eset.intersecting.genes$dmfs_days[use.dmfs.logical]
+pooled.eset.intersecting.genes$recurrence_status[use.dmfs.logical] <- pooled.eset.intersecting.genes$dmfs_status[use.dmfs.logical]
 
 save(pooled.eset.intersecting.genes, file="pooled.brca.eset.intersecting.genes.RData")

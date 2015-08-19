@@ -1,4 +1,5 @@
 library(reshape)
+library(ggplot2)
 
 for(filename in paste0("saps_output_brca/", grep(".RData", list.files("saps_output_brca/"), value = TRUE))) {
   load(filename)
@@ -28,8 +29,8 @@ all.out <- list(All=all.subtypes.saps.output,
                 )
 
 
-intersecting.gene.set.names <- scan("../intersecting.gene.sets.txt", what=character(0))
-all.out <- lapply(all.out, function(x) x[intersecting.gene.set.names])
+#intersecting.gene.set.names <- scan("../intersecting.gene.sets.txt", what=character(0))
+#all.out <- lapply(all.out, function(x) x[intersecting.gene.set.names])
 
 # Make sure names are all equal
 my.names <- lapply(all.out, names)
@@ -108,4 +109,4 @@ p.random.plot <- .getHeatmap(-log10(p.random), "-log(p-random)")
 p.random.plot.fdr.cutoffs <- .getHeatmapCategorical(p.random.fdr, "p-value fdr")
 
 #ggsave(saps.plot, filename = "saps.png", width=13, height=15)
-ggsave(p.random.plot, filename = "p-random_brca_intersect.png", width=13, height=15)
+ggsave(p.random.plot, filename = "p-random_brca_fullgeneset.png", width=13, height=15)
