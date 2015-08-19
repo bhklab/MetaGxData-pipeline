@@ -48,7 +48,8 @@ out <- saps(
   t(exprs(pooled.eset.intersecting.genes)), 
   pooled.eset.intersecting.genes$days_to_tumor_recurrence, 
   as.integer(pooled.eset.intersecting.genes$recurrence_status == "recurrence"),
-  compute_qvalue = FALSE)
+  compute_qvalue = FALSE,
+  random.samples=2000)
 
 var.name <- paste0(rownames(GO.gene.sets.matrix), "_", subtype)
 

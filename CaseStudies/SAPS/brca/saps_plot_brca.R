@@ -1,7 +1,7 @@
 library(reshape)
 library(ggplot2)
 
-for(filename in paste0("saps_output_brca/", grep(".RData", list.files("saps_output_brca/"), value = TRUE))) {
+for(filename in paste0("saps_output_brca_rfs/", grep(".RData", list.files("saps_output_brca_rfs/"), value = TRUE))) {
   load(filename)
 }
 
@@ -27,7 +27,8 @@ all.out <- list(All=all.subtypes.saps.output,
                 LumA=lumA.saps.output,
                 LumB=lumB.saps.output
                 )
-
+# order alphabetically
+all.out <- lapply(all.out, function(x) x[order(names(x))])
 
 #intersecting.gene.set.names <- scan("../intersecting.gene.sets.txt", what=character(0))
 #all.out <- lapply(all.out, function(x) x[intersecting.gene.set.names])
