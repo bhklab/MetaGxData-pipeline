@@ -21,6 +21,9 @@ survival.df.list <- lapply(esets.with.gene, function(eset) {
   
   levels(expression.quantiles) <- c("Low", "High")
   
+  #Re-order so high comes first
+  expression.quantiles <- factor(expression.quantiles, levels=rev(levels(expression.quantiles)))
+  
   colnames.to.keep <- c("days_to_tumor_recurrence", "recurrence_status")
     if("dmfs_status" %in% colnames(pData(eset))) {
       colnames.to.keep <- c(colnames.to.keep, "dmfs_days", "dmfs_status")
@@ -63,15 +66,7 @@ survival.df.list <- lapply(esets.with.gene, function(eset) {
 
 @
 
-<<survival_curve_{{current.index}}, fig.width=12, fig.height=12, out.width="1.0\\textwidth", cache=FALSE>>=
-survival.df.combined <- do.call(rbind, survival.df.list)
 
-survival.df.combined$surv.obj <- Surv(time = survival.df.combined$years_to_event, event = survival.df.combined$event_status)
-
-main.title = paste0("Pooled survival: ", gene.names[{{current.index}}])
-km.coxph.plot(as.formula(paste0("surv.obj ~ geneid.", entrez.ids[{{current.index}}], ".quantile")), survival.df.combined, x.label="Time (years)", y.label = "Recurrence-free survival", main.title=main.title, show.n.risk = FALSE, leg.text = levels(survival.df.combined[paste0("geneid.", entrez.ids[{{current.index}}], ".quantile")]), leg.pos="topright", leg.bty="n", leg.inset=0, n.risk.cex=0.85, cex=0.4)
-
-@
 
 <<singlegene_metaanalysis_forestplot_{{current.index}}, fig.width=5, fig.height=7, out.width="0.5\\textwidth", cache=FALSE>>=
 xlim=c(-3,3)
@@ -79,26 +74,31 @@ alim=c(-3,3)
 at=log(c(.25, 0.5, 1, 2, 4))
 
 stat.objects <- lapply(survival.df.list, function(survival.df) {
-    survcomp::hazard.ratio(x=survival.df$geneid.2099.quantile, surv.time=survival.df$years_to_event, surv.event=survival.df$event_status)
+    survcomp::hazard.ratio(x=survival.df[[paste0("geneid.", entrez.ids[{{current.index}}], ".quantile")]], surv.time=survival.df$years_to_event, surv.event=survival.df$event_status)
     })
 
 stat.vals <- sapply(stat.objects, function(x) x$coef)
 stat.se <- sapply(stat.objects, function(x) x$se)  
 rma.random <- rma(stat.vals, sei=stat.se, method="REML", slab=names(survival.df.list))
 
-forest(rma.random, mlab="Random Effects", xlab="Hazard Ratio", atransf=exp, refline = 0, annotate=FALSE, at=log(c(0.25,0.5,1,2,4)))
+forest(rma.random, xlab="Hazard Ratio", atransf=exp, refline = 0, annotate=FALSE, addfit=FALSE, ylim=c(-2.5,length(stat.vals) + 3), at=log(c(0.25,0.5,1,2,4)), xlim=xlim, alim=alim, main=paste0("Meta-analysis: ", gene.names[{{current.index}}]))
+abline(h=0, lwd=1)
+addpoly(rma.random, mlab="Random Effects Estimate", row=-1, atransf=exp, annotate=TRUE)
 
-create.forest.plot(survival.df.list, surv.time.colname = "years_to_event", surv.event.colname = "event_status", risk.val.colname = paste0("geneid.", entrez.ids[{{current.index}}], ".quantile"), stat = "hazard.ratio", main=paste0("Meta-analysis: ", gene.names[{{current.index}}]), xlim=xlim, alim=alim, at=at)
-
-fixed.effects.pval[{{current.index}}] <- meta.stats$rma.fixed$pval
-# create.forest.plot returns log2(HR)
-fixed.effects.estimate[{{current.index}}] <- exp(as.vector(meta.stats$rma.fixed$b))
-fixed.effects.lower[{{current.index}}] <- exp(meta.stats$rma.fixed$ci.lb)
-fixed.effects.upper[{{current.index}}] <- exp(meta.stats$rma.fixed$ci.ub)
 @
 
-\noindent Fixed effects model:
-\Sexpr{sprintf("%.02f [%.02f, %.02f], p = %.1E", exp(as.vector(meta.stats$rma.fixed$b)), exp(meta.stats$rma.fixed$ci.lb), exp(meta.stats$rma.fixed$ci.ub), meta.stats$rma.fixed$pval)}
+<<survival_curve_{{current.index}}, fig.width=12, fig.height=12, out.width="1.0\\textwidth", cache=FALSE>>=
+survival.df.combined <- do.call(rbind, survival.df.list)
 
-\noindent Random effects model:
-\Sexpr{sprintf("%.02f [%.02f, %.02f], p = %.1E", exp(as.vector(meta.stats$rma.random$b)), exp(meta.stats$rma.random$ci.lb), exp(meta.stats$rma.random$ci.ub), meta.stats$rma.random$pval)}
+survival.df.combined$surv.obj <- Surv(time = survival.df.combined$years_to_event, event = survival.df.combined$event_status)
+
+main.title = paste0("Pooled survival: ", gene.names[{{current.index}}])
+km.coxph.plot(as.formula(paste0("surv.obj ~ geneid.", entrez.ids[{{current.index}}], ".quantile")), survival.df.combined, x.label="Time (years)", y.label = "Recurrence-free survival", main.title=main.title, show.n.risk = FALSE, leg.text = levels(survival.df.combined[[paste0("geneid.", entrez.ids[{{current.index}}], ".quantile")]]), leg.pos="topright", leg.bty="n", leg.inset=0, n.risk.cex=0.85, cex=0.4, o.text="")
+
+o.text <- paste(sprintf("HR: %.3f [%.3f,%.3f]\n", exp(rma.random$b), exp(rma.random$ci.lb), exp(rma.random$ci.ub)), sprintf("p = %.1E", rma.random$pval))
+text(0,0, o.text, cex=0.85, pos=4)
+@
+
+
+%\noindent Random effects model:
+%\Sexpr{sprintf("%.02f [%.02f, %.02f], p = %.1E", exp(as.vector(meta.stats$rma.random$b)), exp(meta.stats$rma.random$ci.lb), exp(meta.stats$rma.random$ci.ub), meta.stats$rma.random$pval)}

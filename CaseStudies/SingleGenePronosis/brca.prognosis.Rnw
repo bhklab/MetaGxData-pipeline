@@ -15,14 +15,6 @@ library(xtable)
 library(genefu)
 library(hgu133plus2.db)
 library(metafor)
-source("../../R/create.survival.plot.R")
-source("../../R/stripWhiteSpace.R")
-source("../../R/getSubtype.R")
-source("../../R/datasetMerging.R")
-source("../../R/get.survival.data.for.plotting.R")
-source("../../R/subtypeClassification.R")
-source("../../R/setSubtype.R")
-source("../../R/create.forest.plot.R")
 source("~/repos/MetaGx/R/stripWhiteSpace.R")
 
 strata.term <- TRUE
@@ -64,7 +56,7 @@ basal.only <- TRUE
 
 
 
-<<load_data, cache=TRUE>>=
+<<load_data, cache=FALSE>>=
 source(system.file("extdata", "patientselection.config", package="MetaGxBreast"))
 source(system.file("extdata", "createEsetList.R", package="MetaGxBreast"))
 
@@ -73,10 +65,10 @@ esets <- lapply(esets, function(x) {
   pData(x)[factor.indices] <- lapply(pData(x)[factor.indices], as.character)
   return(x)
   })
-esets <- lapply(esets, function(x) {
-  x <- subtypeClassification(x, model = "scmod2")
-  return(x)
-  })
+#esets <- lapply(esets, function(x) {
+#  x <- subtypeClassification(x, model = "scmod2")
+#  return(x)
+#  })
 eset.names <- names(esets)
 esets <- lapply(names(esets), function(x) {
   eset.toreturn <- esets[[x]]
@@ -110,10 +102,10 @@ esets.rfs <- lapply(esets, function(eset) eset[,!is.na(eset$recurrence_status) &
 ## Remove datasets that are empty
 esets.os <- esets.os[sapply(esets.os, function(x) ncol(exprs(x)) > 0)]
 esets.rfs <- esets.rfs[sapply(esets.rfs, function(x) ncol(exprs(x)) > 0)]
-pooled.eset.rfs <- datasetMerging(esets = esets.rfs)
+#pooled.eset.rfs <- datasetMerging(esets = esets.rfs)
 esets.rfs.untreated <- lapply(esets.rfs, function(eset) eset[,!is.na(eset$treatment) & eset$treatment == "untreated"])
 esets.rfs.untreated <- esets.rfs.untreated[sapply(esets.rfs.untreated, function(x) ncol(exprs(x))) >= 50]
-pooled.eset.rfs.untreated <- datasetMerging(esets = esets.rfs.untreated)
+#pooled.eset.rfs.untreated <- datasetMerging(esets = esets.rfs.untreated)
 rm(esets)
 @
 
@@ -122,51 +114,33 @@ rm(esets)
 \section{Datasets}
 
 <<get_num_genes_datasets>>=
+num.patients <- sum(sapply(esets.rfs, function(x) ncol(exprs(x))))
+num.datasets <- length(esets.rfs)
 
-if(basal.only) {
-  num.patients <- sum(sapply(esets.rfs, function(x) sum(x$subtype == "Basal")))
-  num.datasets <- length(esets.rfs)
-} else {
-  num.patients <- sum(sapply(esets.rfs, function(x) ncol(exprs(x))))
-  num.datasets <- length(esets.rfs)
-}
 @
 
 
 From MetaGxBreast, we selected patients from studies which tracked recurence-free survival. When recurrence-free survival was unavailable, we used distant metastatis-free survival.  We identified \Sexpr{num.patients} patients from \Sexpr{num.datasets} datasets.
 <<Dataset_table, results='asis'>>=
-if(basal.only) {
-  data.counts <- as.data.frame(sapply(esets.rfs, function(x) sum(x$subtype == "Basal")))
-  colnames(data.counts) <- "Number of Basal-Like samples"
-  data.counts <- rbind(data.counts, sum(data.counts[,1]))
-  rownames(data.counts)[nrow(data.counts)] <- "Sum"
-  xtable(data.counts)
-} else {
-  data.counts <- as.data.frame(sapply(esets.rfs, function(x) ncol(exprs(x))))
-  colnames(data.counts) <- "Number of samples"
-  data.counts <- rbind(data.counts, sum(data.counts[,1]))
-  rownames(data.counts)[nrow(data.counts)] <- "Sum"
-  xtable(data.counts)
-}
+data.counts <- as.data.frame(sapply(esets.rfs, function(x) ncol(exprs(x))))
+colnames(data.counts) <- "Number of samples"
+data.counts <- rbind(data.counts, sum(data.counts[,1]))
+rownames(data.counts)[nrow(data.counts)] <- "Sum"
+xtable(data.counts)
 @
 
 %Treatment status may be a confounder to patient outcome. We performed survival analysis our full dataset, as well as only the untreated patients:\footnote{Datasets with fewer than 50 untreated patients were excluded.}
 <<Dataset_table_untreated, results='asis'>>=
-if(!meta.analysis) {
-  data.counts <- as.data.frame(sapply(esets.rfs.untreated, function(x) ncol(exprs(x))))
-  colnames(data.counts) <- "Number of samples"
-  data.counts <- rbind(data.counts, sum(data.counts[,1]))
-  rownames(data.counts)[nrow(data.counts)] <- "Sum"
-  xtable(data.counts)
-}
+data.counts <- as.data.frame(sapply(esets.rfs.untreated, function(x) ncol(exprs(x))))
+colnames(data.counts) <- "Number of samples"
+data.counts <- rbind(data.counts, sum(data.counts[,1]))
+rownames(data.counts)[nrow(data.counts)] <- "Sum"
+xtable(data.counts)
 @
 
 <<single_gene, cache=FALSE, include=FALSE>>=
-if(meta.analysis) {
-  knitr.text <- lapply(1:length(entrez.ids), function(current.index) knit_expand(file='single.gene.brca.meta.analysis.Rnw'))
-} else {
-  knitr.text <- lapply(1:length(entrez.ids), function(current.index) knit_expand(file='single.gene.brca.survival.Rnw'))
-}
+knitr.text <- lapply(1:length(entrez.ids), function(current.index) knit_expand(file='brca.single.gene.template.Rnw'))
+
 fixed.effects.pval <- c()
 fixed.effects.estimate <- c()
 fixed.effects.lower <- c()
