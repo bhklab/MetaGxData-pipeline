@@ -136,6 +136,7 @@ fixed.effects.pval <- c()
 fixed.effects.estimate <- c()
 fixed.effects.lower <- c()
 fixed.effects.upper <- c()
+rma.objs <- list()
 
 hr.matrix <- matrix(nrow=length(gene.names), ncol=length(esets.rfs))
 rownames(hr.matrix) <- gene.names
@@ -148,14 +149,15 @@ knitr.out <- knit(text=unlist(knitr.text))
 .getHeatmap <- function(stat.matrix) {
     stat.matrix.m <- melt(stat.matrix)
     #if(cluster==TRUE) {
-      ord <- hclust(dist(t(stat.matrix), method="euclidean"))$order
+      ord <- hclust(dist(t(log(stat.matrix)), method="euclidean"))$order
     #}
-    colnames(stat.matrix.m) <- c("Gene", "Dataset", "logHR")
+    colnames(stat.matrix.m) <- c("Gene", "Dataset", "HR")
+    stat.matrix.m$Gene <- factor(stat.matrix.m$Gene, levels=rev(rownames(stat.matrix)))
     stat.matrix.m$Dataset <- factor(stat.matrix.m$Dataset, levels=levels(stat.matrix.m$Dataset)[ord])
     
     p <- ggplot(stat.matrix.m, aes_string("Dataset", "Gene")) + 
-      geom_tile(aes(fill = logHR), colour = "white") + 
-      scale_fill_gradient2(low="#ef8a62", mid="#f7f7f7", high="#67a9cf") + 
+      geom_tile(aes(fill = HR), colour = "white") + 
+      scale_fill_gradient2(low="#ef8a62", mid="#f7f7f7", high="#67a9cf", trans="log", breaks=c(0.5,1,2), limits=exp(c(-1.14,1.14))) + 
       theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(), panel.background = element_blank())
     
       #geom_text(label=as.character(contingency.matrix), colour="white")
@@ -170,6 +172,20 @@ colnames(summary.table) <- c("Gene Name", "P-value", "Hazard Ratio")
 print(xtable(summary.table),include.rownames=FALSE)
 
 
+@
+
+<<summary_heatmap>>=
+.getHeatmap(exp(hr.matrix))
+@
+
+
+<<summary_forestplot>>=
+estimates <- sapply(rma.objs, coef)
+variances <- sapply(rma.objs, vcov)
+
+forest(estimates, variances, atransf=exp, psize=1, efac=0, slab=names(rma.objs), xlab="Hazard Ratio",xlim=c(-2,2), at=log(c(0.25,0.5,1,2,4)))
+addpoly(estimates, variances, rows=length(rma.objs):1, atransf=exp, annotate=FALSE)
+abline(h=0.5, lwd=1)
 @
 
 \pagebreak

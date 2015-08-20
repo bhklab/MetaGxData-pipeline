@@ -86,7 +86,7 @@ abline(h=0, lwd=1)
 addpoly(rma.random, mlab="Random Effects Estimate", row=-1, atransf=exp, annotate=TRUE)
 
 hr.matrix[gene.names[{{current.index}}],names(stat.vals)] <- stat.vals
-
+rma.objs[[gene.names[{{current.index}}]]] <- rma.random
 @
 
 <<survival_curve_{{current.index}}, fig.width=5, fig.height=5.5, out.width="0.5\\textwidth", cache=FALSE>>=
