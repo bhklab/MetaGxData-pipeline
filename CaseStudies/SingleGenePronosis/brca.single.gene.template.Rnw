@@ -22,7 +22,7 @@ survival.df.list <- lapply(esets.with.gene, function(eset) {
   levels(expression.quantiles) <- c("Low", "High")
   
   #Re-order so high comes first
-  expression.quantiles <- factor(expression.quantiles, levels=rev(levels(expression.quantiles)))
+  #expression.quantiles <- factor(expression.quantiles, levels=rev(levels(expression.quantiles)))
   
   colnames.to.keep <- c("days_to_tumor_recurrence", "recurrence_status")
     if("dmfs_status" %in% colnames(pData(eset))) {
@@ -85,9 +85,11 @@ forest(rma.random, xlab="Hazard Ratio", atransf=exp, refline = 0, annotate=FALSE
 abline(h=0, lwd=1)
 addpoly(rma.random, mlab="Random Effects Estimate", row=-1, atransf=exp, annotate=TRUE)
 
+hr.matrix[gene.names[{{current.index}}],names(stat.vals)] <- stat.vals
+
 @
 
-<<survival_curve_{{current.index}}, fig.width=12, fig.height=12, out.width="1.0\\textwidth", cache=FALSE>>=
+<<survival_curve_{{current.index}}, fig.width=5, fig.height=5.5, out.width="0.5\\textwidth", cache=FALSE>>=
 survival.df.combined <- do.call(rbind, survival.df.list)
 
 survival.df.combined$surv.obj <- Surv(time = survival.df.combined$years_to_event, event = survival.df.combined$event_status)
@@ -96,9 +98,15 @@ main.title = paste0("Pooled survival: ", gene.names[{{current.index}}])
 km.coxph.plot(as.formula(paste0("surv.obj ~ geneid.", entrez.ids[{{current.index}}], ".quantile")), survival.df.combined, x.label="Time (years)", y.label = "Recurrence-free survival", main.title=main.title, show.n.risk = FALSE, leg.text = levels(survival.df.combined[[paste0("geneid.", entrez.ids[{{current.index}}], ".quantile")]]), leg.pos="topright", leg.bty="n", leg.inset=0, n.risk.cex=0.85, cex=0.4, o.text="")
 
 o.text <- paste(sprintf("HR: %.3f [%.3f,%.3f]\n", exp(rma.random$b), exp(rma.random$ci.lb), exp(rma.random$ci.ub)), sprintf("p = %.1E", rma.random$pval))
-text(0,0, o.text, cex=0.85, pos=4)
+text(0,0.05, o.text, cex=0.85, pos=4)
+
+fixed.effects.pval[{{current.index}}] <- rma.random$pval
+# create.forest.plot returns log2(HR)
+fixed.effects.estimate[{{current.index}}] <- exp(as.vector(rma.random$b))
+fixed.effects.lower[{{current.index}}] <- exp(rma.random$ci.lb)
+fixed.effects.upper[{{current.index}}] <- exp(rma.random$ci.ub)
 @
 
 
-%\noindent Random effects model:
-%\Sexpr{sprintf("%.02f [%.02f, %.02f], p = %.1E", exp(as.vector(meta.stats$rma.random$b)), exp(meta.stats$rma.random$ci.lb), exp(meta.stats$rma.random$ci.ub), meta.stats$rma.random$pval)}
+\noindent Random effects model:
+\Sexpr{sprintf("%.02f [%.02f, %.02f], p = %.1E", exp(as.vector(rma.random$b)), exp(rma.random$ci.lb), exp(rma.random$ci.ub), rma.random$pval)}

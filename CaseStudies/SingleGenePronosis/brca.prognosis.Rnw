@@ -129,15 +129,6 @@ rownames(data.counts)[nrow(data.counts)] <- "Sum"
 xtable(data.counts)
 @
 
-%Treatment status may be a confounder to patient outcome. We performed survival analysis our full dataset, as well as only the untreated patients:\footnote{Datasets with fewer than 50 untreated patients were excluded.}
-<<Dataset_table_untreated, results='asis'>>=
-data.counts <- as.data.frame(sapply(esets.rfs.untreated, function(x) ncol(exprs(x))))
-colnames(data.counts) <- "Number of samples"
-data.counts <- rbind(data.counts, sum(data.counts[,1]))
-rownames(data.counts)[nrow(data.counts)] <- "Sum"
-xtable(data.counts)
-@
-
 <<single_gene, cache=FALSE, include=FALSE>>=
 knitr.text <- lapply(1:length(entrez.ids), function(current.index) knit_expand(file='brca.single.gene.template.Rnw'))
 
@@ -146,8 +137,30 @@ fixed.effects.estimate <- c()
 fixed.effects.lower <- c()
 fixed.effects.upper <- c()
 
-knitr.out <- knit(text=unlist(knitr.text))
+hr.matrix <- matrix(nrow=length(gene.names), ncol=length(esets.rfs))
+rownames(hr.matrix) <- gene.names
+colnames(hr.matrix) <- names(esets.rfs)
 
+knitr.out <- knit(text=unlist(knitr.text))
+@
+
+<<hr_heatmap>>=
+.getHeatmap <- function(stat.matrix) {
+    stat.matrix.m <- melt(stat.matrix)
+    #if(cluster==TRUE) {
+      ord <- hclust(dist(t(stat.matrix), method="euclidean"))$order
+    #}
+    colnames(stat.matrix.m) <- c("Gene", "Dataset", "logHR")
+    stat.matrix.m$Dataset <- factor(stat.matrix.m$Dataset, levels=levels(stat.matrix.m$Dataset)[ord])
+    
+    p <- ggplot(stat.matrix.m, aes_string("Dataset", "Gene")) + 
+      geom_tile(aes(fill = logHR), colour = "white") + 
+      scale_fill_gradient2(low="#ef8a62", mid="#f7f7f7", high="#67a9cf") + 
+      theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(), panel.background = element_blank())
+    
+      #geom_text(label=as.character(contingency.matrix), colour="white")
+    return(p)
+}
 @
 
 \section{Summary of Results}
@@ -155,6 +168,8 @@ knitr.out <- knit(text=unlist(knitr.text))
 summary.table <- data.frame(gene=gene.names, pval=sprintf("%.5f", fixed.effects.pval), hr.text=sprintf("%.2f [%.2f, %.2f]", fixed.effects.estimate, fixed.effects.lower, fixed.effects.upper))
 colnames(summary.table) <- c("Gene Name", "P-value", "Hazard Ratio")
 print(xtable(summary.table),include.rownames=FALSE)
+
+
 @
 
 \pagebreak

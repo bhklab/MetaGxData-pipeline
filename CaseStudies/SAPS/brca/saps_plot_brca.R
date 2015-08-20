@@ -30,6 +30,18 @@ all.out <- list(All=all.subtypes.saps.output,
 # order alphabetically
 all.out <- lapply(all.out, function(x) x[order(names(x))])
 
+# Keep gene sets of original size <= 150
+biological.processes <- GSA.read.gmt(filename="../c5.bp.v5.0.entrez.gmt")
+biological.process.gene.sets <- biological.processes$genesets
+names(biological.process.gene.sets) <- biological.processes$geneset.names
+biological.process.geneset.sizes <- sapply(biological.process.gene.sets, length)
+
+
+all.out <- lapply(all.out, function(current.list) {
+  current.list <- current.list[!(names(current.list) %in% names(biological.process.geneset.sizes)[biological.process.geneset.sizes > 100])]
+  return(current.list)
+  })
+
 #intersecting.gene.set.names <- scan("../intersecting.gene.sets.txt", what=character(0))
 #all.out <- lapply(all.out, function(x) x[intersecting.gene.set.names])
 
