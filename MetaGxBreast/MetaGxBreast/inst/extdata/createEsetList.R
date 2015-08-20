@@ -218,14 +218,14 @@ for (strEset in strEsets){
             this.remove[ is.na(eset[[ get(one.rule)[1] ]]) ] <- FALSE
         remove[this.remove] <- TRUE
     }
-     if(exists("remove.duplicates")){
+     if(exists("remove.duplicates") && remove.duplicates == TRUE){
         keepix <- setdiff(Biobase::sampleNames(eset), rmix)
         Biobase::exprs(eset) <- Biobase::exprs(eset)[, keepix, drop=FALSE]
         Biobase::pData(eset) <- Biobase::pData(eset)[keepix, , drop=FALSE]
 
     }
     ##remove samples pre-specified for removal, that have a dataset specified:
-    if(exists("remove.samples.delim")){
+    if(exists("remove.samples.delim") && remove.samples.delim == TRUE){
         if (strEset %in% names(remove.samples.delim)){
             remove[as.character(sampleNames(eset)) %in% as.character(remove.samples.delim[[strEset]])] <- TRUE
         }

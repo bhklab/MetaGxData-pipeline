@@ -123,7 +123,7 @@ delim <- ":"   ##This is the delimiter used to specify dataset:sample,
 #     }
 # }
 
-if(exists("remove.duplicates")){
+if(exists("remove.duplicates") && remove.duplicates == TRUE){
     ## same as used in metagx getbrcadata
     load(system.file("extdata", "BenDuplicate.rda", package="MetaGxOvarian"))
 
@@ -197,7 +197,7 @@ for (strEset in strEsets){
         eset <- filterQuantile(eset, q=quantile.cutoff)
     }
     ##rescale to z-scores
-    if(exists("rescale") && rescale){
+    if(exists("rescale") && rescale == TRUE){
         exprs(eset) <- t(scale(t(exprs(eset))))
     }
     ##samples to be removed
@@ -219,7 +219,7 @@ for (strEset in strEsets){
         remove[this.remove] <- TRUE
     }
 
-    if(exists("remove.duplicates")){
+    if(exists("remove.duplicates") && remove.duplicates == TRUE){
         keepix <- setdiff(Biobase::sampleNames(eset), rmix)
         Biobase::exprs(eset) <- Biobase::exprs(eset)[, keepix, drop=FALSE]
         Biobase::pData(eset) <- Biobase::pData(eset)[keepix, , drop=FALSE]
