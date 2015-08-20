@@ -12,11 +12,8 @@ source(system.file("extdata", "patientselection.config", package="MetaGxBreast")
 source(system.file("extdata", "createEsetList.R", package="MetaGxBreast"))
 
 ## TODO: extract this function to not require MetaGx
-source("~/repos/MetaGx/R/datasetMerging.R")
-source("~/repos/MetaGx/R/getSubtype.R")
-source("~/repos/MetaGx/R/setSubtype.R")
-source("~/repos/MetaGx/R/subtypeClassification.R")
-source("~/repos/MetaGx/R/stripWhiteSpace.R")
+source("../datasetMerging.R")
+source("../stripWhiteSpace.R")
 
 esets <- lapply(esets, function(x) {
   factor.indices <- sapply(pData(x), is.factor)
@@ -35,10 +32,12 @@ esets <- esets[sapply(esets, function(x) ncol(exprs(x)) > 0)]
 # Only keep datasets with at least 10000 genes
 esets <- esets[sapply(esets, function(x) nrow(x) > 10000)]
 
-esets <- lapply(esets, function(x) {
-  x <- subtypeClassification(x, model = "scmod2")
-  x$subtype <- experimentData(x)@other$class
-  return(x)
+esets <- lapply(esets, function(eset) {
+  datage <- t(exprs(eset))
+  annotge <- cbind("probe"=rownames(eset), "EntrezGene.ID"=as.character(fData(eset)[ , "EntrezGene.ID"]), "gene"=fData(eset)[ , "gene"])
+  sbts <- genefu::subtype.cluster.predict(sbt.model=genefu::scmod2.robust, data=datage, annot=annotge, do.mapping=TRUE)[c("subtype2", "subtype.proba2")]
+  eset$subtype <- 
+  return(eset)
 })
 
 pooled.eset.intersecting.genes <- datasetMerging(esets, method='intersect', nthread=parallel::detectCores())
