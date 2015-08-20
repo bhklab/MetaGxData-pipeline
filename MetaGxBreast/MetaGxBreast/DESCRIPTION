@@ -1,7 +1,7 @@
 Package: MetaGxBreast
 Type: Package
 Title: Breast Cancer Compedium Dataset
-Version: 2.0
+Version: 2.2
 Date: 2015-07-07
 Author: Deena Mohamad Ameen Gendoo, Natchar Ratanasirigulchai, Gregory M. Chen, Levi Waldron, Benjamin Haibe-Kains
 Maintainer: Deena M.A. Gendoo <deena.gendoo@utoronto.ca>
