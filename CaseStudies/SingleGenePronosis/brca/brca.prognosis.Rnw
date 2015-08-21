@@ -16,7 +16,6 @@ library(genefu)
 library(reshape2)
 library(hgu133plus2.db)
 library(metafor)
-source("~/repos/MetaGx/R/stripWhiteSpace.R")
 
 strata.term <- TRUE
 meta.analysis <- TRUE
@@ -103,10 +102,6 @@ esets.rfs <- lapply(esets, function(eset) eset[,!is.na(eset$recurrence_status) &
 ## Remove datasets that are empty
 esets.os <- esets.os[sapply(esets.os, function(x) ncol(exprs(x)) > 0)]
 esets.rfs <- esets.rfs[sapply(esets.rfs, function(x) ncol(exprs(x)) > 0)]
-#pooled.eset.rfs <- datasetMerging(esets = esets.rfs)
-esets.rfs.untreated <- lapply(esets.rfs, function(eset) eset[,!is.na(eset$treatment) & eset$treatment == "untreated"])
-esets.rfs.untreated <- esets.rfs.untreated[sapply(esets.rfs.untreated, function(x) ncol(exprs(x))) >= 50]
-#pooled.eset.rfs.untreated <- datasetMerging(esets = esets.rfs.untreated)
 rm(esets)
 @
 
