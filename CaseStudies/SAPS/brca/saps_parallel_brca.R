@@ -54,4 +54,4 @@ var.name <- paste0(rownames(GO.gene.sets.matrix), "_", subtype)
 
 assign(var.name, out)
 
-save(list=var.name, file=paste0("saps_output_brca_rfs_hallmark/", var.name, ".RData"))
+save(list=var.name, file=paste0("saps_output_brca_rfs/", var.name, ".RData"))
