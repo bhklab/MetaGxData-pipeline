@@ -97,7 +97,12 @@ survival.df.combined <- do.call(rbind, survival.df.list)
 survival.df.combined$surv.obj <- Surv(time = survival.df.combined$years_to_event, event = survival.df.combined$event_status)
 
 main.title = paste0("Pooled survival: ", gene.names[{{current.index}}])
-km.coxph.plot(as.formula(paste0("surv.obj ~ geneid.", entrez.ids[{{current.index}}], ".quantile")), survival.df.combined, x.label="Time (years)", y.label = "Recurrence-free survival", main.title=main.title, show.n.risk = FALSE, leg.text = levels(survival.df.combined[[paste0("geneid.", entrez.ids[{{current.index}}], ".quantile")]]), leg.pos="topright", leg.bty="n", leg.inset=0, n.risk.cex=0.85, cex=0.4, o.text="")
+if(survival.type == "rfs") {
+  ylab =  "Recurrence-free survival"
+} else if(survival.type == "os") {
+  ylab = "Overall survival"
+  }
+km.coxph.plot(as.formula(paste0("surv.obj ~ geneid.", entrez.ids[{{current.index}}], ".quantile")), survival.df.combined, x.label="Time (years)", y.label = ylab, main.title=main.title, show.n.risk = FALSE, leg.text = levels(survival.df.combined[[paste0("geneid.", entrez.ids[{{current.index}}], ".quantile")]]), leg.pos="topright", leg.bty="n", leg.inset=0, n.risk.cex=0.85, cex=0.4, o.text="")
 
 o.text <- paste(sprintf("HR: %.3f [%.3f,%.3f]\n", exp(rma.random$b), exp(rma.random$ci.lb), exp(rma.random$ci.ub)), sprintf("p = %.1E", rma.random$pval))
 text(0,0.05, o.text, cex=0.85, pos=4)
