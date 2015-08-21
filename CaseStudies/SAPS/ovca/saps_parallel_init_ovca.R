@@ -12,11 +12,8 @@ source(system.file("extdata", "patientselection.config", package="MetaGxOvarian"
 source(system.file("extdata", "createEsetList.R", package="MetaGxOvarian"))
 
 ## TODO: extract this function to not require MetaGx
-source("~/repos/MetaGx/R/datasetMerging.R")
-source("~/repos/MetaGx/R/getSubtype.R")
-source("~/repos/MetaGx/R/setSubtype.R")
-source("~/repos/MetaGx/R/subtypeClassification.R")
-source("~/repos/MetaGx/R/stripWhiteSpace.R")
+source("../datasetMerging.R")
+source("../stripWhiteSpace.R")
 
 # TODO? order by publication date. Note that EXPO was set to the year it was public on GEO (2005).
 
@@ -27,22 +24,18 @@ esets <- lapply(esets, function(x) {
 })
 
 # only keep patients with survival data
-esets <- lapply(esets, function(eset) eset[,!is.na(eset$days_to_death) & !is.na(eset$vital_status)])
+esets <- lapply(esets, function(eset) eset[,!is.na(eset$recurrence_status) & !is.na(eset$days_to_tumor_recurrence)])
 
 # Remove TCGA RNASeq
 esets <- esets[names(esets) != "TCGA.RNASeqV2"]
 
-# Remove GSE19829
-esets <- esets[names(esets) != "GSE19829"]
-
-#GSE51088
-esets$GSE51088 <- esets$GSE51088[apply(exprs(esets$GSE51088), 1, function(x) all(!is.na(x))),]
-
-#GSE8842
-esets$GSE8842 <- esets$GSEGSE8842[apply(exprs(esets$GSE8842), 1, function(x) all(!is.na(x))),]
+esets <- lapply(esets, function(eset) eset[apply(exprs(eset), 1, function(x) all(!is.na(x))),])
 
 ## Remove datasets that are empty
 esets <- esets[sapply(esets, function(x) ncol(exprs(x)) > 0)]
+
+# Only keep datasets with at least 10000 genes
+esets <- esets[sapply(esets, function(x) nrow(x) > 10000)]
 
 for(i in 1:length(esets)) {
   expression.matrix <- t(exprs(esets[[i]]))
