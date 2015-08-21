@@ -42,8 +42,6 @@ if(subtype != "All") {
 
 GO.gene.sets.matrix <- GO.gene.sets.matrix[gene.set.index,,drop=FALSE]
 
-expression.matrix <- t(exprs(pooled.eset.intersecting.genes))
-
 out <- saps(
   GO.gene.sets.matrix, 
   t(exprs(pooled.eset.intersecting.genes)), 

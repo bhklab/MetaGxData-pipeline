@@ -36,7 +36,17 @@ esets <- lapply(esets, function(eset) {
   datage <- t(exprs(eset))
   annotge <- cbind("probe"=rownames(eset), "EntrezGene.ID"=as.character(fData(eset)[ , "EntrezGene.ID"]), "gene"=fData(eset)[ , "gene"])
   sbts <- genefu::subtype.cluster.predict(sbt.model=genefu::scmod2.robust, data=datage, annot=annotge, do.mapping=TRUE)[c("subtype2", "subtype.proba2")]
-  eset$subtype <- 
+  names(sbts) <- c("subtype", "subtype.proba")
+  sbt.conv <- rbind(c("ER-/HER2-", "Basal"),
+                    c("HER2+", "Her2"),
+                    c("ER+/HER2- High Prolif", "LumB"),
+                    c("ER+/HER2- Low Prolif", "LumA")
+  )
+  colnames(sbt.conv) <- c("SCM.nomenclature", "SSP.nomenclature")
+  ss <- factor(x=sbts$subtype)
+  levels(ss)[match(sbt.conv[!is.na(sbt.conv[ , "SCM.nomenclature"]), "SCM.nomenclature"], levels(ss))] <- sbt.conv[!is.na(sbt.conv[ , "SCM.nomenclature"]), "SSP.nomenclature"]
+  sbts$subtype <- factor(as.character(ss), levels=sbt.conv[ , "SSP.nomenclature"])
+  eset$subtype <- sbts$subtype
   return(eset)
 })
 
