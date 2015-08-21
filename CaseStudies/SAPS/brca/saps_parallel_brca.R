@@ -25,7 +25,7 @@ load("pooled.brca.eset.intersecting.genes.RData")
 
 source("../GeneSetListGenerator.R", chdir=TRUE)
 genes.in.pooled.intersect <- as.character(fData(pooled.eset.intersecting.genes)$EntrezGene.ID)
-GO.gene.sets.intersect <- lapply(hallmark.genesets, function(x) intersect(x, genes.in.pooled.intersect))
+GO.gene.sets.intersect <- lapply(CompleteLists, function(x) intersect(x, genes.in.pooled.intersect))
 GO.gene.sets.intersect <- GO.gene.sets.intersect[sapply(GO.gene.sets.intersect, function(x) length(x) >= 15)]
 GO.gene.sets.intersect <- lapply(GO.gene.sets.intersect, function(x) gsub("^", "geneid.", x))
 rowMax <- max(sapply(GO.gene.sets.intersect, length))
