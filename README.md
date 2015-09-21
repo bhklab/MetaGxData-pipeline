@@ -15,9 +15,9 @@ To get esets in data package:
 
 library(MetaGx_____)
 
-source("extdata", "patientselection.config", package="MetaGx_____")
+source(system.file("extdata", "patientselection.config", package="MetaGx_____"))
 
-source("extdata", "createEsetList.R", package="MetaGx______")
+source(system.file("extdata", "createEsetList.R", package="MetaGx______"))
 
 
 Currently manipulates data from A Three-Gene Model to Robustly Identify Breast Cancer Molecular Subtypes (http://compbio.dfci.harvard.edu/pubs/sbtpaper/data.zip)

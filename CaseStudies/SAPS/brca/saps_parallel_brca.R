@@ -25,7 +25,7 @@ load("pooled.brca.eset.intersecting.genes.RData")
 
 source("../GeneSetListGenerator.R", chdir=TRUE)
 genes.in.pooled.intersect <- as.character(fData(pooled.eset.intersecting.genes)$EntrezGene.ID)
-GO.gene.sets.intersect <- lapply(hallmark.genesets, function(x) intersect(x, genes.in.pooled.intersect))
+GO.gene.sets.intersect <- lapply(CompleteLists, function(x) intersect(x, genes.in.pooled.intersect))
 GO.gene.sets.intersect <- GO.gene.sets.intersect[sapply(GO.gene.sets.intersect, function(x) length(x) >= 15)]
 GO.gene.sets.intersect <- lapply(GO.gene.sets.intersect, function(x) gsub("^", "geneid.", x))
 rowMax <- max(sapply(GO.gene.sets.intersect, length))
@@ -42,8 +42,6 @@ if(subtype != "All") {
 
 GO.gene.sets.matrix <- GO.gene.sets.matrix[gene.set.index,,drop=FALSE]
 
-expression.matrix <- t(exprs(pooled.eset.intersecting.genes))
-
 out <- saps(
   GO.gene.sets.matrix, 
   t(exprs(pooled.eset.intersecting.genes)), 
@@ -56,4 +54,4 @@ var.name <- paste0(rownames(GO.gene.sets.matrix), "_", subtype)
 
 assign(var.name, out)
 
-save(list=var.name, file=paste0("saps_output_brca_rfs_hallmark/", var.name, ".RData"))
+save(list=var.name, file=paste0("saps_output_brca_rfs/", var.name, ".RData"))

@@ -63,6 +63,10 @@ p.random <- lapply(all.out, function(x) lapply(x, function(y) y$genesets[[1]]$sa
 p.random <- sapply(p.random, unlist)
 rownames(p.random) <- sub(".p_random$", "", rownames(p.random))
 
+p.enrich <- lapply(all.out, function(x) lapply(x, function(y) y$genesets[[1]]$saps_unadjusted["p_enrich"]))
+p.enrich <- sapply(p.enrich, unlist)
+rownames(p.enrich) <- sub(".p_enrich$", "", rownames(p.random))
+
 .getHeatmap <- function(stat.matrix, stat.name, cluster=TRUE) {
   if(cluster==TRUE) {
     ord <- hclust(dist(stat.matrix, method="euclidean"))$order
@@ -103,10 +107,11 @@ rownames(p.random) <- sub(".p_random$", "", rownames(p.random))
     #Retain original order of rows
     stat.vals.m$GeneSet <- factor(stat.vals.m$GeneSet, levels = levels(stat.vals.m$GeneSet)[match(rownames(stat.matrix), levels(stat.vals.m$GeneSet))])
   }
+  stat.vals.m$value <- factor(stat.vals.m$value, levels=rev(levels(stat.vals.m$value)))
   
   p <- ggplot(stat.vals.m, aes(Subtype, GeneSet)) + 
     geom_tile(aes(fill = value), colour = "white") + 
-    scale_fill_discrete(name=stat.name) + 
+    scale_fill_brewer(name=stat.name, palette="PuBu") +
     ggtitle("Significance Analysis of Prognostic Signatures") +
     theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(), panel.background = element_blank())
   
@@ -116,6 +121,10 @@ rownames(p.random) <- sub(".p_random$", "", rownames(p.random))
 p.random.fdr <- apply(p.random, 2, p.adjust, method="fdr")
 p.random.fdr.cutoffs <- apply(p.random.fdr, 2, cut, breaks=c(0,0.05, 0.25,1))
 rownames(p.random.fdr.cutoffs) <- rownames(p.random.fdr)
+
+p.enrich.fdr <- apply(p.enrich, 2, p.adjust, method="fdr")
+p.enrich.fdr.cutoffs <- apply(p.enrich.fdr, 2, cut, breaks=c(0,0.05, 0.25,1))
+rownames(p.enrich.fdr.cutoffs) <- rownames(p.enrich.fdr)
 
 p.random.plot <- .getHeatmap(-log10(p.random), "-log(p-random)")
 
