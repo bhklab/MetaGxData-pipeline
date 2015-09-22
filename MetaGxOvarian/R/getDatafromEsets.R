@@ -59,7 +59,7 @@ annotation(eset.merged) <- "mixed"
  ee <- exprs(eset.merged)
  
  # DG-22/09/2015: Want only normalization by patient, avoid scaling & normalization by gene 
- # Mask genefu scaling for now! 
+ # Mask genefu scaling for now!
  # ee <- apply(ee, 2, genefu::rescale)
 #      splitix <- parallel::splitIndices(nx=ncol(ee), ncl=nthread)
 #      mcres <- parallel::mclapply(splitix, function(x, data) {
