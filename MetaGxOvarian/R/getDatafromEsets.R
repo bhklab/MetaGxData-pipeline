@@ -58,15 +58,16 @@ annotation(eset.merged) <- "mixed"
  ## robust scaling followed by quantile normalization
  ee <- exprs(eset.merged)
  
+ # DG-22/09/2015: Want only normalization by patient, avoid scaling & normalization by gene 
  # ee <- apply(ee, 2, genefu::rescale)
- splitix <- parallel::splitIndices(nx=ncol(ee), ncl=nthread)
- mcres <- parallel::mclapply(splitix, function(x, data) {
-   res <- apply(data[ , x, drop=FALSE], 2, function (dx) {
-     return ((genefu::rescale(dx, q=0.05, na.rm=TRUE) - 0.5) * 2)
-   })
-   return (res)
- }, data=ee, mc.cores=nthread)
- ee <- do.call(cbind, mcres)
+#      splitix <- parallel::splitIndices(nx=ncol(ee), ncl=nthread)
+#      mcres <- parallel::mclapply(splitix, function(x, data) {
+#        res <- apply(data[ , x, drop=FALSE], 2, function (dx) {
+#          return ((genefu::rescale(dx, q=0.05, na.rm=TRUE) - 0.5) * 2)
+#        })
+#        return (res)
+#      }, data=ee, mc.cores=nthread)
+#      ee <- do.call(cbind, mcres)
 
  ## quantile normalization
  ee <- limma::normalizeBetweenArrays(object=ee, method="quantile")
