@@ -70,7 +70,8 @@ annotation(eset.merged) <- "mixed"
  ## robust scaling followed by quantile normalization
  ee <- exprs(eset.merged)
 
- # DG-22/09/2015: Want only normalization by patient, avoid scaling & normalization by gene 
+ # DG-22/09/2015: Want only normalization by patient, avoid scaling & normalization by gene
+ # Mask genefu normalization for now!
  # ee <- apply(ee, 2, rescale)
 #      splitix <- parallel::splitIndices(nx=ncol(ee), ncl=nthread)
 #      mcres <- parallel::mclapply(splitix, function(x, data) {
