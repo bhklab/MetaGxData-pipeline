@@ -8,5 +8,5 @@ if(!file.exists("./FULLVdata")){
 
 source("./R/getDatafromEsets.R")
 source("./R/FeatureAnnotation_curation.R")
-source("./R/createEsets.R")
+source("./R/createEsets.R") #Note: calls duplicate finder internally
 createEsets()
