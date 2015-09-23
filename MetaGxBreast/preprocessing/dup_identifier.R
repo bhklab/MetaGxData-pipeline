@@ -21,5 +21,5 @@ save(esets.mapped, file="./esets/esetsMapped.rda")
 
 
 ## bonf.prob=2.0 to get all correlations of all pairs, then set cut off according to distribution
-duplicates <- doppelgangR(esets.mapped, outlierFinder.expr.args=list(bonf.prob=2.0, transFun=atanh, tail="upper"), phenoFinder.args = NULL, cache.dir=NULL)
-save(duplicates, file ="./esets/duplicatesMETABRICandTCGA.rda")
+#duplicates <- doppelgangR(esets.mapped, outlierFinder.expr.args=list(bonf.prob=2.0, transFun=atanh, tail="upper"), phenoFinder.args = NULL, cache.dir=NULL)
+#save(duplicates, file ="./esets/duplicatesMETABRICandTCGA.rda")
