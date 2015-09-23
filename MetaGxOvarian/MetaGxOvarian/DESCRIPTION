@@ -1,9 +1,10 @@
 Package: MetaGxOvarian
 Type: Package
-Title: What the package does (short line)
-Version: 2.2
-Date: 2015-04-30
-Author: Who wrote it
-Maintainer: Who to complain to <yourfault@somewhere.net>
-Description: More about what it does (maybe more than one line)
-License: What license is it under?
+Title: Transcriptomic Ovarian Cancer Datasets
+Version: 2.3
+Date: 2015-09-23
+Author: Deena M.A. Gendoo, Natchar Ratanasirigulchai, Gregory M. Chen, Levi Waldron, Benjamin Haibe-Kains
+Maintainer: Deena M.A. Gendoo <deena.gendoo@utoronto.ca>
+Description: Ovarian Cancer Transcriptomic Datasets as part of the MetaGxData package compendium
+License: Artistic-2.0
+Depends: Biobase

@@ -1,11 +1,11 @@
 Package: MetaGxBreast
 Type: Package
-Title: Breast Cancer Compedium Dataset
-Version: 2.2
-Date: 2015-07-07
+Title: Transcriptomic Breast Cancer Datasets
+Version: 2.3
+Date: 2015-09-23
 Author: Deena Mohamad Ameen Gendoo, Natchar Ratanasirigulchai, Gregory M. Chen, Levi Waldron, Benjamin Haibe-Kains
 Maintainer: Deena M.A. Gendoo <deena.gendoo@utoronto.ca>
-Description: Gene Expression Datasets for Breast Cancer
-License: What license is it under?
+Description: Breast Cancer Transcriptomic Datasets as part of the MetaGxData package compendium
+License: Artistic-2.0
 Depends: Biobase
 
