@@ -114,7 +114,7 @@ for(i in vals.to.run) {
   
 }
 
-If run in parallel, this code section needs to be run separately after the above finishes
+#If run in parallel, this code section needs to be run separately after the above finishes
       if(Sys.getenv("SGE_TASK_ID") == "") {
         ## identify duplicates and annotate pData
         source("./R/benDuplicateFinder.R")
