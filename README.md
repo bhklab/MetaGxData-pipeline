@@ -1,5 +1,5 @@
 # UPDATED OCTOBER 1, 2015
-# Deena M.A. Gendoo
+# Gendoo et al
 
 # MetaGxData Package Compendium
 
