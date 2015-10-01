@@ -31,11 +31,12 @@ Experiment data
    platform_accession:     
       GPL570
    version:     
-      2015-05-14 19:56:23
+      2015-09-22 19:40:35
 
 featureData(eset):
 An object of class 'AnnotatedDataFrame'
-  featureNames: 1007_s_at 1053_at ... AFFX-HUMISGF3A/M97935_MB_at (42447 total)
+  featureNames: 1007_s_at 1053_at ... AFFX-HUMISGF3A/M97935_MB_at
+    (42447 total)
   varLabels: probeset gene EntrezGene.ID best_probe
   varMetadata: labelDescription
 
@@ -49,48 +50,116 @@ Available sample meta-data:
 --------------------------- 
 
 alt_sample_name: 
-Abdominal wall mass - 8176             Omentum - 1006             Omentum - 8174             Omentum - 8186             Omentum - 8240             Ovary - 101094 
-                         1                          1                          1                          1                          1                          1 
-            Ovary - 101109             Ovary - 101120             Ovary - 101150               Ovary - 1018               Ovary - 1040               Ovary - 1057 
-                         1                          1                          1                          1                          1                          1 
-            Ovary - 112866             Ovary - 112867             Ovary - 118662             Ovary - 118671               Ovary - 1241               Ovary - 1270 
-                         1                          1                          1                          1                          1                          1 
-            Ovary - 129660             Ovary - 129669               Ovary - 1311               Ovary - 1313               Ovary - 1323             Ovary - 133643 
-                         1                          1                          1                          1                          1                          1 
-            Ovary - 133651               Ovary - 1351             Ovary - 151614             Ovary - 151622             Ovary - 161465             Ovary - 161524 
-                         1                          1                          1                          1                          1                          1 
-            Ovary - 161525             Ovary - 161534               Ovary - 1636               Ovary - 1639               Ovary - 1643             Ovary - 170809 
-                         1                          1                          1                          1                          1                          1 
-            Ovary - 174931             Ovary - 174936             Ovary - 180953             Ovary - 184837             Ovary - 187243             Ovary - 187246 
-                         1                          1                          1                          1                          1                          1 
-            Ovary - 187251             Ovary - 187253             Ovary - 191413             Ovary - 191424             Ovary - 195198             Ovary - 199399 
-                         1                          1                          1                          1                          1                          1 
-            Ovary - 199400             Ovary - 202030             Ovary - 202041              Ovary - 20284              Ovary - 20285              Ovary - 20296 
-                         1                          1                          1                          1                          1                          1 
-             Ovary - 20307              Ovary - 20315              Ovary - 20323              Ovary - 20325              Ovary - 20326              Ovary - 20329 
-                         1                          1                          1                          1                          1                          1 
-            Ovary - 207532             Ovary - 209699             Ovary - 209709             Ovary - 209714             Ovary - 209718             Ovary - 211371 
-                         1                          1                          1                          1                          1                          1 
-            Ovary - 211372             Ovary - 211395             Ovary - 211409              Ovary - 21758             Ovary - 219571             Ovary - 219581 
-                         1                          1                          1                          1                          1                          1 
-            Ovary - 219590             Ovary - 219604              Ovary - 21981              Ovary - 22218             Ovary - 226414             Ovary - 226423 
-                         1                          1                          1                          1                          1                          1 
-            Ovary - 228537             Ovary - 228549             Ovary - 231863             Ovary - 234328             Ovary - 234329             Ovary - 235691 
-                         1                          1                          1                          1                          1                          1 
-            Ovary - 235692             Ovary - 235695              Ovary - 23862              Ovary - 23884              Ovary - 23904              Ovary - 23930 
-                         1                          1                          1                          1                          1                          1 
-             Ovary - 23934              Ovary - 23936              Ovary - 23938             Ovary - 241181             Ovary - 241187             Ovary - 241196 
-                         1                          1                          1                          1                          1                          1 
-            Ovary - 241198             Ovary - 241199             Ovary - 242929                    (Other) 
-                         1                          1                          1                        105 
+Abdominal wall mass - 8176             Omentum - 1006 
+                         1                          1 
+            Omentum - 8174             Omentum - 8186 
+                         1                          1 
+            Omentum - 8240             Ovary - 101094 
+                         1                          1 
+            Ovary - 101109             Ovary - 101120 
+                         1                          1 
+            Ovary - 101150               Ovary - 1018 
+                         1                          1 
+              Ovary - 1040               Ovary - 1057 
+                         1                          1 
+            Ovary - 112866             Ovary - 112867 
+                         1                          1 
+            Ovary - 118662             Ovary - 118671 
+                         1                          1 
+              Ovary - 1241               Ovary - 1270 
+                         1                          1 
+            Ovary - 129660             Ovary - 129669 
+                         1                          1 
+              Ovary - 1311               Ovary - 1313 
+                         1                          1 
+              Ovary - 1323             Ovary - 133643 
+                         1                          1 
+            Ovary - 133651               Ovary - 1351 
+                         1                          1 
+            Ovary - 151614             Ovary - 151622 
+                         1                          1 
+            Ovary - 161465             Ovary - 161524 
+                         1                          1 
+            Ovary - 161525             Ovary - 161534 
+                         1                          1 
+              Ovary - 1636               Ovary - 1639 
+                         1                          1 
+              Ovary - 1643             Ovary - 170809 
+                         1                          1 
+            Ovary - 174931             Ovary - 174936 
+                         1                          1 
+            Ovary - 180953             Ovary - 184837 
+                         1                          1 
+            Ovary - 187243             Ovary - 187246 
+                         1                          1 
+            Ovary - 187251             Ovary - 187253 
+                         1                          1 
+            Ovary - 191413             Ovary - 191424 
+                         1                          1 
+            Ovary - 195198             Ovary - 199399 
+                         1                          1 
+            Ovary - 199400             Ovary - 202030 
+                         1                          1 
+            Ovary - 202041              Ovary - 20284 
+                         1                          1 
+             Ovary - 20285              Ovary - 20296 
+                         1                          1 
+             Ovary - 20307              Ovary - 20315 
+                         1                          1 
+             Ovary - 20323              Ovary - 20325 
+                         1                          1 
+             Ovary - 20326              Ovary - 20329 
+                         1                          1 
+            Ovary - 207532             Ovary - 209699 
+                         1                          1 
+            Ovary - 209709             Ovary - 209714 
+                         1                          1 
+            Ovary - 209718             Ovary - 211371 
+                         1                          1 
+            Ovary - 211372             Ovary - 211395 
+                         1                          1 
+            Ovary - 211409              Ovary - 21758 
+                         1                          1 
+            Ovary - 219571             Ovary - 219581 
+                         1                          1 
+            Ovary - 219590             Ovary - 219604 
+                         1                          1 
+             Ovary - 21981              Ovary - 22218 
+                         1                          1 
+            Ovary - 226414             Ovary - 226423 
+                         1                          1 
+            Ovary - 228537             Ovary - 228549 
+                         1                          1 
+            Ovary - 231863             Ovary - 234328 
+                         1                          1 
+            Ovary - 234329             Ovary - 235691 
+                         1                          1 
+            Ovary - 235692             Ovary - 235695 
+                         1                          1 
+             Ovary - 23862              Ovary - 23884 
+                         1                          1 
+             Ovary - 23904              Ovary - 23930 
+                         1                          1 
+             Ovary - 23934              Ovary - 23936 
+                         1                          1 
+             Ovary - 23938             Ovary - 241181 
+                         1                          1 
+            Ovary - 241187             Ovary - 241196 
+                         1                          1 
+            Ovary - 241198             Ovary - 241199 
+                         1                          1 
+            Ovary - 242929                    (Other) 
+                         1                        105 
 
 sample_type: 
 tumor 
   204 
 
 histological_type: 
-       clearcell             endo         mucinous            other              ser undifferentiated             NA's 
-               9               28               11               59               85                2               10 
+       clearcell             endo         mucinous            other 
+               9               28               11               59 
+             ser undifferentiated             NA's 
+              85                2               10 
 
 primarysite: 
 other    ov  NA's 
@@ -121,16 +190,28 @@ age_at_initial_pathologic_diagnosis:
   25.00   45.00   55.00   58.82   65.00   85.00 
 
 batch: 
-2004-12-03 2004-12-04 2004-12-07 2005-02-11 2005-03-03 2005-03-10 2005-03-11 2005-03-15 2005-03-16 2005-03-17 2005-03-19 2005-03-22 2005-04-13 2005-04-26 2005-04-29 
-         3          3          1          1          1          1          1          3          1          2          4          2          1          5          2 
-2005-05-10 2005-06-01 2005-06-03 2005-06-08 2005-06-17 2005-08-05 2005-08-09 2005-08-11 2005-09-07 2005-09-09 2005-09-13 2005-11-02 2005-11-04 2005-11-15 2005-11-18 
-         2          5          3          3          6          3          1          6          1          3          3          6          3          3          1 
-2005-12-02 2006-01-24 2006-01-26 2006-02-07 2006-02-28 2006-03-06 2006-03-14 2006-04-18 2006-04-20 2006-05-16 2006-06-08 2006-07-26 2006-07-28 2006-09-12 2006-09-14 
-         4          2          1          1          1          2          2          1          2          3          1          2          1          2          1 
-2006-10-10 2006-10-24 2006-10-31 2006-11-09 2006-11-21 2006-11-30 2006-12-07 2007-01-12 2007-02-09 2007-03-07 2007-03-09 2007-03-15 2007-05-01 2007-05-03 2007-05-15 
-         1          9          5         10          1          6          3          1          1          8          1          4          2          3          4 
-2007-05-18 2007-05-30 2007-06-12 2007-07-27 2007-09-05 2007-09-07 2007-09-11 2007-09-12 2008-02-15 2008-02-21 2008-02-27 2008-03-04 2008-05-13 2008-05-16 2008-05-23 
-         2          2          1          2          3          1          4          4          1          3          2          1          4          4          5 
+2004-12-03 2004-12-04 2004-12-07 2005-02-11 2005-03-03 2005-03-10 2005-03-11 
+         3          3          1          1          1          1          1 
+2005-03-15 2005-03-16 2005-03-17 2005-03-19 2005-03-22 2005-04-13 2005-04-26 
+         3          1          2          4          2          1          5 
+2005-04-29 2005-05-10 2005-06-01 2005-06-03 2005-06-08 2005-06-17 2005-08-05 
+         2          2          5          3          3          6          3 
+2005-08-09 2005-08-11 2005-09-07 2005-09-09 2005-09-13 2005-11-02 2005-11-04 
+         1          6          1          3          3          6          3 
+2005-11-15 2005-11-18 2005-12-02 2006-01-24 2006-01-26 2006-02-07 2006-02-28 
+         3          1          4          2          1          1          1 
+2006-03-06 2006-03-14 2006-04-18 2006-04-20 2006-05-16 2006-06-08 2006-07-26 
+         2          2          1          2          3          1          2 
+2006-07-28 2006-09-12 2006-09-14 2006-10-10 2006-10-24 2006-10-31 2006-11-09 
+         1          2          1          1          9          5         10 
+2006-11-21 2006-11-30 2006-12-07 2007-01-12 2007-02-09 2007-03-07 2007-03-09 
+         1          6          3          1          1          8          1 
+2007-03-15 2007-05-01 2007-05-03 2007-05-15 2007-05-18 2007-05-30 2007-06-12 
+         4          2          3          4          2          2          1 
+2007-07-27 2007-09-05 2007-09-07 2007-09-11 2007-09-12 2008-02-15 2008-02-21 
+         2          3          1          4          4          1          3 
+2008-02-27 2008-03-04 2008-05-13 2008-05-16 2008-05-23 
+         2          1          4          4          5 
 
 uncurated_author_metadata: 
                                                                                                                                                                                                                                                                             title: Abdominal wall mass - 8176///geo_accession: GSM38066///status: Public on Jan 15 2005///submission_date: Dec 23 2004///last_update_date: Oct 09 2007///type: RNA///channel_count: 1///source_name_ch1: Ovary///organism_ch1: Homo sapiens///molecule_ch1: total RNA///taxid_ch1: 9606///description: Quality metric = 28S to 18S: 1.5///description.1: Patient Age: 50-60///description.2: Gender: Female///description.3: Ethnic Background: Caucasian///description.4: Tobacco Use : No///description.5: Alcohol Consumption?: Yes///description.6: Family History of Cancer?: No///description.7: Prior Therapy: Chemotherapy///description.8: Prior Therapy: Surgical///description.9: Relapse Since Primary Treatment: Yes///description.10: Number of Years Until Relapse: 0-5///description.11: Presenting Symptoms: Bloating///description.12: Retreatment T: 3c///description.13: Retreatment N: X///description.14: Retreatment M: 1///description.15: Retreatment Metastatic Sites: Other///description.16: Retreatment Stage: 4///description.17: Retreatment Grade: X///description.18: Primary Site: Ovary///description.19: Histology: Metastatic Papillary Serous Carcinoma///description.20: ///description.21: ///description.22: ///description.23: ///description.24: ///description.25: ///description.26: ///description.27: ///description.28: ///description.29: NA///description.30: NA///description.31: NA///platform_id: GPL570///contact_name: Michael,,Bittner///contact_email: mbittner@tgen.org///contact_phone: 602-343-8808///contact_fax: 602-343-8440///contact_laboratory: expO///contact_department: NA///contact_institute: IGC///contact_address: 445 N. 5th Street///contact_city: Phoenix///contact_state: AZ///contact_zip.postal_code: 85004///contact_country: USA///contact_web_link: www.intgen.org///supplementary_file: ftp://ftp.ncbi.nih.gov/pub/geo/DATA/supplementary/samples/GSM38nnn/GSM38066/GSM38066.CEL.gz///data_row_count: 54675 

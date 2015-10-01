@@ -33,11 +33,12 @@ Experiment data
    warnings:     
       These samples are a subset of PMID17290060.
    version:     
-      2015-05-14 20:35:45
+      2015-09-22 20:17:53
 
 featureData(eset):
 An object of class 'AnnotatedDataFrame'
-  featureNames: 1007_s_at 1053_at ... AFFX-HUMISGF3A/M97935_MB_at (20967 total)
+  featureNames: 1007_s_at 1053_at ... AFFX-HUMISGF3A/M97935_MB_at
+    (20967 total)
   varLabels: probeset gene EntrezGene.ID best_probe
   varMetadata: labelDescription
 
@@ -95,8 +96,10 @@ debulking:
         24         28         11 
 
 batch: 
-2002-09-20 2002-10-23 2002-11-12 2002-12-16 2002-12-21 2003-01-03 2003-05-30 2003-07-02 
-        15          9         10          1          3         11         13          1 
+2002-09-20 2002-10-23 2002-11-12 2002-12-16 2002-12-21 2003-01-03 2003-05-30 
+        15          9         10          1          3         11         13 
+2003-07-02 
+         1 
 
 uncurated_author_metadata: 
  Genome.ID..File.name....0074_GenomeID_h133a_2802.cel: 1761///Cancer.Type: Early stage///AgeDx: 72///STAGE: IC///GRADE: 2///Debulking:  ///X: NA 

@@ -33,11 +33,12 @@ Experiment data
    warnings:     
       These samples are a subset of PMID17290060.
    version:     
-      2015-05-14 20:37:59
+      2015-09-22 20:20:30
 
 featureData(eset):
 An object of class 'AnnotatedDataFrame'
-  featureNames: 1007_s_at 1053_at ... AFFX-HUMISGF3A/M97935_MB_at (20967 total)
+  featureNames: 1007_s_at 1053_at ... AFFX-HUMISGF3A/M97935_MB_at
+    (20967 total)
   varLabels: probeset gene EntrezGene.ID best_probe
   varMetadata: labelDescription
 
@@ -49,18 +50,22 @@ Platform type:
 Overall survival time-to-event summary (in years):
 Call: survfit(formula = Surv(time, cens) ~ -1)
 
-records   n.max n.start  events  median 0.95LCL 0.95UCL 
-  42.00   42.00   42.00   22.00    2.79    2.30      NA 
+      n  events  median 0.95LCL 0.95UCL 
+  42.00   22.00    2.79    2.30      NA 
 
 --------------------------- 
 Available sample meta-data: 
 --------------------------- 
 
 alt_sample_name: 
-D1462 D1805 D2171 D2208 D2247 D2332 D2432 D2480 D2559 D2560 D2575 D2576 D2611 D2629 D2640 D2648 D2736 D2749 D2776 D2792 M1025 M1054 M1055  M120 M1241 M1572   M17 M1777 
-    1     1     1     1     1     1     1     1     1     1     1     1     1     1     1     1     1     1     1     1     1     1     1     1     1     1     1     1 
-M1891 M2184 M2515 M2807 M3035  M337 M3484  M359 M4161  M444  M503 M5668 M5775  M806 
-    1     1     1     1     1     1     1     1     1     1     1     1     1     1 
+D1462 D1805 D2171 D2208 D2247 D2332 D2432 D2480 D2559 D2560 D2575 D2576 D2611 
+    1     1     1     1     1     1     1     1     1     1     1     1     1 
+D2629 D2640 D2648 D2736 D2749 D2776 D2792 M1025 M1054 M1055  M120 M1241 M1572 
+    1     1     1     1     1     1     1     1     1     1     1     1     1 
+  M17 M1777 M1891 M2184 M2515 M2807 M3035  M337 M3484  M359 M4161  M444  M503 
+    1     1     1     1     1     1     1     1     1     1     1     1     1 
+M5668 M5775  M806 
+    1     1     1 
 
 sample_type: 
 tumor 
@@ -111,8 +116,10 @@ debulking:
         20         21          1 
 
 batch: 
-2004-03-09 2004-03-16 2004-04-20 2004-05-18 2004-05-21 2004-05-27 2004-06-22 2004-06-23 
-        14          3          4          8          6          5          1          1 
+2004-03-09 2004-03-16 2004-04-20 2004-05-18 2004-05-21 2004-05-27 2004-06-22 
+        14          3          4          8          6          5          1 
+2004-06-23 
+         1 
 
 uncurated_author_metadata: 
                                                                                                                   Tumor: D1462///NEW.Response: ///SHORT.LONG: NA///AgeDx: 52///DateDx: 11/29/1990///Status: 10/8/91, DOD///Survival..months.: 11///X: 1///STAGE: IIIC///GRADE: 3///Race: b///Debulk: S 
@@ -167,9 +174,9 @@ Tumor: D2560///NEW.Response: CR///SHORT.LONG: NA///AgeDx: 60///DateDx: 5/14/1996
                                                                                                                                                                                                                                                                                                      1 
                                                                                                                Tumor: M1572///NEW.Response: NR///SHORT.LONG: NA///AgeDx: 61///DateDx: 4/15/1997///Status: 2/24/1999, DOD///Survival..months.: 22///X: 1///STAGE: IIIC///GRADE: 3///Race: W///Debulk: O 
                                                                                                                                                                                                                                                                                                      1 
-                                                                                                                  Tumor: M17///NEW.Response: NR///SHORT.LONG: NA///AgeDx: 76///DateDx: 5/29/1992///Status: 10/26/1993, AWD///Survival..months.: 17///X: 0///STAGE: IV///GRADE: 2///Race: W///Debulk: S 
-                                                                                                                                                                                                                                                                                                     1 
                                                                                                                  Tumor: M1777///NEW.Response: ///SHORT.LONG: NA///AgeDx: 72///DateDx: 7/31/1997///Status: 7/23/2004, AWD///Survival..months.: 84///X: 0///STAGE: IIIC///GRADE: 3///Race: W///Debulk: S 
+                                                                                                                                                                                                                                                                                                     1 
+                                                                                                                  Tumor: M17///NEW.Response: NR///SHORT.LONG: NA///AgeDx: 76///DateDx: 5/29/1992///Status: 10/26/1993, AWD///Survival..months.: 17///X: 0///STAGE: IV///GRADE: 2///Race: W///Debulk: S 
                                                                                                                                                                                                                                                                                                      1 
                                                                                                                  Tumor: M1891///NEW.Response: CR///SHORT.LONG: NA///AgeDx: 40///DateDx: 9/19/1997///Status: 9/30/1998, AWD///Survival..months.: 12///X: 0///STAGE: IV///GRADE: 1///Race: W///Debulk: S 
                                                                                                                                                                                                                                                                                                      1 

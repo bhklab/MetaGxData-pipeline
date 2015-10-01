@@ -19,7 +19,8 @@ Experiment data
   Information is available on: preprocessing 
   notes:
    platform_title:     
-      Agilent-014850 Whole Human Genome Microarray 4x44K G4112F (Probe Name version)
+      Agilent-014850 Whole Human Genome Microarray 4x44K G4112F (Probe Name vers
+ion)
    platform_shorttitle:     
       Agilent G4112F
    platform_summary:     
@@ -31,7 +32,7 @@ Experiment data
    platform_accession:     
       GPL6480
    version:     
-      2015-05-14 20:15:48
+      2015-09-22 19:55:29
 
 featureData(eset):
 An object of class 'AnnotatedDataFrame'
@@ -47,24 +48,34 @@ Platform type:
 Overall survival time-to-event summary (in years):
 Call: survfit(formula = Surv(time, cens) ~ -1)
 
-records   n.max n.start  events  median 0.95LCL 0.95UCL 
- 260.00  260.00  260.00  121.00    4.93    4.11    6.58 
+      n  events  median 0.95LCL 0.95UCL 
+ 260.00  121.00    4.93    4.11    6.58 
 
 --------------------------- 
 Available sample meta-data: 
 --------------------------- 
 
 alt_sample_name: 
-    10d    115d    116d    117d    119d     11d    120d    122d    123d   125Rd    129d     12d    130d    132d    134d    139d    140d    143d    144d    145d    146d 
-      1       1       1       1       1       1       1       1       1       1       1       1       1       1       1       1       1       1       1       1       1 
-   148d    150d    155d    156d     15d    160d     16d    171d    173d    174d    178d     17d    183d    184d    185d    186d     18d     20d     22d     23d    249d 
-      1       1       1       1       1       1       1       1       1       1       1       1       1       1       1       1       1       1       1       1       1 
-   257d     25d    260d    262d    264d    266d    267d    268d    269d     27d    299d      2d    300d    301d    302d    303d    304d   305d2    306d    307d    310d 
-      1       1       1       1       1       1       1       1       1       1       1       1       1       1       1       1       1       1       1       1       1 
-   318d    319d   320d2    323d    327d    330d    331d   333d2    335d    337d    340d    342d    346d    347d   348d2    350d    352d    353d    355d    356d    357d 
-      1       1       1       1       1       1       1       1       1       1       1       1       1       1       1       1       1       1       1       1       1 
-   358d    360d    362d    363d    365d    366d    367d   368d2     36d     38d   41d2R     42d     43d     44d    456d (Other) 
-      1       1       1       1       1       1       1       1       1       1       1       1       1       1       1     161 
+    10d    115d    116d    117d    119d     11d    120d    122d    123d   125Rd 
+      1       1       1       1       1       1       1       1       1       1 
+   129d     12d    130d    132d    134d    139d    140d    143d    144d    145d 
+      1       1       1       1       1       1       1       1       1       1 
+   146d    148d    150d    155d    156d     15d    160d     16d    171d    173d 
+      1       1       1       1       1       1       1       1       1       1 
+   174d    178d     17d    183d    184d    185d    186d     18d     20d     22d 
+      1       1       1       1       1       1       1       1       1       1 
+    23d    249d    257d     25d    260d    262d    264d    266d    267d    268d 
+      1       1       1       1       1       1       1       1       1       1 
+   269d     27d    299d      2d    300d    301d    302d    303d    304d   305d2 
+      1       1       1       1       1       1       1       1       1       1 
+   306d    307d    310d    318d    319d   320d2    323d    327d    330d    331d 
+      1       1       1       1       1       1       1       1       1       1 
+  333d2    335d    337d    340d    342d    346d    347d   348d2    350d    352d 
+      1       1       1       1       1       1       1       1       1       1 
+   353d    355d    356d    357d    358d    360d    362d    363d    365d    366d 
+      1       1       1       1       1       1       1       1       1       1 
+   367d   368d2     36d     38d   41d2R     42d     43d     44d    456d (Other) 
+      1       1       1       1       1       1       1       1       1     161 
 
 sample_type: 
 tumor 
@@ -317,8 +328,10 @@ title: serous ovarian cancer 41d2R///geo_accession: GSM794960///status: Public o
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     161 
 
 duplicates: 
-GSE32062.GSE32062.GPL6480_GSM794933 GSE32062.GSE32062.GPL6480_GSM794935                                NA's 
-                                  1                                   1                                 258 
+GSE32062.GSE32062.GPL6480_GSM794933 GSE32062.GSE32062.GPL6480_GSM794935 
+                                  1                                   1 
+                               NA's 
+                                258 
 
 }}
 \keyword{datasets}

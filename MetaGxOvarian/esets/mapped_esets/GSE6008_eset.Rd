@@ -31,11 +31,12 @@ Experiment data
    platform_accession:     
       GPL96
    version:     
-      2015-05-14 20:28:41
+      2015-09-22 20:07:11
 
 featureData(eset):
 An object of class 'AnnotatedDataFrame'
-  featureNames: 1007_s_at 1053_at ... AFFX-HUMISGF3A/M97935_MB_at (20967 total)
+  featureNames: 1007_s_at 1053_at ... AFFX-HUMISGF3A/M97935_MB_at
+    (20967 total)
   varLabels: probeset gene EntrezGene.ID best_probe
   varMetadata: labelDescription
 
@@ -49,56 +50,106 @@ Available sample meta-data:
 --------------------------- 
 
 alt_sample_name: 
-   Ovarian_Tumor_ClearCell_CHTN-OC-004    Ovarian_Tumor_ClearCell_CHTN-OC-012    Ovarian_Tumor_ClearCell_CHTN-OC-028      Ovarian_Tumor_ClearCell_KU-OC-003 
-                                     1                                      1                                      1                                      1 
-     Ovarian_Tumor_ClearCell_KU-OC-004      Ovarian_Tumor_ClearCell_KU-OC-005      Ovarian_Tumor_ClearCell_KU-OC-006      Ovarian_Tumor_ClearCell_KU-OC-007 
-                                     1                                      1                                      1                                      1 
-Ovarian_Tumor_Endometrioid_CHTN-OE-005 Ovarian_Tumor_Endometrioid_CHTN-OE-011 Ovarian_Tumor_Endometrioid_CHTN-OE-014 Ovarian_Tumor_Endometrioid_CHTN-OE-017 
-                                     1                                      1                                      1                                      1 
-Ovarian_Tumor_Endometrioid_CHTN-OE-018 Ovarian_Tumor_Endometrioid_CHTN-OE-019 Ovarian_Tumor_Endometrioid_CHTN-OE-023 Ovarian_Tumor_Endometrioid_CHTN-OE-029 
-                                     1                                      1                                      1                                      1 
-Ovarian_Tumor_Endometrioid_CHTN-OE-033 Ovarian_Tumor_Endometrioid_CHTN-OE-035 Ovarian_Tumor_Endometrioid_CHTN-OE-036 Ovarian_Tumor_Endometrioid_CHTN-OE-038 
-                                     1                                      1                                      1                                      1 
-Ovarian_Tumor_Endometrioid_CHTN-OE-039 Ovarian_Tumor_Endometrioid_CHTN-OE-040 Ovarian_Tumor_Endometrioid_CHTN-OE-042 Ovarian_Tumor_Endometrioid_CHTN-OE-046 
-                                     1                                      1                                      1                                      1 
-Ovarian_Tumor_Endometrioid_CHTN-OE-047 Ovarian_Tumor_Endometrioid_CHTN-OE-048 Ovarian_Tumor_Endometrioid_CHTN-OE-053 Ovarian_Tumor_Endometrioid_CHTN-OE-054 
-                                     1                                      1                                      1                                      1 
-Ovarian_Tumor_Endometrioid_CHTN-OE-056 Ovarian_Tumor_Endometrioid_CHTN-OE-059 Ovarian_Tumor_Endometrioid_CHTN-OE-060 Ovarian_Tumor_Endometrioid_CHTN-OE-061 
-                                     1                                      1                                      1                                      1 
-Ovarian_Tumor_Endometrioid_CHTN-OE-065 Ovarian_Tumor_Endometrioid_CHTN-OE-069 Ovarian_Tumor_Endometrioid_CHTN-OE-076 Ovarian_Tumor_Endometrioid_CHTN-OE-077 
-                                     1                                      1                                      1                                      1 
-Ovarian_Tumor_Endometrioid_CHTN-OE-080 Ovarian_Tumor_Endometrioid_CHTN-OE-082 Ovarian_Tumor_Endometrioid_CHTN-OE-087 Ovarian_Tumor_Endometrioid_CHTN-OE-092 
-                                     1                                      1                                      1                                      1 
-   Ovarian_Tumor_Endometrioid_JH-OE-2T   Ovarian_Tumor_Endometrioid_KU-OE-003   Ovarian_Tumor_Endometrioid_KU-OE-004   Ovarian_Tumor_Endometrioid_KU-OE-007 
-                                     1                                      1                                      1                                      1 
-   Ovarian_Tumor_Endometrioid_UM-OE-1T     Ovarian_Tumor_Mucinous_CHTN-OM-007     Ovarian_Tumor_Mucinous_CHTN-OM-017     Ovarian_Tumor_Mucinous_CHTN-OM-023 
-                                     1                                      1                                      1                                      1 
-    Ovarian_Tumor_Mucinous_CHTN-OM-029     Ovarian_Tumor_Mucinous_CHTN-OM-032     Ovarian_Tumor_Mucinous_CHTN-OM-035     Ovarian_Tumor_Mucinous_CHTN-OM-036 
-                                     1                                      1                                      1                                      1 
-      Ovarian_Tumor_Mucinous_KU-OM-003       Ovarian_Tumor_Mucinous_KU-OM-004       Ovarian_Tumor_Mucinous_KU-OM-006       Ovarian_Tumor_Mucinous_KU-OM-007 
-                                     1                                      1                                      1                                      1 
-       Ovarian_Tumor_Mucinous_UM-OM-01        Ovarian_Tumor_Mucinous_UM-OM-03       Ovarian_Tumor_Serous_CHTN-OS-002       Ovarian_Tumor_Serous_CHTN-OS-003 
-                                     1                                      1                                      1                                      1 
-      Ovarian_Tumor_Serous_CHTN-OS-009       Ovarian_Tumor_Serous_CHTN-OS-010       Ovarian_Tumor_Serous_CHTN-OS-011       Ovarian_Tumor_Serous_CHTN-OS-018 
-                                     1                                      1                                      1                                      1 
-      Ovarian_Tumor_Serous_CHTN-OS-020       Ovarian_Tumor_Serous_CHTN-OS-029       Ovarian_Tumor_Serous_CHTN-OS-038       Ovarian_Tumor_Serous_CHTN-OS-041 
-                                     1                                      1                                      1                                      1 
-      Ovarian_Tumor_Serous_CHTN-OS-044       Ovarian_Tumor_Serous_CHTN-OS-046       Ovarian_Tumor_Serous_CHTN-OS-048       Ovarian_Tumor_Serous_CHTN-OS-053 
-                                     1                                      1                                      1                                      1 
-      Ovarian_Tumor_Serous_CHTN-OS-055       Ovarian_Tumor_Serous_CHTN-OS-068       Ovarian_Tumor_Serous_CHTN-OS-072       Ovarian_Tumor_Serous_CHTN-OS-081 
-                                     1                                      1                                      1                                      1 
-      Ovarian_Tumor_Serous_CHTN-OS-089       Ovarian_Tumor_Serous_CHTN-OS-093       Ovarian_Tumor_Serous_CHTN-OS-098          Ovarian_Tumor_Serous_CU-OS-04 
-                                     1                                      1                                      1                                      1 
-         Ovarian_Tumor_Serous_CU-OS-05         Ovarian_Tumor_Serous_KU-OS-001         Ovarian_Tumor_Serous_KU-OS-002         Ovarian_Tumor_Serous_KU-OS-003 
-                                     1                                      1                                      1                                      1 
-        Ovarian_Tumor_Serous_KU-OS-005         Ovarian_Tumor_Serous_KU-OS-007         Ovarian_Tumor_Serous_KU-OS-009         Ovarian_Tumor_Serous_KU-OS-011 
-                                     1                                      1                                      1                                      1 
-        Ovarian_Tumor_Serous_KU-OS-012         Ovarian_Tumor_Serous_KU-OS-013         Ovarian_Tumor_Serous_KU-OS-015         Ovarian_Tumor_Serous_KU-OS-018 
-                                     1                                      1                                      1                                      1 
-        Ovarian_Tumor_Serous_KU-OS-021         Ovarian_Tumor_Serous_KU-OS-022          Ovarian_Tumor_Serous_UM-OS-02          Ovarian_Tumor_Serous_UM-OS-07 
-                                     1                                      1                                      1                                      1 
-         Ovarian_Tumor_Serous_UM-OS-09          Ovarian_Tumor_Serous_UM-OS-10          Ovarian_Tumor_Serous_UM-OS-11                                (Other) 
-                                     1                                      1                                      1                                      4 
+   Ovarian_Tumor_ClearCell_CHTN-OC-004    Ovarian_Tumor_ClearCell_CHTN-OC-012 
+                                     1                                      1 
+   Ovarian_Tumor_ClearCell_CHTN-OC-028      Ovarian_Tumor_ClearCell_KU-OC-003 
+                                     1                                      1 
+     Ovarian_Tumor_ClearCell_KU-OC-004      Ovarian_Tumor_ClearCell_KU-OC-005 
+                                     1                                      1 
+     Ovarian_Tumor_ClearCell_KU-OC-006      Ovarian_Tumor_ClearCell_KU-OC-007 
+                                     1                                      1 
+Ovarian_Tumor_Endometrioid_CHTN-OE-005 Ovarian_Tumor_Endometrioid_CHTN-OE-011 
+                                     1                                      1 
+Ovarian_Tumor_Endometrioid_CHTN-OE-014 Ovarian_Tumor_Endometrioid_CHTN-OE-017 
+                                     1                                      1 
+Ovarian_Tumor_Endometrioid_CHTN-OE-018 Ovarian_Tumor_Endometrioid_CHTN-OE-019 
+                                     1                                      1 
+Ovarian_Tumor_Endometrioid_CHTN-OE-023 Ovarian_Tumor_Endometrioid_CHTN-OE-029 
+                                     1                                      1 
+Ovarian_Tumor_Endometrioid_CHTN-OE-033 Ovarian_Tumor_Endometrioid_CHTN-OE-035 
+                                     1                                      1 
+Ovarian_Tumor_Endometrioid_CHTN-OE-036 Ovarian_Tumor_Endometrioid_CHTN-OE-038 
+                                     1                                      1 
+Ovarian_Tumor_Endometrioid_CHTN-OE-039 Ovarian_Tumor_Endometrioid_CHTN-OE-040 
+                                     1                                      1 
+Ovarian_Tumor_Endometrioid_CHTN-OE-042 Ovarian_Tumor_Endometrioid_CHTN-OE-046 
+                                     1                                      1 
+Ovarian_Tumor_Endometrioid_CHTN-OE-047 Ovarian_Tumor_Endometrioid_CHTN-OE-048 
+                                     1                                      1 
+Ovarian_Tumor_Endometrioid_CHTN-OE-053 Ovarian_Tumor_Endometrioid_CHTN-OE-054 
+                                     1                                      1 
+Ovarian_Tumor_Endometrioid_CHTN-OE-056 Ovarian_Tumor_Endometrioid_CHTN-OE-059 
+                                     1                                      1 
+Ovarian_Tumor_Endometrioid_CHTN-OE-060 Ovarian_Tumor_Endometrioid_CHTN-OE-061 
+                                     1                                      1 
+Ovarian_Tumor_Endometrioid_CHTN-OE-065 Ovarian_Tumor_Endometrioid_CHTN-OE-069 
+                                     1                                      1 
+Ovarian_Tumor_Endometrioid_CHTN-OE-076 Ovarian_Tumor_Endometrioid_CHTN-OE-077 
+                                     1                                      1 
+Ovarian_Tumor_Endometrioid_CHTN-OE-080 Ovarian_Tumor_Endometrioid_CHTN-OE-082 
+                                     1                                      1 
+Ovarian_Tumor_Endometrioid_CHTN-OE-087 Ovarian_Tumor_Endometrioid_CHTN-OE-092 
+                                     1                                      1 
+   Ovarian_Tumor_Endometrioid_JH-OE-2T   Ovarian_Tumor_Endometrioid_KU-OE-003 
+                                     1                                      1 
+  Ovarian_Tumor_Endometrioid_KU-OE-004   Ovarian_Tumor_Endometrioid_KU-OE-007 
+                                     1                                      1 
+   Ovarian_Tumor_Endometrioid_UM-OE-1T     Ovarian_Tumor_Mucinous_CHTN-OM-007 
+                                     1                                      1 
+    Ovarian_Tumor_Mucinous_CHTN-OM-017     Ovarian_Tumor_Mucinous_CHTN-OM-023 
+                                     1                                      1 
+    Ovarian_Tumor_Mucinous_CHTN-OM-029     Ovarian_Tumor_Mucinous_CHTN-OM-032 
+                                     1                                      1 
+    Ovarian_Tumor_Mucinous_CHTN-OM-035     Ovarian_Tumor_Mucinous_CHTN-OM-036 
+                                     1                                      1 
+      Ovarian_Tumor_Mucinous_KU-OM-003       Ovarian_Tumor_Mucinous_KU-OM-004 
+                                     1                                      1 
+      Ovarian_Tumor_Mucinous_KU-OM-006       Ovarian_Tumor_Mucinous_KU-OM-007 
+                                     1                                      1 
+       Ovarian_Tumor_Mucinous_UM-OM-01        Ovarian_Tumor_Mucinous_UM-OM-03 
+                                     1                                      1 
+      Ovarian_Tumor_Serous_CHTN-OS-002       Ovarian_Tumor_Serous_CHTN-OS-003 
+                                     1                                      1 
+      Ovarian_Tumor_Serous_CHTN-OS-009       Ovarian_Tumor_Serous_CHTN-OS-010 
+                                     1                                      1 
+      Ovarian_Tumor_Serous_CHTN-OS-011       Ovarian_Tumor_Serous_CHTN-OS-018 
+                                     1                                      1 
+      Ovarian_Tumor_Serous_CHTN-OS-020       Ovarian_Tumor_Serous_CHTN-OS-029 
+                                     1                                      1 
+      Ovarian_Tumor_Serous_CHTN-OS-038       Ovarian_Tumor_Serous_CHTN-OS-041 
+                                     1                                      1 
+      Ovarian_Tumor_Serous_CHTN-OS-044       Ovarian_Tumor_Serous_CHTN-OS-046 
+                                     1                                      1 
+      Ovarian_Tumor_Serous_CHTN-OS-048       Ovarian_Tumor_Serous_CHTN-OS-053 
+                                     1                                      1 
+      Ovarian_Tumor_Serous_CHTN-OS-055       Ovarian_Tumor_Serous_CHTN-OS-068 
+                                     1                                      1 
+      Ovarian_Tumor_Serous_CHTN-OS-072       Ovarian_Tumor_Serous_CHTN-OS-081 
+                                     1                                      1 
+      Ovarian_Tumor_Serous_CHTN-OS-089       Ovarian_Tumor_Serous_CHTN-OS-093 
+                                     1                                      1 
+      Ovarian_Tumor_Serous_CHTN-OS-098          Ovarian_Tumor_Serous_CU-OS-04 
+                                     1                                      1 
+         Ovarian_Tumor_Serous_CU-OS-05         Ovarian_Tumor_Serous_KU-OS-001 
+                                     1                                      1 
+        Ovarian_Tumor_Serous_KU-OS-002         Ovarian_Tumor_Serous_KU-OS-003 
+                                     1                                      1 
+        Ovarian_Tumor_Serous_KU-OS-005         Ovarian_Tumor_Serous_KU-OS-007 
+                                     1                                      1 
+        Ovarian_Tumor_Serous_KU-OS-009         Ovarian_Tumor_Serous_KU-OS-011 
+                                     1                                      1 
+        Ovarian_Tumor_Serous_KU-OS-012         Ovarian_Tumor_Serous_KU-OS-013 
+                                     1                                      1 
+        Ovarian_Tumor_Serous_KU-OS-015         Ovarian_Tumor_Serous_KU-OS-018 
+                                     1                                      1 
+        Ovarian_Tumor_Serous_KU-OS-021         Ovarian_Tumor_Serous_KU-OS-022 
+                                     1                                      1 
+         Ovarian_Tumor_Serous_UM-OS-02          Ovarian_Tumor_Serous_UM-OS-07 
+                                     1                                      1 
+         Ovarian_Tumor_Serous_UM-OS-09          Ovarian_Tumor_Serous_UM-OS-10 
+                                     1                                      1 
+         Ovarian_Tumor_Serous_UM-OS-11                                (Other) 
+                                     1                                      4 
 
 sample_type: 
 healthy   tumor 
@@ -133,8 +184,12 @@ grade:
   19   17   38   29 
 
 batch: 
-2002-04-03 2002-04-04 2002-04-09 2002-04-10 2002-04-12 2002-08-13 2002-08-15 2002-08-22 2002-08-23 2002-08-27 2002-08-28 2002-08-29 2002-08-30 2002-09-11 2006-01-27 
-         3          8          9          2          3          4          4          8          8          5          6         16         14          9          4 
+2002-04-03 2002-04-04 2002-04-09 2002-04-10 2002-04-12 2002-08-13 2002-08-15 
+         3          8          9          2          3          4          4 
+2002-08-22 2002-08-23 2002-08-27 2002-08-28 2002-08-29 2002-08-30 2002-09-11 
+         8          8          5          6         16         14          9 
+2006-01-27 
+         4 
 
 uncurated_author_metadata: 
      title: Ovarian_Tumor_ClearCell_CHTN-OC-004///geo_accession: GSM139377///status: Public on Apr 09 2007///submission_date: Oct 10 2006///last_update_date: Apr 09 2007///type: RNA///channel_count: 1///source_name_ch1: Ovarian_Tumor///organism_ch1: Homo sapiens///characteristics_ch1: Tumor_Type: Clear_Cell///characteristics_ch1.1: stage: 3C///characteristics_ch1.2: grade: 3///characteristics_ch1.3: B-canenin_nuclear_accumulation: N/A///characteristics_ch1.4: CTNNB1_mutation: N/A///characteristics_ch1.5: APC_mutation: N/A///characteristics_ch1.6: PTEN_mutation: N/A///characteristics_ch1.7: PTEN_immunohistochemistry: N/A///characteristics_ch1.8: KRAS_mutation: N/A///characteristics_ch1.9: PIK3CA_mutation: N/A///characteristics_ch1.10: TP53_mutation: N/A///characteristics_ch1.11: P53_immunohistochemistry: N/A///characteristics_ch1.12: CEL_file_name: CHTN-OC-004.CEL///molecule_ch1: total RNA///extract_protocol_ch1: Total RNA was extracted from the tissue lysate using an RNeasy kit (Qiagen).///label_ch1: biotin///label_protocol_ch1: 3-5 g of total RNA was processed to produce biotinylated cRNA targets.///taxid_ch1: 9606///hyb_protocol: standard Affymetrix procedures///scan_protocol: standard Affymetrix procedures///description: ovarian tumor: clear cell///data_processing: Ann Arbor quantile-normalized trimmed-mean method///platform_id: GPL96///contact_name: Rork,,Kuick///contact_email: rork@umich.edu///contact_phone: 734-936-9241///contact_institute: University of Michigan///contact_address: NI8D17, 300 North Ingals Building, U. of Michigan///contact_city: Ann Arbor///contact_state: MI///contact_zip.postal_code: 48109-5473///contact_country: USA///supplementary_file: ftp://ftp.ncbi.nih.gov/pub/geo/DATA/supplementary/samples/GSM139nnn/GSM139377/GSM139377.CEL.gz///data_row_count: 22283 
@@ -339,8 +394,12 @@ title: Ovarian_Tumor_Endometrioid_CHTN-OE-059///geo_accession: GSM139406///statu
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       4 
 
 duplicates: 
-GSE6008.GSE6008_GSM139476///GSE6008.GSE6008_GSM139477 GSE6008.GSE6008_GSM139476///GSE6008.GSE6008_GSM139478 GSE6008.GSE6008_GSM139477///GSE6008.GSE6008_GSM139478 
-                                                    1                                                     1                                                     1 
+GSE6008.GSE6008_GSM139476///GSE6008.GSE6008_GSM139477 
+                                                    1 
+GSE6008.GSE6008_GSM139476///GSE6008.GSE6008_GSM139478 
+                                                    1 
+GSE6008.GSE6008_GSM139477///GSE6008.GSE6008_GSM139478 
+                                                    1 
                                                  NA's 
                                                   100 
 

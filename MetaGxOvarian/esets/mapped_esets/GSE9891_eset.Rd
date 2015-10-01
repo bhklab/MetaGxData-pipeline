@@ -31,11 +31,12 @@ Experiment data
    platform_accession:     
       GPL570
    version:     
-      2015-05-14 20:34:37
+      2015-09-22 20:16:32
 
 featureData(eset):
 An object of class 'AnnotatedDataFrame'
-  featureNames: 1007_s_at 1053_at ... AFFX-HUMISGF3A/M97935_MB_at (42447 total)
+  featureNames: 1007_s_at 1053_at ... AFFX-HUMISGF3A/M97935_MB_at
+    (42447 total)
   varLabels: probeset gene EntrezGene.ID best_probe
   varMetadata: labelDescription
 
@@ -48,24 +49,34 @@ Overall survival time-to-event summary (in years):
 Call: survfit(formula = Surv(time, cens) ~ -1)
 
    7 observations deleted due to missingness 
-records   n.max n.start  events  median 0.95LCL 0.95UCL 
- 278.00  278.00  278.00  113.00    3.95    3.53    5.01 
+      n  events  median 0.95LCL 0.95UCL 
+ 278.00  113.00    3.95    3.53    5.01 
 
 --------------------------- 
 Available sample meta-data: 
 --------------------------- 
 
 alt_sample_name: 
-   X129    X146    X152  X20019  X20025  X20027  X20031  X20032  X20041  X20046  X20074  X22002  X22012  X22013  X22020  X22023  X22027  X22029  X22031  X22037  X22046 
-      1       1       1       1       1       1       1       1       1       1       1       1       1       1       1       1       1       1       1       1       1 
- X22047  X22048  X22057  X22058   X2219   X2227  X23026  X23030  X23036  X23043  X23052  X23053  X23055  X23066  X23070  X23074  X23077  X23084  X23098  X23102  X23106 
-      1       1       1       1       1       1       1       1       1       1       1       1       1       1       1       1       1       1       1       1       1 
- X23116  X23128  X23139  X23143  X23162  X23165  X23167  X23170  X23172  X23177  X23178  X23182  X23187  X23197  X23202  X23204  X23210  X23212  X23213  X23221  X26047 
-      1       1       1       1       1       1       1       1       1       1       1       1       1       1       1       1       1       1       1       1       1 
-   X261  X27006  X27098  X32013  X32022  X32032  X32034  X32048  X32049  X32054  X32055  X32089  X32098  X32103  X32117  X34019  X34049  X34066  X34078  X34080  X34085 
-      1       1       1       1       1       1       1       1       1       1       1       1       1       1       1       1       1       1       1       1       1 
- X34086  X34090  X34102  X34103  X34111  X34113  X34117  X34125  X34165  X34168  X34172  X34186  X34202  X34207  X34801 (Other) 
-      1       1       1       1       1       1       1       1       1       1       1       1       1       1       1     186 
+   X129    X146    X152  X20019  X20025  X20027  X20031  X20032  X20041  X20046 
+      1       1       1       1       1       1       1       1       1       1 
+ X20074  X22002  X22012  X22013  X22020  X22023  X22027  X22029  X22031  X22037 
+      1       1       1       1       1       1       1       1       1       1 
+ X22046  X22047  X22048  X22057  X22058   X2219   X2227  X23026  X23030  X23036 
+      1       1       1       1       1       1       1       1       1       1 
+ X23043  X23052  X23053  X23055  X23066  X23070  X23074  X23077  X23084  X23098 
+      1       1       1       1       1       1       1       1       1       1 
+ X23102  X23106  X23116  X23128  X23139  X23143  X23162  X23165  X23167  X23170 
+      1       1       1       1       1       1       1       1       1       1 
+ X23172  X23177  X23178  X23182  X23187  X23197  X23202  X23204  X23210  X23212 
+      1       1       1       1       1       1       1       1       1       1 
+ X23213  X23221  X26047    X261  X27006  X27098  X32013  X32022  X32032  X32034 
+      1       1       1       1       1       1       1       1       1       1 
+ X32048  X32049  X32054  X32055  X32089  X32098  X32103  X32117  X34019  X34049 
+      1       1       1       1       1       1       1       1       1       1 
+ X34066  X34078  X34080  X34085  X34086  X34090  X34102  X34103  X34111  X34113 
+      1       1       1       1       1       1       1       1       1       1 
+ X34117  X34125  X34165  X34168  X34172  X34186  X34202  X34207  X34801 (Other) 
+      1       1       1       1       1       1       1       1       1     186 
 
 sample_type: 
 tumor 
@@ -140,14 +151,22 @@ debulking:
        160         88         37 
 
 batch: 
-2004-12-03 2004-12-23 2005-01-12 2005-01-17 2005-01-24 2005-01-31 2005-02-21 2005-03-17 2005-05-05 2005-05-09 2005-05-25 2005-05-27 2005-05-30 2005-06-02 2005-06-06 
-         3          4          7          7          8         10         10          2          1          1          2          3          3          6          4 
-2005-06-08 2005-06-16 2005-06-17 2005-06-24 2005-07-06 2005-07-15 2005-07-20 2005-07-29 2005-08-03 2005-08-05 2005-08-18 2005-08-24 2005-08-26 2005-09-09 2005-09-14 
-         5          3          5          6          2          9          7          5          6          3          4          8          4          4          6 
-2005-09-16 2005-09-21 2005-10-05 2005-10-26 2005-10-28 2005-11-04 2005-11-09 2005-11-11 2005-11-23 2005-12-15 2005-12-21 2006-01-20 2006-01-31 2006-02-08 2006-02-28 
-         6          4          5          2          4          6          3          7          4          7          8          3          7          3          3 
-2006-04-05 2006-04-06 2006-04-12 2006-04-13 2006-04-28 2006-05-03 2006-06-06 2006-06-07 2006-06-22 2006-07-07 2006-07-19 
-         7          3          7          4          6          9          6          3          9          4          7 
+2004-12-03 2004-12-23 2005-01-12 2005-01-17 2005-01-24 2005-01-31 2005-02-21 
+         3          4          7          7          8         10         10 
+2005-03-17 2005-05-05 2005-05-09 2005-05-25 2005-05-27 2005-05-30 2005-06-02 
+         2          1          1          2          3          3          6 
+2005-06-06 2005-06-08 2005-06-16 2005-06-17 2005-06-24 2005-07-06 2005-07-15 
+         4          5          3          5          6          2          9 
+2005-07-20 2005-07-29 2005-08-03 2005-08-05 2005-08-18 2005-08-24 2005-08-26 
+         7          5          6          3          4          8          4 
+2005-09-09 2005-09-14 2005-09-16 2005-09-21 2005-10-05 2005-10-26 2005-10-28 
+         4          6          6          4          5          2          4 
+2005-11-04 2005-11-09 2005-11-11 2005-11-23 2005-12-15 2005-12-21 2006-01-20 
+         6          3          7          4          7          8          3 
+2006-01-31 2006-02-08 2006-02-28 2006-04-05 2006-04-06 2006-04-12 2006-04-13 
+         7          3          3          7          3          7          4 
+2006-04-28 2006-05-03 2006-06-06 2006-06-07 2006-06-22 2006-07-07 2006-07-19 
+         6          9          6          3          9          4          7 
 
 uncurated_author_metadata: 
                title: X129///geo_accession: GSM250001///status: Public on Mar 01 2008///submission_date: Dec 14 2007///last_update_date: Dec 19 2007///type: RNA///channel_count: 1///source_name_ch1: Carcinoma of ovary, fallopian tube or peritonem///organism_ch1: Homo sapiens///characteristics_ch1: Primary.Site : Ovary///characteristics_ch1.1: Type : Malignant///characteristics_ch1.2: Subtype : Ser/PapSer///characteristics_ch1.3: StageCode : IIIC///characteristics_ch1.4: Consolidated.Grade : 3///treatment_protocol_ch1: Frozen tissue stored at -80oC taken after surgery///molecule_ch1: total RNA///extract_protocol_ch1: Trizol extraction and column chromotogrpahy///label_ch1: biotin///label_protocol_ch1: Biotinylated cRNA were prepared according to the standard Affymetrix protocol from 6 ug total RNA (Expression Analysis Technical Manual, 2001, Affymetrix).///taxid_ch1: 9606///hyb_protocol: Following fragmentation, 10 ug of cRNA were hybridized for 16 hr at 45C on GeneChip Drosophila Genome Array. GeneChips were washed and stained in the Affymetrix Fluidics Station 400.///scan_protocol: GeneChips were scanned using Affymetrix GS300-7G scanner///description: Gene expression data from human ovarian carcinoma///data_processing: The data were analyzed with Gene Chip Operating Software Version 1.4 using Affymetrix default analysis settings. The CEL files generated was later normalized using the RMA method///platform_id: GPL570///contact_name: Prof David,,Bowtell PhD.///contact_email: d.bowtell@petermac.org///contact_phone: +613 96561287///contact_fax: +613 96561414///contact_department: Research Division///contact_institute: PeterMacCallum Cancer Centre///contact_address: Locked Bag 1 A' Beckett St///contact_city: Melbourne///contact_state: VIC///contact_zip.postal_code: 8006///contact_country: Australia///contact_web_link: http://www.petermac-research.org.au///supplementary_file: ftp://ftp.ncbi.nih.gov/pub/geo/DATA/supplementary/samples/GSM250nnn/GSM250001/GSM250001.CEL.gz///data_row_count: 54621///ID: X129///k.meansGroup: 1///Type: MAL///HistologicalSubtype: Ser///PrimarySite: OV///FIGOStage: III///Grade: 3///PatientAge.Years.: 65///PatientStatus: D///Pltx: Y///Tax: N///Neo: N///TimeToRelapseorLastFollow.Up.Months.: 7///TimeToDeathorLastFollow.Up.Months.: 15///ResidualDisease: >1///ArrayedSite: PE 

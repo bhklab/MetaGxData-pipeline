@@ -31,11 +31,12 @@ Experiment data
    platform_accession:     
       GPL570|GPL2005|GPL6801
    version:     
-      2015-05-14 19:50:16
+      2015-09-22 19:33:01
 
 featureData(eset):
 An object of class 'AnnotatedDataFrame'
-  featureNames: 1007_s_at 1053_at ... AFFX-HUMISGF3A/M97935_MB_at (42447 total)
+  featureNames: 1007_s_at 1053_at ... AFFX-HUMISGF3A/M97935_MB_at
+    (42447 total)
   varLabels: probeset gene EntrezGene.ID best_probe
   varMetadata: labelDescription
 
@@ -49,106 +50,206 @@ Available sample meta-data:
 --------------------------- 
 
 alt_sample_name: 
-Breast metastasis in the ovary_OC01_ARN0016 [HG-U133_Plus_2] Breast metastasis in the ovary_OC01_ARN0017 [HG-U133_Plus_2] 
-                                                           1                                                            1 
-Breast metastasis in the ovary_OC01_ARN0020 [HG-U133_Plus_2] Breast metastasis in the ovary_OC01_ARN0029 [HG-U133_Plus_2] 
-                                                           1                                                            1 
-Breast metastasis in the ovary_OC01_ARN0035 [HG-U133_Plus_2] Breast metastasis in the ovary_OC01_ARN0046 [HG-U133_Plus_2] 
-                                                           1                                                            1 
-Breast metastasis in the ovary_OC01_ARN0051 [HG-U133_Plus_2] Breast metastasis in the ovary_OC01_ARN0053 [HG-U133_Plus_2] 
-                                                           1                                                            1 
-Breast metastasis in the ovary_OC01_ARN0055 [HG-U133_Plus_2] Breast metastasis in the ovary_OC01_ARN0060 [HG-U133_Plus_2] 
-                                                           1                                                            1 
-Breast metastasis in the ovary_OC01_ARN0069 [HG-U133_Plus_2] Breast metastasis in the ovary_OC01_ARN0073 [HG-U133_Plus_2] 
-                                                           1                                                            1 
-Breast metastasis in the ovary_OC01_ARN0077 [HG-U133_Plus_2] Breast metastasis in the ovary_OC01_ARN0079 [HG-U133_Plus_2] 
-                                                           1                                                            1 
-Breast metastasis in the ovary_OC01_ARN0081 [HG-U133_Plus_2] Breast metastasis in the ovary_OC01_ARN0083 [HG-U133_Plus_2] 
-                                                           1                                                            1 
-Breast metastasis in the ovary_OC01_ARN0092 [HG-U133_Plus_2] Breast metastasis in the ovary_OC01_ARN0097 [HG-U133_Plus_2] 
-                                                           1                                                            1 
-Breast metastasis in the ovary_OC01_ARN0098 [HG-U133_Plus_2] Breast metastasis in the ovary_OC01_ARN0099 [HG-U133_Plus_2] 
-                                                           1                                                            1 
-Breast metastasis in the ovary_OC01_ARN0102 [HG-U133_Plus_2] Breast metastasis in the ovary_OC01_ARN0104 [HG-U133_Plus_2] 
-                                                           1                                                            1 
-Breast metastasis in the ovary_OC01_ARN0112 [HG-U133_Plus_2] Breast metastasis in the ovary_OC01_ARN0120 [HG-U133_Plus_2] 
-                                                           1                                                            1 
-Breast metastasis in the ovary_OC01_ARN0121 [HG-U133_Plus_2] Breast metastasis in the ovary_OC01_ARN0123 [HG-U133_Plus_2] 
-                                                           1                                                            1 
-Breast metastasis in the ovary_OC01_ARN0126 [HG-U133_Plus_2] Breast metastasis in the ovary_OC01_ARN0141 [HG-U133_Plus_2] 
-                                                           1                                                            1 
-Breast metastasis in the ovary_OC01_ARN0142 [HG-U133_Plus_2] Breast metastasis in the ovary_OC01_ARN0143 [HG-U133_Plus_2] 
-                                                           1                                                            1 
-Breast metastasis in the ovary_OC01_ARN0145 [HG-U133_Plus_2] Breast metastasis in the ovary_OC01_ARN0146 [HG-U133_Plus_2] 
-                                                           1                                                            1 
-Breast metastasis in the ovary_OC01_ARN0153 [HG-U133_Plus_2] Breast metastasis in the ovary_OC01_ARN0162 [HG-U133_Plus_2] 
-                                                           1                                                            1 
-Breast metastasis in the ovary_OC01_ARN0201 [HG-U133_Plus_2]              Ovarian carcinoma_OC01_ARN0001 [HG-U133_Plus_2] 
-                                                           1                                                            1 
-             Ovarian carcinoma_OC01_ARN0002 [HG-U133_Plus_2]              Ovarian carcinoma_OC01_ARN0004 [HG-U133_Plus_2] 
-                                                           1                                                            1 
-             Ovarian carcinoma_OC01_ARN0005 [HG-U133_Plus_2]              Ovarian carcinoma_OC01_ARN0007 [HG-U133_Plus_2] 
-                                                           1                                                            1 
-             Ovarian carcinoma_OC01_ARN0008 [HG-U133_Plus_2]              Ovarian carcinoma_OC01_ARN0009 [HG-U133_Plus_2] 
-                                                           1                                                            1 
-             Ovarian carcinoma_OC01_ARN0010 [HG-U133_Plus_2]              Ovarian carcinoma_OC01_ARN0011 [HG-U133_Plus_2] 
-                                                           1                                                            1 
-             Ovarian carcinoma_OC01_ARN0012 [HG-U133_Plus_2]              Ovarian carcinoma_OC01_ARN0013 [HG-U133_Plus_2] 
-                                                           1                                                            1 
-             Ovarian carcinoma_OC01_ARN0015 [HG-U133_Plus_2]              Ovarian carcinoma_OC01_ARN0022 [HG-U133_Plus_2] 
-                                                           1                                                            1 
-             Ovarian carcinoma_OC01_ARN0023 [HG-U133_Plus_2]              Ovarian carcinoma_OC01_ARN0025 [HG-U133_Plus_2] 
-                                                           1                                                            1 
-             Ovarian carcinoma_OC01_ARN0028 [HG-U133_Plus_2]              Ovarian carcinoma_OC01_ARN0030 [HG-U133_Plus_2] 
-                                                           1                                                            1 
-             Ovarian carcinoma_OC01_ARN0032 [HG-U133_Plus_2]              Ovarian carcinoma_OC01_ARN0034 [HG-U133_Plus_2] 
-                                                           1                                                            1 
-             Ovarian carcinoma_OC01_ARN0036 [HG-U133_Plus_2]              Ovarian carcinoma_OC01_ARN0037 [HG-U133_Plus_2] 
-                                                           1                                                            1 
-             Ovarian carcinoma_OC01_ARN0038 [HG-U133_Plus_2]              Ovarian carcinoma_OC01_ARN0039 [HG-U133_Plus_2] 
-                                                           1                                                            1 
-             Ovarian carcinoma_OC01_ARN0041 [HG-U133_Plus_2]              Ovarian carcinoma_OC01_ARN0042 [HG-U133_Plus_2] 
-                                                           1                                                            1 
-             Ovarian carcinoma_OC01_ARN0045 [HG-U133_Plus_2]              Ovarian carcinoma_OC01_ARN0049 [HG-U133_Plus_2] 
-                                                           1                                                            1 
-             Ovarian carcinoma_OC01_ARN0057 [HG-U133_Plus_2]              Ovarian carcinoma_OC01_ARN0058 [HG-U133_Plus_2] 
-                                                           1                                                            1 
-             Ovarian carcinoma_OC01_ARN0061 [HG-U133_Plus_2]              Ovarian carcinoma_OC01_ARN0062 [HG-U133_Plus_2] 
-                                                           1                                                            1 
-             Ovarian carcinoma_OC01_ARN0063 [HG-U133_Plus_2]              Ovarian carcinoma_OC01_ARN0064 [HG-U133_Plus_2] 
-                                                           1                                                            1 
-             Ovarian carcinoma_OC01_ARN0066 [HG-U133_Plus_2]              Ovarian carcinoma_OC01_ARN0067 [HG-U133_Plus_2] 
-                                                           1                                                            1 
-             Ovarian carcinoma_OC01_ARN0070 [HG-U133_Plus_2]              Ovarian carcinoma_OC01_ARN0072 [HG-U133_Plus_2] 
-                                                           1                                                            1 
-             Ovarian carcinoma_OC01_ARN0075 [HG-U133_Plus_2]              Ovarian carcinoma_OC01_ARN0076 [HG-U133_Plus_2] 
-                                                           1                                                            1 
-             Ovarian carcinoma_OC01_ARN0080 [HG-U133_Plus_2]              Ovarian carcinoma_OC01_ARN0084 [HG-U133_Plus_2] 
-                                                           1                                                            1 
-             Ovarian carcinoma_OC01_ARN0085 [HG-U133_Plus_2]              Ovarian carcinoma_OC01_ARN0089 [HG-U133_Plus_2] 
-                                                           1                                                            1 
-             Ovarian carcinoma_OC01_ARN0091 [HG-U133_Plus_2]              Ovarian carcinoma_OC01_ARN0093 [HG-U133_Plus_2] 
-                                                           1                                                            1 
-             Ovarian carcinoma_OC01_ARN0095 [HG-U133_Plus_2]              Ovarian carcinoma_OC01_ARN0096 [HG-U133_Plus_2] 
-                                                           1                                                            1 
-             Ovarian carcinoma_OC01_ARN0100 [HG-U133_Plus_2]              Ovarian carcinoma_OC01_ARN0101 [HG-U133_Plus_2] 
-                                                           1                                                            1 
-             Ovarian carcinoma_OC01_ARN0103 [HG-U133_Plus_2]              Ovarian carcinoma_OC01_ARN0105 [HG-U133_Plus_2] 
-                                                           1                                                            1 
-             Ovarian carcinoma_OC01_ARN0106 [HG-U133_Plus_2]              Ovarian carcinoma_OC01_ARN0107 [HG-U133_Plus_2] 
-                                                           1                                                            1 
-             Ovarian carcinoma_OC01_ARN0108 [HG-U133_Plus_2]              Ovarian carcinoma_OC01_ARN0109 [HG-U133_Plus_2] 
-                                                           1                                                            1 
-             Ovarian carcinoma_OC01_ARN0111 [HG-U133_Plus_2]              Ovarian carcinoma_OC01_ARN0113 [HG-U133_Plus_2] 
-                                                           1                                                            1 
-             Ovarian carcinoma_OC01_ARN0114 [HG-U133_Plus_2]              Ovarian carcinoma_OC01_ARN0115 [HG-U133_Plus_2] 
-                                                           1                                                            1 
-             Ovarian carcinoma_OC01_ARN0116 [HG-U133_Plus_2]              Ovarian carcinoma_OC01_ARN0118 [HG-U133_Plus_2] 
-                                                           1                                                            1 
-             Ovarian carcinoma_OC01_ARN0119 [HG-U133_Plus_2]              Ovarian carcinoma_OC01_ARN0124 [HG-U133_Plus_2] 
-                                                           1                                                            1 
-             Ovarian carcinoma_OC01_ARN0125 [HG-U133_Plus_2]                                                      (Other) 
-                                                           1                                                           41 
+Breast metastasis in the ovary_OC01_ARN0016 [HG-U133_Plus_2] 
+                                                           1 
+Breast metastasis in the ovary_OC01_ARN0017 [HG-U133_Plus_2] 
+                                                           1 
+Breast metastasis in the ovary_OC01_ARN0020 [HG-U133_Plus_2] 
+                                                           1 
+Breast metastasis in the ovary_OC01_ARN0029 [HG-U133_Plus_2] 
+                                                           1 
+Breast metastasis in the ovary_OC01_ARN0035 [HG-U133_Plus_2] 
+                                                           1 
+Breast metastasis in the ovary_OC01_ARN0046 [HG-U133_Plus_2] 
+                                                           1 
+Breast metastasis in the ovary_OC01_ARN0051 [HG-U133_Plus_2] 
+                                                           1 
+Breast metastasis in the ovary_OC01_ARN0053 [HG-U133_Plus_2] 
+                                                           1 
+Breast metastasis in the ovary_OC01_ARN0055 [HG-U133_Plus_2] 
+                                                           1 
+Breast metastasis in the ovary_OC01_ARN0060 [HG-U133_Plus_2] 
+                                                           1 
+Breast metastasis in the ovary_OC01_ARN0069 [HG-U133_Plus_2] 
+                                                           1 
+Breast metastasis in the ovary_OC01_ARN0073 [HG-U133_Plus_2] 
+                                                           1 
+Breast metastasis in the ovary_OC01_ARN0077 [HG-U133_Plus_2] 
+                                                           1 
+Breast metastasis in the ovary_OC01_ARN0079 [HG-U133_Plus_2] 
+                                                           1 
+Breast metastasis in the ovary_OC01_ARN0081 [HG-U133_Plus_2] 
+                                                           1 
+Breast metastasis in the ovary_OC01_ARN0083 [HG-U133_Plus_2] 
+                                                           1 
+Breast metastasis in the ovary_OC01_ARN0092 [HG-U133_Plus_2] 
+                                                           1 
+Breast metastasis in the ovary_OC01_ARN0097 [HG-U133_Plus_2] 
+                                                           1 
+Breast metastasis in the ovary_OC01_ARN0098 [HG-U133_Plus_2] 
+                                                           1 
+Breast metastasis in the ovary_OC01_ARN0099 [HG-U133_Plus_2] 
+                                                           1 
+Breast metastasis in the ovary_OC01_ARN0102 [HG-U133_Plus_2] 
+                                                           1 
+Breast metastasis in the ovary_OC01_ARN0104 [HG-U133_Plus_2] 
+                                                           1 
+Breast metastasis in the ovary_OC01_ARN0112 [HG-U133_Plus_2] 
+                                                           1 
+Breast metastasis in the ovary_OC01_ARN0120 [HG-U133_Plus_2] 
+                                                           1 
+Breast metastasis in the ovary_OC01_ARN0121 [HG-U133_Plus_2] 
+                                                           1 
+Breast metastasis in the ovary_OC01_ARN0123 [HG-U133_Plus_2] 
+                                                           1 
+Breast metastasis in the ovary_OC01_ARN0126 [HG-U133_Plus_2] 
+                                                           1 
+Breast metastasis in the ovary_OC01_ARN0141 [HG-U133_Plus_2] 
+                                                           1 
+Breast metastasis in the ovary_OC01_ARN0142 [HG-U133_Plus_2] 
+                                                           1 
+Breast metastasis in the ovary_OC01_ARN0143 [HG-U133_Plus_2] 
+                                                           1 
+Breast metastasis in the ovary_OC01_ARN0145 [HG-U133_Plus_2] 
+                                                           1 
+Breast metastasis in the ovary_OC01_ARN0146 [HG-U133_Plus_2] 
+                                                           1 
+Breast metastasis in the ovary_OC01_ARN0153 [HG-U133_Plus_2] 
+                                                           1 
+Breast metastasis in the ovary_OC01_ARN0162 [HG-U133_Plus_2] 
+                                                           1 
+Breast metastasis in the ovary_OC01_ARN0201 [HG-U133_Plus_2] 
+                                                           1 
+             Ovarian carcinoma_OC01_ARN0001 [HG-U133_Plus_2] 
+                                                           1 
+             Ovarian carcinoma_OC01_ARN0002 [HG-U133_Plus_2] 
+                                                           1 
+             Ovarian carcinoma_OC01_ARN0004 [HG-U133_Plus_2] 
+                                                           1 
+             Ovarian carcinoma_OC01_ARN0005 [HG-U133_Plus_2] 
+                                                           1 
+             Ovarian carcinoma_OC01_ARN0007 [HG-U133_Plus_2] 
+                                                           1 
+             Ovarian carcinoma_OC01_ARN0008 [HG-U133_Plus_2] 
+                                                           1 
+             Ovarian carcinoma_OC01_ARN0009 [HG-U133_Plus_2] 
+                                                           1 
+             Ovarian carcinoma_OC01_ARN0010 [HG-U133_Plus_2] 
+                                                           1 
+             Ovarian carcinoma_OC01_ARN0011 [HG-U133_Plus_2] 
+                                                           1 
+             Ovarian carcinoma_OC01_ARN0012 [HG-U133_Plus_2] 
+                                                           1 
+             Ovarian carcinoma_OC01_ARN0013 [HG-U133_Plus_2] 
+                                                           1 
+             Ovarian carcinoma_OC01_ARN0015 [HG-U133_Plus_2] 
+                                                           1 
+             Ovarian carcinoma_OC01_ARN0022 [HG-U133_Plus_2] 
+                                                           1 
+             Ovarian carcinoma_OC01_ARN0023 [HG-U133_Plus_2] 
+                                                           1 
+             Ovarian carcinoma_OC01_ARN0025 [HG-U133_Plus_2] 
+                                                           1 
+             Ovarian carcinoma_OC01_ARN0028 [HG-U133_Plus_2] 
+                                                           1 
+             Ovarian carcinoma_OC01_ARN0030 [HG-U133_Plus_2] 
+                                                           1 
+             Ovarian carcinoma_OC01_ARN0032 [HG-U133_Plus_2] 
+                                                           1 
+             Ovarian carcinoma_OC01_ARN0034 [HG-U133_Plus_2] 
+                                                           1 
+             Ovarian carcinoma_OC01_ARN0036 [HG-U133_Plus_2] 
+                                                           1 
+             Ovarian carcinoma_OC01_ARN0037 [HG-U133_Plus_2] 
+                                                           1 
+             Ovarian carcinoma_OC01_ARN0038 [HG-U133_Plus_2] 
+                                                           1 
+             Ovarian carcinoma_OC01_ARN0039 [HG-U133_Plus_2] 
+                                                           1 
+             Ovarian carcinoma_OC01_ARN0041 [HG-U133_Plus_2] 
+                                                           1 
+             Ovarian carcinoma_OC01_ARN0042 [HG-U133_Plus_2] 
+                                                           1 
+             Ovarian carcinoma_OC01_ARN0045 [HG-U133_Plus_2] 
+                                                           1 
+             Ovarian carcinoma_OC01_ARN0049 [HG-U133_Plus_2] 
+                                                           1 
+             Ovarian carcinoma_OC01_ARN0057 [HG-U133_Plus_2] 
+                                                           1 
+             Ovarian carcinoma_OC01_ARN0058 [HG-U133_Plus_2] 
+                                                           1 
+             Ovarian carcinoma_OC01_ARN0061 [HG-U133_Plus_2] 
+                                                           1 
+             Ovarian carcinoma_OC01_ARN0062 [HG-U133_Plus_2] 
+                                                           1 
+             Ovarian carcinoma_OC01_ARN0063 [HG-U133_Plus_2] 
+                                                           1 
+             Ovarian carcinoma_OC01_ARN0064 [HG-U133_Plus_2] 
+                                                           1 
+             Ovarian carcinoma_OC01_ARN0066 [HG-U133_Plus_2] 
+                                                           1 
+             Ovarian carcinoma_OC01_ARN0067 [HG-U133_Plus_2] 
+                                                           1 
+             Ovarian carcinoma_OC01_ARN0070 [HG-U133_Plus_2] 
+                                                           1 
+             Ovarian carcinoma_OC01_ARN0072 [HG-U133_Plus_2] 
+                                                           1 
+             Ovarian carcinoma_OC01_ARN0075 [HG-U133_Plus_2] 
+                                                           1 
+             Ovarian carcinoma_OC01_ARN0076 [HG-U133_Plus_2] 
+                                                           1 
+             Ovarian carcinoma_OC01_ARN0080 [HG-U133_Plus_2] 
+                                                           1 
+             Ovarian carcinoma_OC01_ARN0084 [HG-U133_Plus_2] 
+                                                           1 
+             Ovarian carcinoma_OC01_ARN0085 [HG-U133_Plus_2] 
+                                                           1 
+             Ovarian carcinoma_OC01_ARN0089 [HG-U133_Plus_2] 
+                                                           1 
+             Ovarian carcinoma_OC01_ARN0091 [HG-U133_Plus_2] 
+                                                           1 
+             Ovarian carcinoma_OC01_ARN0093 [HG-U133_Plus_2] 
+                                                           1 
+             Ovarian carcinoma_OC01_ARN0095 [HG-U133_Plus_2] 
+                                                           1 
+             Ovarian carcinoma_OC01_ARN0096 [HG-U133_Plus_2] 
+                                                           1 
+             Ovarian carcinoma_OC01_ARN0100 [HG-U133_Plus_2] 
+                                                           1 
+             Ovarian carcinoma_OC01_ARN0101 [HG-U133_Plus_2] 
+                                                           1 
+             Ovarian carcinoma_OC01_ARN0103 [HG-U133_Plus_2] 
+                                                           1 
+             Ovarian carcinoma_OC01_ARN0105 [HG-U133_Plus_2] 
+                                                           1 
+             Ovarian carcinoma_OC01_ARN0106 [HG-U133_Plus_2] 
+                                                           1 
+             Ovarian carcinoma_OC01_ARN0107 [HG-U133_Plus_2] 
+                                                           1 
+             Ovarian carcinoma_OC01_ARN0108 [HG-U133_Plus_2] 
+                                                           1 
+             Ovarian carcinoma_OC01_ARN0109 [HG-U133_Plus_2] 
+                                                           1 
+             Ovarian carcinoma_OC01_ARN0111 [HG-U133_Plus_2] 
+                                                           1 
+             Ovarian carcinoma_OC01_ARN0113 [HG-U133_Plus_2] 
+                                                           1 
+             Ovarian carcinoma_OC01_ARN0114 [HG-U133_Plus_2] 
+                                                           1 
+             Ovarian carcinoma_OC01_ARN0115 [HG-U133_Plus_2] 
+                                                           1 
+             Ovarian carcinoma_OC01_ARN0116 [HG-U133_Plus_2] 
+                                                           1 
+             Ovarian carcinoma_OC01_ARN0118 [HG-U133_Plus_2] 
+                                                           1 
+             Ovarian carcinoma_OC01_ARN0119 [HG-U133_Plus_2] 
+                                                           1 
+             Ovarian carcinoma_OC01_ARN0124 [HG-U133_Plus_2] 
+                                                           1 
+             Ovarian carcinoma_OC01_ARN0125 [HG-U133_Plus_2] 
+                                                           1 
+                                                     (Other) 
+                                                          41 
 
 sample_type: 
 tumor 
@@ -389,8 +490,10 @@ title: Breast metastasis in the ovary_OC01_ARN0201 [HG-U133_Plus_2]///geo_access
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      41 
 
 duplicates: 
-GSE20565.GSE20565_GSM516722 GSE20565.GSE20565_GSM516741                        NA's 
-                          1                           1                         138 
+GSE20565.GSE20565_GSM516722 GSE20565.GSE20565_GSM516741 
+                          1                           1 
+                       NA's 
+                        138 
 
 }}
 \keyword{datasets}
