@@ -127,15 +127,30 @@ for(ds.name in ds.names){
 	  curated$her2[uncurated$her2==0] <- "negative"
 	  curated$her2[uncurated$her2==1] <- "positive"
 	
+	  if(ds.name %in% c("GSE32646")){
+	    curated$her2<-uncurated$her2
+	    curated$er<-uncurated$er
+	    curated$pgr<-uncurated$pgr
+	  }
+	  
+	  if(ds.name %in% c("GSE32646","GSE25066","GSE48091","GSE58644")){
+	    curated$tumor_size<-NA}
+	  else{
 	  ##tumor_size
 	  tmp <- uncurated$size
 	  tmp[tmp < 0] <- NA
-	  curated$tumor_size <- tmp
+	  curated$tumor_size <- tmp}
 	
+	  if(ds.name %in% c("GSE32646","GSE25066","GSE48091","GSE58644")){
+	    curated$T<-uncurated$T}
+	  
 	  ##N
+	  if(ds.name %in% c("GSE48091")){
+	    curated$N <-NA}
+	    else{
 	  tmp <- uncurated$node
 	  tmp[tmp > 1] <- 1
-	  curated$N <- tmp
+	  curated$N <- tmp}
 	
 	  ##age_at_initial_pathologic_diagnosis
 	  curated$age_at_initial_pathologic_diagnosis <- uncurated$age
