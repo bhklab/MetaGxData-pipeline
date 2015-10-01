@@ -31,11 +31,12 @@ Experiment data
    platform_accession:     
       GPL570|GPL9216
    version:     
-      2015-05-14 19:40:01
+      2015-09-22 19:21:25
 
 featureData(eset):
 An object of class 'AnnotatedDataFrame'
-  featureNames: 1007_s_at 1053_at ... AFFX-HUMISGF3A/M97935_MB_at (42447 total)
+  featureNames: 1007_s_at 1053_at ... AFFX-HUMISGF3A/M97935_MB_at
+    (42447 total)
   varLabels: probeset gene EntrezGene.ID best_probe
   varMetadata: labelDescription
 
@@ -48,8 +49,8 @@ Overall survival time-to-event summary (in years):
 Call: survfit(formula = Surv(time, cens) ~ -1)
 
    10 observations deleted due to missingness 
-records   n.max n.start  events  median 0.95LCL 0.95UCL 
-  53.00   53.00   53.00   41.00    2.05    1.48    3.70 
+      n  events  median 0.95LCL 0.95UCL 
+  53.00   41.00    2.05    1.48    3.70 
 
 --------------------------- 
 Available sample meta-data: 
@@ -244,10 +245,14 @@ title: Ovarian Tumor, 1993///geo_accession: GSM461400///status: Public on Oct 17
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       1 
 
 duplicates: 
-                              GSE18520.GSE18520_GSM462649 GSE18520.GSE18520_GSM462649///GSE18520.GSE18520_GSM462650 
-                                                        1                                                         1 
-                              GSE18520.GSE18520_GSM462650                                                      NA's 
-                                                        1                                                        60 
+                              GSE18520.GSE18520_GSM462649 
+                                                        1 
+GSE18520.GSE18520_GSM462649///GSE18520.GSE18520_GSM462650 
+                                                        1 
+                              GSE18520.GSE18520_GSM462650 
+                                                        1 
+                                                     NA's 
+                                                       60 
 
 }}
 \keyword{datasets}

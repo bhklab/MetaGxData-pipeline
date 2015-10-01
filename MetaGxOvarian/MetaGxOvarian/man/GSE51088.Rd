@@ -33,7 +33,7 @@ Experiment data
    platform_technology:     
       in situ oligonucleotide
    version:     
-      2015-05-14 20:27:31
+      2015-09-22 20:05:48
 
 featureData(eset):
 An object of class 'AnnotatedDataFrame'
@@ -50,54 +50,114 @@ Overall survival time-to-event summary (in years):
 Call: survfit(formula = Surv(time, cens) ~ -1)
 
    20 observations deleted due to missingness 
-records   n.max n.start  events  median 0.95LCL 0.95UCL 
- 152.00  152.00  152.00  112.00    4.13    3.50    4.92 
+      n  events  median 0.95LCL 0.95UCL 
+ 152.00  112.00    4.13    3.50    4.92 
 
 --------------------------- 
 Available sample meta-data: 
 --------------------------- 
 
 alt_sample_name: 
-Ov_Tumor_Ref_Mix vs. CS-OV-001 Ov_Tumor_Ref_Mix vs. CS-OV-002 Ov_Tumor_Ref_Mix vs. CS-OV-003 Ov_Tumor_Ref_Mix vs. CS-OV-004 Ov_Tumor_Ref_Mix vs. CS-OV-005 
-                             1                              1                              1                              1                              1 
-Ov_Tumor_Ref_Mix vs. CS-OV-006 Ov_Tumor_Ref_Mix vs. CS-OV-007 Ov_Tumor_Ref_Mix vs. CS-OV-008 Ov_Tumor_Ref_Mix vs. CS-OV-009 Ov_Tumor_Ref_Mix vs. CS-OV-010 
-                             1                              1                              1                              1                              1 
-Ov_Tumor_Ref_Mix vs. CS-OV-011 Ov_Tumor_Ref_Mix vs. CS-OV-012 Ov_Tumor_Ref_Mix vs. CS-OV-013 Ov_Tumor_Ref_Mix vs. CS-OV-014 Ov_Tumor_Ref_Mix vs. CS-OV-015 
-                             1                              1                              1                              1                              1 
-Ov_Tumor_Ref_Mix vs. CS-OV-016 Ov_Tumor_Ref_Mix vs. CS-OV-017 Ov_Tumor_Ref_Mix vs. CS-OV-018 Ov_Tumor_Ref_Mix vs. CS-OV-019 Ov_Tumor_Ref_Mix vs. CS-OV-020 
-                             1                              1                              1                              1                              1 
-Ov_Tumor_Ref_Mix vs. CS-OV-021 Ov_Tumor_Ref_Mix vs. CS-OV-022 Ov_Tumor_Ref_Mix vs. CS-OV-023 Ov_Tumor_Ref_Mix vs. CS-OV-024 Ov_Tumor_Ref_Mix vs. CS-OV-025 
-                             1                              1                              1                              1                              1 
-Ov_Tumor_Ref_Mix vs. CS-OV-026 Ov_Tumor_Ref_Mix vs. CS-OV-027 Ov_Tumor_Ref_Mix vs. CS-OV-028 Ov_Tumor_Ref_Mix vs. CS-OV-029 Ov_Tumor_Ref_Mix vs. CS-OV-030 
-                             1                              1                              1                              1                              1 
-Ov_Tumor_Ref_Mix vs. CS-OV-031 Ov_Tumor_Ref_Mix vs. CS-OV-032 Ov_Tumor_Ref_Mix vs. CS-OV-033 Ov_Tumor_Ref_Mix vs. CS-OV-034 Ov_Tumor_Ref_Mix vs. CS-OV-035 
-                             1                              1                              1                              1                              1 
-Ov_Tumor_Ref_Mix vs. CS-OV-036 Ov_Tumor_Ref_Mix vs. CS-OV-037 Ov_Tumor_Ref_Mix vs. CS-OV-038 Ov_Tumor_Ref_Mix vs. CS-OV-039 Ov_Tumor_Ref_Mix vs. CS-OV-040 
-                             1                              1                              1                              1                              1 
-Ov_Tumor_Ref_Mix vs. CS-OV-041 Ov_Tumor_Ref_Mix vs. CS-OV-042 Ov_Tumor_Ref_Mix vs. CS-OV-043 Ov_Tumor_Ref_Mix vs. CS-OV-044 Ov_Tumor_Ref_Mix vs. CS-OV-045 
-                             1                              1                              1                              1                              1 
-Ov_Tumor_Ref_Mix vs. CS-OV-046 Ov_Tumor_Ref_Mix vs. CS-OV-047 Ov_Tumor_Ref_Mix vs. CS-OV-048 Ov_Tumor_Ref_Mix vs. CS-OV-049 Ov_Tumor_Ref_Mix vs. CS-OV-050 
-                             1                              1                              1                              1                              1 
-Ov_Tumor_Ref_Mix vs. CS-OV-051 Ov_Tumor_Ref_Mix vs. CS-OV-052 Ov_Tumor_Ref_Mix vs. CS-OV-053 Ov_Tumor_Ref_Mix vs. CS-OV-054 Ov_Tumor_Ref_Mix vs. CS-OV-055 
-                             1                              1                              1                              1                              1 
-Ov_Tumor_Ref_Mix vs. CS-OV-056 Ov_Tumor_Ref_Mix vs. CS-OV-057 Ov_Tumor_Ref_Mix vs. CS-OV-058 Ov_Tumor_Ref_Mix vs. CS-OV-059 Ov_Tumor_Ref_Mix vs. CS-OV-060 
-                             1                              1                              1                              1                              1 
-Ov_Tumor_Ref_Mix vs. CS-OV-061 Ov_Tumor_Ref_Mix vs. CS-OV-062 Ov_Tumor_Ref_Mix vs. CS-OV-063 Ov_Tumor_Ref_Mix vs. CS-OV-064 Ov_Tumor_Ref_Mix vs. CS-OV-065 
-                             1                              1                              1                              1                              1 
-Ov_Tumor_Ref_Mix vs. CS-OV-066 Ov_Tumor_Ref_Mix vs. CS-OV-067 Ov_Tumor_Ref_Mix vs. CS-OV-068 Ov_Tumor_Ref_Mix vs. CS-OV-069 Ov_Tumor_Ref_Mix vs. CS-OV-070 
-                             1                              1                              1                              1                              1 
-Ov_Tumor_Ref_Mix vs. CS-OV-071 Ov_Tumor_Ref_Mix vs. CS-OV-072 Ov_Tumor_Ref_Mix vs. CS-OV-073 Ov_Tumor_Ref_Mix vs. CS-OV-074 Ov_Tumor_Ref_Mix vs. CS-OV-075 
-                             1                              1                              1                              1                              1 
-Ov_Tumor_Ref_Mix vs. CS-OV-076 Ov_Tumor_Ref_Mix vs. CS-OV-077 Ov_Tumor_Ref_Mix vs. CS-OV-078 Ov_Tumor_Ref_Mix vs. CS-OV-079 Ov_Tumor_Ref_Mix vs. CS-OV-080 
-                             1                              1                              1                              1                              1 
-Ov_Tumor_Ref_Mix vs. CS-OV-081 Ov_Tumor_Ref_Mix vs. CS-OV-082 Ov_Tumor_Ref_Mix vs. CS-OV-083 Ov_Tumor_Ref_Mix vs. CS-OV-084 Ov_Tumor_Ref_Mix vs. CS-OV-085 
-                             1                              1                              1                              1                              1 
-Ov_Tumor_Ref_Mix vs. CS-OV-086 Ov_Tumor_Ref_Mix vs. CS-OV-087 Ov_Tumor_Ref_Mix vs. CS-OV-088 Ov_Tumor_Ref_Mix vs. CS-OV-089 Ov_Tumor_Ref_Mix vs. CS-OV-090 
-                             1                              1                              1                              1                              1 
-Ov_Tumor_Ref_Mix vs. CS-OV-091 Ov_Tumor_Ref_Mix vs. CS-OV-092 Ov_Tumor_Ref_Mix vs. CS-OV-093 Ov_Tumor_Ref_Mix vs. CS-OV-094 Ov_Tumor_Ref_Mix vs. CS-OV-095 
-                             1                              1                              1                              1                              1 
-Ov_Tumor_Ref_Mix vs. CS-OV-096 Ov_Tumor_Ref_Mix vs. CS-OV-097 Ov_Tumor_Ref_Mix vs. CS-OV-098 Ov_Tumor_Ref_Mix vs. CS-OV-099                        (Other) 
-                             1                              1                              1                              1                             73 
+Ov_Tumor_Ref_Mix vs. CS-OV-001 Ov_Tumor_Ref_Mix vs. CS-OV-002 
+                             1                              1 
+Ov_Tumor_Ref_Mix vs. CS-OV-003 Ov_Tumor_Ref_Mix vs. CS-OV-004 
+                             1                              1 
+Ov_Tumor_Ref_Mix vs. CS-OV-005 Ov_Tumor_Ref_Mix vs. CS-OV-006 
+                             1                              1 
+Ov_Tumor_Ref_Mix vs. CS-OV-007 Ov_Tumor_Ref_Mix vs. CS-OV-008 
+                             1                              1 
+Ov_Tumor_Ref_Mix vs. CS-OV-009 Ov_Tumor_Ref_Mix vs. CS-OV-010 
+                             1                              1 
+Ov_Tumor_Ref_Mix vs. CS-OV-011 Ov_Tumor_Ref_Mix vs. CS-OV-012 
+                             1                              1 
+Ov_Tumor_Ref_Mix vs. CS-OV-013 Ov_Tumor_Ref_Mix vs. CS-OV-014 
+                             1                              1 
+Ov_Tumor_Ref_Mix vs. CS-OV-015 Ov_Tumor_Ref_Mix vs. CS-OV-016 
+                             1                              1 
+Ov_Tumor_Ref_Mix vs. CS-OV-017 Ov_Tumor_Ref_Mix vs. CS-OV-018 
+                             1                              1 
+Ov_Tumor_Ref_Mix vs. CS-OV-019 Ov_Tumor_Ref_Mix vs. CS-OV-020 
+                             1                              1 
+Ov_Tumor_Ref_Mix vs. CS-OV-021 Ov_Tumor_Ref_Mix vs. CS-OV-022 
+                             1                              1 
+Ov_Tumor_Ref_Mix vs. CS-OV-023 Ov_Tumor_Ref_Mix vs. CS-OV-024 
+                             1                              1 
+Ov_Tumor_Ref_Mix vs. CS-OV-025 Ov_Tumor_Ref_Mix vs. CS-OV-026 
+                             1                              1 
+Ov_Tumor_Ref_Mix vs. CS-OV-027 Ov_Tumor_Ref_Mix vs. CS-OV-028 
+                             1                              1 
+Ov_Tumor_Ref_Mix vs. CS-OV-029 Ov_Tumor_Ref_Mix vs. CS-OV-030 
+                             1                              1 
+Ov_Tumor_Ref_Mix vs. CS-OV-031 Ov_Tumor_Ref_Mix vs. CS-OV-032 
+                             1                              1 
+Ov_Tumor_Ref_Mix vs. CS-OV-033 Ov_Tumor_Ref_Mix vs. CS-OV-034 
+                             1                              1 
+Ov_Tumor_Ref_Mix vs. CS-OV-035 Ov_Tumor_Ref_Mix vs. CS-OV-036 
+                             1                              1 
+Ov_Tumor_Ref_Mix vs. CS-OV-037 Ov_Tumor_Ref_Mix vs. CS-OV-038 
+                             1                              1 
+Ov_Tumor_Ref_Mix vs. CS-OV-039 Ov_Tumor_Ref_Mix vs. CS-OV-040 
+                             1                              1 
+Ov_Tumor_Ref_Mix vs. CS-OV-041 Ov_Tumor_Ref_Mix vs. CS-OV-042 
+                             1                              1 
+Ov_Tumor_Ref_Mix vs. CS-OV-043 Ov_Tumor_Ref_Mix vs. CS-OV-044 
+                             1                              1 
+Ov_Tumor_Ref_Mix vs. CS-OV-045 Ov_Tumor_Ref_Mix vs. CS-OV-046 
+                             1                              1 
+Ov_Tumor_Ref_Mix vs. CS-OV-047 Ov_Tumor_Ref_Mix vs. CS-OV-048 
+                             1                              1 
+Ov_Tumor_Ref_Mix vs. CS-OV-049 Ov_Tumor_Ref_Mix vs. CS-OV-050 
+                             1                              1 
+Ov_Tumor_Ref_Mix vs. CS-OV-051 Ov_Tumor_Ref_Mix vs. CS-OV-052 
+                             1                              1 
+Ov_Tumor_Ref_Mix vs. CS-OV-053 Ov_Tumor_Ref_Mix vs. CS-OV-054 
+                             1                              1 
+Ov_Tumor_Ref_Mix vs. CS-OV-055 Ov_Tumor_Ref_Mix vs. CS-OV-056 
+                             1                              1 
+Ov_Tumor_Ref_Mix vs. CS-OV-057 Ov_Tumor_Ref_Mix vs. CS-OV-058 
+                             1                              1 
+Ov_Tumor_Ref_Mix vs. CS-OV-059 Ov_Tumor_Ref_Mix vs. CS-OV-060 
+                             1                              1 
+Ov_Tumor_Ref_Mix vs. CS-OV-061 Ov_Tumor_Ref_Mix vs. CS-OV-062 
+                             1                              1 
+Ov_Tumor_Ref_Mix vs. CS-OV-063 Ov_Tumor_Ref_Mix vs. CS-OV-064 
+                             1                              1 
+Ov_Tumor_Ref_Mix vs. CS-OV-065 Ov_Tumor_Ref_Mix vs. CS-OV-066 
+                             1                              1 
+Ov_Tumor_Ref_Mix vs. CS-OV-067 Ov_Tumor_Ref_Mix vs. CS-OV-068 
+                             1                              1 
+Ov_Tumor_Ref_Mix vs. CS-OV-069 Ov_Tumor_Ref_Mix vs. CS-OV-070 
+                             1                              1 
+Ov_Tumor_Ref_Mix vs. CS-OV-071 Ov_Tumor_Ref_Mix vs. CS-OV-072 
+                             1                              1 
+Ov_Tumor_Ref_Mix vs. CS-OV-073 Ov_Tumor_Ref_Mix vs. CS-OV-074 
+                             1                              1 
+Ov_Tumor_Ref_Mix vs. CS-OV-075 Ov_Tumor_Ref_Mix vs. CS-OV-076 
+                             1                              1 
+Ov_Tumor_Ref_Mix vs. CS-OV-077 Ov_Tumor_Ref_Mix vs. CS-OV-078 
+                             1                              1 
+Ov_Tumor_Ref_Mix vs. CS-OV-079 Ov_Tumor_Ref_Mix vs. CS-OV-080 
+                             1                              1 
+Ov_Tumor_Ref_Mix vs. CS-OV-081 Ov_Tumor_Ref_Mix vs. CS-OV-082 
+                             1                              1 
+Ov_Tumor_Ref_Mix vs. CS-OV-083 Ov_Tumor_Ref_Mix vs. CS-OV-084 
+                             1                              1 
+Ov_Tumor_Ref_Mix vs. CS-OV-085 Ov_Tumor_Ref_Mix vs. CS-OV-086 
+                             1                              1 
+Ov_Tumor_Ref_Mix vs. CS-OV-087 Ov_Tumor_Ref_Mix vs. CS-OV-088 
+                             1                              1 
+Ov_Tumor_Ref_Mix vs. CS-OV-089 Ov_Tumor_Ref_Mix vs. CS-OV-090 
+                             1                              1 
+Ov_Tumor_Ref_Mix vs. CS-OV-091 Ov_Tumor_Ref_Mix vs. CS-OV-092 
+                             1                              1 
+Ov_Tumor_Ref_Mix vs. CS-OV-093 Ov_Tumor_Ref_Mix vs. CS-OV-094 
+                             1                              1 
+Ov_Tumor_Ref_Mix vs. CS-OV-095 Ov_Tumor_Ref_Mix vs. CS-OV-096 
+                             1                              1 
+Ov_Tumor_Ref_Mix vs. CS-OV-097 Ov_Tumor_Ref_Mix vs. CS-OV-098 
+                             1                              1 
+Ov_Tumor_Ref_Mix vs. CS-OV-099                        (Other) 
+                             1                             73 
 
 sample_type: 
     benign borderline    healthy metastatic      tumor 

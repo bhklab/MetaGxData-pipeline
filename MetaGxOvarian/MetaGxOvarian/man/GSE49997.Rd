@@ -33,7 +33,7 @@ Experiment data
    platform_technology:     
       in situ oligonucleotide
    version:     
-      2015-05-14 20:26:02
+      2015-09-22 20:04:13
 
 featureData(eset):
 An object of class 'AnnotatedDataFrame'
@@ -50,26 +50,40 @@ Overall survival time-to-event summary (in years):
 Call: survfit(formula = Surv(time, cens) ~ -1)
 
    10 observations deleted due to missingness 
-records   n.max n.start  events  median 0.95LCL 0.95UCL 
- 194.00  194.00  194.00   57.00      NA    3.67      NA 
+      n  events  median 0.95LCL 0.95UCL 
+ 194.00   57.00      NA    3.67      NA 
 
 --------------------------- 
 Available sample meta-data: 
 --------------------------- 
 
 alt_sample_name: 
-EOC P001 EOC P002 EOC P003 EOC P004 EOC P005 EOC P006 EOC P007 EOC P008 EOC P009 EOC P010 EOC P011 EOC P012 EOC P013 EOC P014 EOC P015 EOC P016 EOC P017 EOC P018 
-       1        1        1        1        1        1        1        1        1        1        1        1        1        1        1        1        1        1 
-EOC P019 EOC P020 EOC P021 EOC P022 EOC P023 EOC P024 EOC P025 EOC P026 EOC P027 EOC P028 EOC P029 EOC P030 EOC P031 EOC P032 EOC P033 EOC P034 EOC P035 EOC P036 
-       1        1        1        1        1        1        1        1        1        1        1        1        1        1        1        1        1        1 
-EOC P037 EOC P038 EOC P039 EOC P040 EOC P041 EOC P042 EOC P043 EOC P044 EOC P045 EOC P046 EOC P047 EOC P048 EOC P049 EOC P050 EOC P051 EOC P052 EOC P053 EOC P054 
-       1        1        1        1        1        1        1        1        1        1        1        1        1        1        1        1        1        1 
-EOC P055 EOC P056 EOC P057 EOC P058 EOC P059 EOC P060 EOC P061 EOC P062 EOC P063 EOC P064 EOC P065 EOC P066 EOC P067 EOC P068 EOC P069 EOC P070 EOC P071 EOC P072 
-       1        1        1        1        1        1        1        1        1        1        1        1        1        1        1        1        1        1 
-EOC P073 EOC P074 EOC P075 EOC P076 EOC P077 EOC P078 EOC P079 EOC P080 EOC P081 EOC P082 EOC P083 EOC P084 EOC P085 EOC P086 EOC P087 EOC P088 EOC P089 EOC P090 
-       1        1        1        1        1        1        1        1        1        1        1        1        1        1        1        1        1        1 
-EOC P091 EOC P092 EOC P093 EOC P094 EOC P095 EOC P096 EOC P097 EOC P098 EOC P099  (Other) 
-       1        1        1        1        1        1        1        1        1      105 
+EOC P001 EOC P002 EOC P003 EOC P004 EOC P005 EOC P006 EOC P007 EOC P008 
+       1        1        1        1        1        1        1        1 
+EOC P009 EOC P010 EOC P011 EOC P012 EOC P013 EOC P014 EOC P015 EOC P016 
+       1        1        1        1        1        1        1        1 
+EOC P017 EOC P018 EOC P019 EOC P020 EOC P021 EOC P022 EOC P023 EOC P024 
+       1        1        1        1        1        1        1        1 
+EOC P025 EOC P026 EOC P027 EOC P028 EOC P029 EOC P030 EOC P031 EOC P032 
+       1        1        1        1        1        1        1        1 
+EOC P033 EOC P034 EOC P035 EOC P036 EOC P037 EOC P038 EOC P039 EOC P040 
+       1        1        1        1        1        1        1        1 
+EOC P041 EOC P042 EOC P043 EOC P044 EOC P045 EOC P046 EOC P047 EOC P048 
+       1        1        1        1        1        1        1        1 
+EOC P049 EOC P050 EOC P051 EOC P052 EOC P053 EOC P054 EOC P055 EOC P056 
+       1        1        1        1        1        1        1        1 
+EOC P057 EOC P058 EOC P059 EOC P060 EOC P061 EOC P062 EOC P063 EOC P064 
+       1        1        1        1        1        1        1        1 
+EOC P065 EOC P066 EOC P067 EOC P068 EOC P069 EOC P070 EOC P071 EOC P072 
+       1        1        1        1        1        1        1        1 
+EOC P073 EOC P074 EOC P075 EOC P076 EOC P077 EOC P078 EOC P079 EOC P080 
+       1        1        1        1        1        1        1        1 
+EOC P081 EOC P082 EOC P083 EOC P084 EOC P085 EOC P086 EOC P087 EOC P088 
+       1        1        1        1        1        1        1        1 
+EOC P089 EOC P090 EOC P091 EOC P092 EOC P093 EOC P094 EOC P095 EOC P096 
+       1        1        1        1        1        1        1        1 
+EOC P097 EOC P098 EOC P099  (Other) 
+       1        1        1      105 
 
 sample_type: 
 tumor 

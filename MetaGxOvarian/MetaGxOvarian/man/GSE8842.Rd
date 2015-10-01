@@ -33,7 +33,7 @@ Experiment data
    platform_technology:     
       spotted DNA/cDNA
    version:     
-      2015-05-14 20:29:04
+      2015-09-22 20:07:40
 
 featureData(eset):
 An object of class 'AnnotatedDataFrame'
@@ -49,56 +49,108 @@ Platform type:
 Overall survival time-to-event summary (in years):
 Call: survfit(formula = Surv(time, cens) ~ -1)
 
-records   n.max n.start  events  median 0.95LCL 0.95UCL 
-     83      83      83      15      NA      12      NA 
+      n  events  median 0.95LCL 0.95UCL 
+     83      15      NA      12      NA 
 
 --------------------------- 
 Available sample meta-data: 
 --------------------------- 
 
 alt_sample_name: 
-p0102bis sample_Ovarian tumor p0103bis sample_Ovarian tumor p0112bis sample_Ovarian tumor p0114bis sample_Ovarian tumor p0125bis sample_Ovarian tumor 
-                            1                             1                             1                             1                             1 
-p0128bis sample_Ovarian tumor p0143bis sample_Ovarian tumor p0146bis sample_Ovarian tumor p0188bis sample_Ovarian tumor p0208bis sample_Ovarian tumor 
-                            1                             1                             1                             1                             1 
-p0210bis sample_Ovarian tumor p0217bis sample_Ovarian tumor  p057bis sample_Ovarian tumor  p070bis sample_Ovarian tumor  p080bis sample_Ovarian tumor 
-                            1                             1                             1                             1                             1 
- p091bis sample_Ovarian tumor  p139bis sample_Ovarian tumor   p13bis sample_Ovarian tumor  p141bis sample_Ovarian tumor  p166bis sample_Ovarian tumor 
-                            1                             1                             1                             1                             1 
- p171bis sample_Ovarian tumor   p17bis sample_Ovarian tumor  p183bis sample_Ovarian tumor  p209bis sample_Ovarian tumor  p212bis sample_Ovarian tumor 
-                            1                             1                             1                             1                             1 
- p213bis sample_Ovarian tumor  p243bis sample_Ovarian tumor  p246bis sample_Ovarian tumor  p261bis sample_Ovarian tumor  p284bis sample_Ovarian tumor 
-                            1                             1                             1                             1                             1 
- p293bis sample_Ovarian tumor  p310bis sample_Ovarian tumor   p31bis sample_Ovarian tumor  p320bis sample_Ovarian tumor  p331bis sample_Ovarian tumor 
-                            1                             1                             1                             1                             1 
- p336bis sample_Ovarian tumor  p350bis sample_Ovarian tumor  p375bis sample_Ovarian tumor  p382bis sample_Ovarian tumor  p383bis sample_Ovarian tumor 
-                            1                             1                             1                             1                             1 
- p386bis sample_Ovarian tumor  p388bis sample_Ovarian tumor  p398bis sample_Ovarian tumor   p39bis sample_Ovarian tumor  p401bis sample_Ovarian tumor 
-                            1                             1                             1                             1                             1 
- p414bis sample_Ovarian tumor  p421bis sample_Ovarian tumor  p429bis sample_Ovarian tumor  p433bis sample_Ovarian tumor  p448bis sample_Ovarian tumor 
-                            1                             1                             1                             1                             1 
- p455bis sample_Ovarian tumor  p459bis sample_Ovarian tumor  p462bis sample_Ovarian tumor  p482bis sample_Ovarian tumor  p487bis sample_Ovarian tumor 
-                            1                             1                             1                             1                             1 
- p497bis sample_Ovarian tumor  p502bis sample_Ovarian tumor  p540bis sample_Ovarian tumor  p541bis sample_Ovarian tumor  p549bis sample_Ovarian tumor 
-                            1                             1                             1                             1                             1 
- p550bis sample_Ovarian tumor  p567bis sample_Ovarian tumor   p56bis sample_Ovarian tumor  p573bis sample_Ovarian tumor  p586bis sample_Ovarian tumor 
-                            1                             1                             1                             1                             1 
- p597bis sample_Ovarian tumor  p616bis sample_Ovarian tumor   p63bis sample_Ovarian tumor  p646bis sample_Ovarian tumor   p66bis sample_Ovarian tumor 
-                            1                             1                             1                             1                             1 
-  p68bis sample_Ovarian tumor  p690bis sample_Ovarian tumor  p692bis sample_Ovarian tumor  p725bis sample_Ovarian tumor   p73bis sample_Ovarian tumor 
-                            1                             1                             1                             1                             1 
- p760bis sample_Ovarian tumor  p770bis sample_Ovarian tumor  p772bis sample_Ovarian tumor  p775bis sample_Ovarian tumor  p793bis sample_Ovarian tumor 
-                            1                             1                             1                             1                             1 
-  p79bis sample_Ovarian tumor   p84bis sample_Ovarian tumor   p90bis sample_Ovarian tumor 
-                            1                             1                             1 
+p0102bis sample_Ovarian tumor p0103bis sample_Ovarian tumor 
+                            1                             1 
+p0112bis sample_Ovarian tumor p0114bis sample_Ovarian tumor 
+                            1                             1 
+p0125bis sample_Ovarian tumor p0128bis sample_Ovarian tumor 
+                            1                             1 
+p0143bis sample_Ovarian tumor p0146bis sample_Ovarian tumor 
+                            1                             1 
+p0188bis sample_Ovarian tumor p0208bis sample_Ovarian tumor 
+                            1                             1 
+p0210bis sample_Ovarian tumor p0217bis sample_Ovarian tumor 
+                            1                             1 
+ p057bis sample_Ovarian tumor  p070bis sample_Ovarian tumor 
+                            1                             1 
+ p080bis sample_Ovarian tumor  p091bis sample_Ovarian tumor 
+                            1                             1 
+ p139bis sample_Ovarian tumor   p13bis sample_Ovarian tumor 
+                            1                             1 
+ p141bis sample_Ovarian tumor  p166bis sample_Ovarian tumor 
+                            1                             1 
+ p171bis sample_Ovarian tumor   p17bis sample_Ovarian tumor 
+                            1                             1 
+ p183bis sample_Ovarian tumor  p209bis sample_Ovarian tumor 
+                            1                             1 
+ p212bis sample_Ovarian tumor  p213bis sample_Ovarian tumor 
+                            1                             1 
+ p243bis sample_Ovarian tumor  p246bis sample_Ovarian tumor 
+                            1                             1 
+ p261bis sample_Ovarian tumor  p284bis sample_Ovarian tumor 
+                            1                             1 
+ p293bis sample_Ovarian tumor  p310bis sample_Ovarian tumor 
+                            1                             1 
+  p31bis sample_Ovarian tumor  p320bis sample_Ovarian tumor 
+                            1                             1 
+ p331bis sample_Ovarian tumor  p336bis sample_Ovarian tumor 
+                            1                             1 
+ p350bis sample_Ovarian tumor  p375bis sample_Ovarian tumor 
+                            1                             1 
+ p382bis sample_Ovarian tumor  p383bis sample_Ovarian tumor 
+                            1                             1 
+ p386bis sample_Ovarian tumor  p388bis sample_Ovarian tumor 
+                            1                             1 
+ p398bis sample_Ovarian tumor   p39bis sample_Ovarian tumor 
+                            1                             1 
+ p401bis sample_Ovarian tumor  p414bis sample_Ovarian tumor 
+                            1                             1 
+ p421bis sample_Ovarian tumor  p429bis sample_Ovarian tumor 
+                            1                             1 
+ p433bis sample_Ovarian tumor  p448bis sample_Ovarian tumor 
+                            1                             1 
+ p455bis sample_Ovarian tumor  p459bis sample_Ovarian tumor 
+                            1                             1 
+ p462bis sample_Ovarian tumor  p482bis sample_Ovarian tumor 
+                            1                             1 
+ p487bis sample_Ovarian tumor  p497bis sample_Ovarian tumor 
+                            1                             1 
+ p502bis sample_Ovarian tumor  p540bis sample_Ovarian tumor 
+                            1                             1 
+ p541bis sample_Ovarian tumor  p549bis sample_Ovarian tumor 
+                            1                             1 
+ p550bis sample_Ovarian tumor  p567bis sample_Ovarian tumor 
+                            1                             1 
+  p56bis sample_Ovarian tumor  p573bis sample_Ovarian tumor 
+                            1                             1 
+ p586bis sample_Ovarian tumor  p597bis sample_Ovarian tumor 
+                            1                             1 
+ p616bis sample_Ovarian tumor   p63bis sample_Ovarian tumor 
+                            1                             1 
+ p646bis sample_Ovarian tumor   p66bis sample_Ovarian tumor 
+                            1                             1 
+  p68bis sample_Ovarian tumor  p690bis sample_Ovarian tumor 
+                            1                             1 
+ p692bis sample_Ovarian tumor  p725bis sample_Ovarian tumor 
+                            1                             1 
+  p73bis sample_Ovarian tumor  p760bis sample_Ovarian tumor 
+                            1                             1 
+ p770bis sample_Ovarian tumor  p772bis sample_Ovarian tumor 
+                            1                             1 
+ p775bis sample_Ovarian tumor  p793bis sample_Ovarian tumor 
+                            1                             1 
+  p79bis sample_Ovarian tumor   p84bis sample_Ovarian tumor 
+                            1                             1 
+  p90bis sample_Ovarian tumor 
+                            1 
 
 sample_type: 
 borderline      tumor 
         15         68 
 
 histological_type: 
-       clearcell             endo         mucinous            other              ser undifferentiated 
-              16               17               17                1               31                1 
+       clearcell             endo         mucinous            other 
+              16               17               17                1 
+             ser undifferentiated 
+              31                1 
 
 primarysite: 
 ov 

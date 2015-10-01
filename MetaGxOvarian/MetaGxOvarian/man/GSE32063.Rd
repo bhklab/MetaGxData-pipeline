@@ -19,7 +19,8 @@ Experiment data
   Information is available on: preprocessing 
   notes:
    platform_title:     
-      Agilent-014850 Whole Human Genome Microarray 4x44K G4112F (Probe Name version)
+      Agilent-014850 Whole Human Genome Microarray 4x44K G4112F (Probe Name vers
+ion)
    platform_shorttitle:     
       Agilent G4112F
    platform_summary:     
@@ -31,7 +32,7 @@ Experiment data
    platform_accession:     
       GPL6480
    version:     
-      2015-05-14 20:19:00
+      2015-09-22 19:58:23
 
 featureData(eset):
 An object of class 'AnnotatedDataFrame'
@@ -47,18 +48,20 @@ Platform type:
 Overall survival time-to-event summary (in years):
 Call: survfit(formula = Surv(time, cens) ~ -1)
 
-records   n.max n.start  events  median 0.95LCL 0.95UCL 
-  40.00   40.00   40.00   22.00    4.44    3.29      NA 
+      n  events  median 0.95LCL 0.95UCL 
+  40.00   22.00    4.44    3.29      NA 
 
 --------------------------- 
 Available sample meta-data: 
 --------------------------- 
 
 alt_sample_name: 
- 106  108 109R  110 111R  192 195R  196  197  198  200  203  205  206  207  213  222  224  226  229  230  231  274  277  278  280  281  282  283  284  285  286  287 
-   1    1    1    1    1    1    1    1    1    1    1    1    1    1    1    1    1    1    1    1    1    1    1    1    1    1    1    1    1    1    1    1    1 
- 288  289  291  292  294 297R 298R 
-   1    1    1    1    1    1    1 
+ 106  108 109R  110 111R  192 195R  196  197  198  200  203  205  206  207  213 
+   1    1    1    1    1    1    1    1    1    1    1    1    1    1    1    1 
+ 222  224  226  229  230  231  274  277  278  280  281  282  283  284  285  286 
+   1    1    1    1    1    1    1    1    1    1    1    1    1    1    1    1 
+ 287  288  289  291  292  294 297R 298R 
+   1    1    1    1    1    1    1    1 
 
 sample_type: 
 tumor 

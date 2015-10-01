@@ -31,30 +31,36 @@ Experiment data
    platform_accession:     
       GPL5886
    version:     
-      2015-05-14 19:28:15
+      2015-09-22 19:07:14
 
 featureData(eset):
 An object of class 'AnnotatedDataFrame'
-  featureNames: 28 29 ... 29999 (11276 total)
+  featureNames: 28 29 ... 29999 (11304 total)
   varLabels: probeset gene EntrezGene.ID best_probe
   varMetadata: labelDescription
 
 }}
 \details{
 \preformatted{
-assayData: 11276 features, 54 samples
+assayData: 11304 features, 54 samples
 Platform type: 
 --------------------------- 
 Available sample meta-data: 
 --------------------------- 
 
 alt_sample_name: 
-1035LA0  1047LB 1059LB0  1177DB 1178LB0  1180DB 1186DB0   123DC 1242LC0  1274LC   134LC  1426LB  1487DB  1528DC  1538DC  1567DB  1568DC 1574LC0   164DC  1658DC  1760LB 
-      1       1       1       1       1       1       1       1       1       1       1       1       1       1       1       1       1       1       1       1       1 
- 1805DB   193DC   198DC   202DC   211DC    26DC   272DC   405LB   436DC   452DC   454LC   45LA0   462DB   46LB0    47DC  480DC0   489DC   505DB   541DC   559DC   563LA 
-      1       1       1       1       1       1       1       1       1       1       1       1       1       1       1       1       1       1       1       1       1 
-  626DC   662DC   719DC  742LC0   755LC   759DC    76DC   789DC    83LC  918DB0  988LC0   99LC0 
-      1       1       1       1       1       1       1       1       1       1       1       1 
+1035LA0  1047LB 1059LB0  1177DB 1178LB0  1180DB 1186DB0   123DC 1242LC0  1274LC 
+      1       1       1       1       1       1       1       1       1       1 
+  134LC  1426LB  1487DB  1528DC  1538DC  1567DB  1568DC 1574LC0   164DC  1658DC 
+      1       1       1       1       1       1       1       1       1       1 
+ 1760LB  1805DB   193DC   198DC   202DC   211DC    26DC   272DC   405LB   436DC 
+      1       1       1       1       1       1       1       1       1       1 
+  452DC   454LC   45LA0   462DB   46LB0    47DC  480DC0   489DC   505DB   541DC 
+      1       1       1       1       1       1       1       1       1       1 
+  559DC   563LA   626DC   662DC   719DC  742LC0   755LC   759DC    76DC   789DC 
+      1       1       1       1       1       1       1       1       1       1 
+   83LC  918DB0  988LC0   99LC0 
+      1       1       1       1 
 
 sample_type: 
 tumor 

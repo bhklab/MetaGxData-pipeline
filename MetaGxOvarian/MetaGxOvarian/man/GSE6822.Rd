@@ -31,7 +31,7 @@ Experiment data
    platform_accession:     
       GPL80
    version:     
-      2015-05-14 20:28:50
+      2015-09-22 20:07:22
 
 featureData(eset):
 An object of class 'AnnotatedDataFrame'
@@ -49,22 +49,38 @@ Available sample meta-data:
 --------------------------- 
 
 alt_sample_name: 
-Ovarian tumor AM053 Ovarian tumor AM122 Ovarian tumor AM124 Ovarian tumor AM125 Ovarian tumor AM127 Ovarian tumor AM137 Ovarian tumor AM138 Ovarian tumor AM144 
-                  1                   1                   1                   1                   1                   1                   1                   1 
-Ovarian tumor AM178 Ovarian tumor AM179 Ovarian tumor AM182 Ovarian tumor AM195 Ovarian tumor AM196 Ovarian tumor AM198 Ovarian tumor AM200 Ovarian tumor AM201 
-                  1                   1                   1                   1                   1                   1                   1                   1 
-Ovarian tumor AM202 Ovarian tumor AM203 Ovarian tumor AM204 Ovarian tumor AM207 Ovarian tumor AM208 Ovarian tumor AM209 Ovarian tumor AM225 Ovarian tumor AM226 
-                  1                   1                   1                   1                   1                   1                   1                   1 
-Ovarian tumor AM228 Ovarian tumor AM233 Ovarian tumor AM250 Ovarian tumor AM252 Ovarian tumor AM253 Ovarian tumor AM255 Ovarian tumor AM256 Ovarian tumor AM259 
-                  1                   1                   1                   1                   1                   1                   1                   1 
-Ovarian tumor AM261 Ovarian tumor AM263 Ovarian tumor AM268 Ovarian tumor AM269 Ovarian tumor AM287 Ovarian tumor AM288 Ovarian tumor AM289 Ovarian tumor AM290 
-                  1                   1                   1                   1                   1                   1                   1                   1 
-Ovarian tumor AM292 Ovarian tumor AM293 Ovarian tumor AM294 Ovarian tumor AM311 Ovarian tumor AM313 Ovarian tumor AM315 Ovarian tumor AM317 Ovarian tumor AM333 
-                  1                   1                   1                   1                   1                   1                   1                   1 
-Ovarian tumor AM335 Ovarian tumor AM339 Ovarian tumor AM341 Ovarian tumor AM344 Ovarian tumor AM345 Ovarian tumor AM347 Ovarian tumor AM348 Ovarian tumor AM349 
-                  1                   1                   1                   1                   1                   1                   1                   1 
-Ovarian tumor AM354 Ovarian tumor AM364 Ovarian tumor AM367 Ovarian tumor AM368 Ovarian tumor AM381 Ovarian tumor AM382 Ovarian tumor AM398 Ovarian tumor AM429 
-                  1                   1                   1                   1                   1                   1                   1                   1 
+Ovarian tumor AM053 Ovarian tumor AM122 Ovarian tumor AM124 Ovarian tumor AM125 
+                  1                   1                   1                   1 
+Ovarian tumor AM127 Ovarian tumor AM137 Ovarian tumor AM138 Ovarian tumor AM144 
+                  1                   1                   1                   1 
+Ovarian tumor AM178 Ovarian tumor AM179 Ovarian tumor AM182 Ovarian tumor AM195 
+                  1                   1                   1                   1 
+Ovarian tumor AM196 Ovarian tumor AM198 Ovarian tumor AM200 Ovarian tumor AM201 
+                  1                   1                   1                   1 
+Ovarian tumor AM202 Ovarian tumor AM203 Ovarian tumor AM204 Ovarian tumor AM207 
+                  1                   1                   1                   1 
+Ovarian tumor AM208 Ovarian tumor AM209 Ovarian tumor AM225 Ovarian tumor AM226 
+                  1                   1                   1                   1 
+Ovarian tumor AM228 Ovarian tumor AM233 Ovarian tumor AM250 Ovarian tumor AM252 
+                  1                   1                   1                   1 
+Ovarian tumor AM253 Ovarian tumor AM255 Ovarian tumor AM256 Ovarian tumor AM259 
+                  1                   1                   1                   1 
+Ovarian tumor AM261 Ovarian tumor AM263 Ovarian tumor AM268 Ovarian tumor AM269 
+                  1                   1                   1                   1 
+Ovarian tumor AM287 Ovarian tumor AM288 Ovarian tumor AM289 Ovarian tumor AM290 
+                  1                   1                   1                   1 
+Ovarian tumor AM292 Ovarian tumor AM293 Ovarian tumor AM294 Ovarian tumor AM311 
+                  1                   1                   1                   1 
+Ovarian tumor AM313 Ovarian tumor AM315 Ovarian tumor AM317 Ovarian tumor AM333 
+                  1                   1                   1                   1 
+Ovarian tumor AM335 Ovarian tumor AM339 Ovarian tumor AM341 Ovarian tumor AM344 
+                  1                   1                   1                   1 
+Ovarian tumor AM345 Ovarian tumor AM347 Ovarian tumor AM348 Ovarian tumor AM349 
+                  1                   1                   1                   1 
+Ovarian tumor AM354 Ovarian tumor AM364 Ovarian tumor AM367 Ovarian tumor AM368 
+                  1                   1                   1                   1 
+Ovarian tumor AM381 Ovarian tumor AM382 Ovarian tumor AM398 Ovarian tumor AM429 
+                  1                   1                   1                   1 
 Ovarian tumor AM431 Ovarian tumor AM438 
                   1                   1 
 
@@ -73,8 +89,10 @@ tumor
    66 
 
 histological_type: 
-       clearcell             endo              mix         mucinous              ser undifferentiated 
-              11                7                3                1               41                3 
+       clearcell             endo              mix         mucinous 
+              11                7                3                1 
+             ser undifferentiated 
+              41                3 
 
 primarysite: 
 ov 
@@ -89,10 +107,12 @@ grade:
    1   14   40   11 
 
 batch: 
-2000-12-21 2001-05-03 2001-05-29 2001-06-12 2001-09-25 2001-09-26 2001-09-27 2002-02-14 2002-04-17 2002-04-18 2002-07-18 2002-07-24 2002-10-20 2002-10-30 2002-11-01 
-         1          1          3          3          1          5          8          4          1          9          7          4         10          5          2 
-2002-11-13 
-         2 
+2000-12-21 2001-05-03 2001-05-29 2001-06-12 2001-09-25 2001-09-26 2001-09-27 
+         1          1          3          3          1          5          8 
+2002-02-14 2002-04-17 2002-04-18 2002-07-18 2002-07-24 2002-10-20 2002-10-30 
+         4          1          9          7          4         10          5 
+2002-11-01 2002-11-13 
+         2          2 
 
 uncurated_author_metadata: 
                                        title: Ovarian tumor AM053///geo_accession: GSM157229///status: Public on Dec 31 2007///submission_date: Jan 22 2007///last_update_date: Feb 25 2008///type: RNA///channel_count: 1///source_name_ch1: epithelian ovarian tumor///organism_ch1: Homo sapiens///characteristics_ch1: Tissue: epithelial ovarian tumor, Tumor type: serous, Tumor stage: invasive grade 3///molecule_ch1: total RNA///extract_protocol_ch1: Trizol extraction of total RNA was performed according to the manufacturer's instructions.///label_ch1: Biotin///label_protocol_ch1: Biotinylated cRNA were prepared according to the standard Affymetrix protocol from 15 microg total RNA.///taxid_ch1: 9606///hyb_protocol: 15ug of total RNA was reverse-transcribed with oligo-dT primer containing a T7 RNA polymerase-binding site. An in vitro transcription was performed on this cDNA. DNA from the samples was fragmented in 40 mM Tris acetate, 100 mM potassium acetate, and 30 mM MgCl2 (pH 8.1) at 95C to reduce secondary structures. 15 ug of cRNA were hybridized to an Affymetrix HuGeneFL microarray, washed and stained.///scan_protocol: Scanned with a Hewlett Packard Gene Array Scanner///description: invasive///data_processing: Raw values assigned by MAS 4///platform_id: GPL80///contact_name: Jaroslav,Petr,Novak///contact_email: jaroslav.novak@mail.mcgill.ca, jaroslav.novak@gmail.com///contact_phone: 450-465-1383///contact_fax: 450-465-3033///contact_department: Microarray Platform///contact_institute: McGill University and Genome Quebec Innovation Centre///contact_address: 740, Dr Penfield Avenue///contact_city: Montreal///contact_state: Quebec///contact_zip.postal_code: H3A 1A4///contact_country: Canada///supplementary_file: ftp://ftp.ncbi.nih.gov/pub/geo/DATA/supplementary/samples/GSM157nnn/GSM157229/GSM157229.CEL.gz///data_row_count: 7129 
