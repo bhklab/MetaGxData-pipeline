@@ -5,9 +5,14 @@
 
 #######################################
 VERSION CONTROL
+
 V2.1 - Current Draft 
+
 V2.2 - Modification to gene-wise and patient-wise normalization
+
 V2.3 - Same as 2.2 but 4 new datasets added
+
+
 
 #######################################
 To build : 
@@ -26,6 +31,8 @@ library(MetaGx_____)
 source(system.file("extdata", "patientselection.config", package="MetaGx_____"))
 
 source(system.file("extdata", "createEsetList.R", package="MetaGx______"))
+
+
 
 
 ########################################
