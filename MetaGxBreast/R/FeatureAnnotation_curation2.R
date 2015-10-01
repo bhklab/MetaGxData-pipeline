@@ -52,6 +52,24 @@ feature <- Table(gpl)
 feature <- data.frame(probeset = feature$ID, gene = feature[,"Gene Symbol"], EntrezGene.ID = feature[,"ENTREZ_GENE_ID"], row.names= feature$ID)
 save(feature, file="./annotations/GPL1352.rda")
 
+##--------
+## GPL6244
+##--------
+gpl <- getGEO("GPL6244", destdir="./platforms")
+gpltable<-data.frame(Table(gpl))
+gpltable$genedescription<-unlist(lapply(as.character(gpltable$gene_assignment), function(y) strsplit(y, "//")[[1]][3]))
+gpltable$entrez<-as.numeric(unlist(lapply(as.character(gpltable$gene_assignment), function(y) strsplit(y, "//")[[1]][5])))
+gpltable$gene_assignment<-unlist(lapply(as.character(gpltable$gene_assignment), function(y) strsplit(y, "//")[[1]][2]))
+feature <- data.frame(probeset = gpltable$ID, gene = gpltable$gene_assignment, EntrezGene.ID = gpltable$entrez, row.names= gpltable$ID)
+save(feature, file="./annotations/GPL6244.rda")
+
+##--------
+## GPL10379
+##--------
+gpl <- getGEO("GPL10379", destdir ="./platforms")
+feature <- Table(gpl)
+feature <-  data.frame(probeset = feature$ID, gene = feature$GeneSymbol, EntrezGene.ID = feature$EntrezGeneID, row.names = feature$ID)
+save(feature, file="./annotations/GPL10379.rda")
 
 ##--------
 ## GPL1390

@@ -2,6 +2,7 @@
 ## Natchar Ratanasirigulchai
 ## April 14, 2015
 ###################################
+setwd("/mnt/work1/users/bhklab/Data/MetaGxData/MetaGxBreast") #Ensure working directory is correct!!
 
 mapping.method <- "maxRowVariance"
 #mapping.method <- "maxMean"
@@ -14,7 +15,7 @@ mapping.group <- "EntrezGene.ID"
 library(Biobase)
 library(GEOquery)  
 library(WGCNA) 
-datasets <- read.csv("datasets.csv", stringsAsFactors=FALSE)
+datasets <- read.csv("datasets.csv", stringsAsFactors = FALSE)
 dataset.names <- datasets$Dataset
 eset <- NULL
 eData <- read.csv("./etc/Breast Cancer Database Literature Review.csv", stringsAsFactors=FALSE)
@@ -29,6 +30,7 @@ if(Sys.getenv("SGE_TASK_ID") == "") {
 } else {
 	vals.to.run <- as.integer(Sys.getenv("SGE_TASK_ID"))
 }
+
 for(i in vals.to.run) {
   message(i)
   dataset.name <- dataset.names[i]
@@ -113,22 +115,22 @@ for(i in vals.to.run) {
 }
 
 # If run in parallel, this code section needs to be run separately after the above finishes
-if(Sys.getenv("SGE_TASK_ID") == "") {
-  ## identify duplicates and annotate pData
-  source("./R/benDuplicateFinder.R")
-  message("Duplicates Identified. Annotating pData.")
-  for(i in 1:length(remove)){
-    replicates <- remove[[i]]
-    for(n in 1:length(replicates)){
-  #     dataset.name <- as.character(gsub("\\..+", "", replicates)[n])
-      dataset.name <- as.character(unlist(strsplit(x=replicates[n], split="\\."))[1])
-      eset <- get(dataset.name)
-      pData(eset)[paste(as.character(unlist(strsplit(x=replicates[n], split="\\."))[-1]), collapse="."), "duplicates"] <- paste(replicates[-n], collapse="///")
-      assign(as.character(dataset.name), eset)
-    }
-  }
-  for(e in 1:length(dataset.names)){
-    save(list=as.character(dataset.names[e]), file =paste("esets/mapped_esets2/",dataset.names[e], "_eset.rda", sep=""))
-  }
-}
+#       if(Sys.getenv("SGE_TASK_ID") == "") {
+#         ## identify duplicates and annotate pData
+#         source("./R/benDuplicateFinder.R")
+#         message("Duplicates Identified. Annotating pData.")
+#         for(i in 1:length(remove)){
+#           replicates <- remove[[i]]
+#           for(n in 1:length(replicates)){
+#         #     dataset.name <- as.character(gsub("\\..+", "", replicates)[n])
+#             dataset.name <- as.character(unlist(strsplit(x=replicates[n], split="\\."))[1])
+#             eset <- get(dataset.name)
+#             pData(eset)[paste(as.character(unlist(strsplit(x=replicates[n], split="\\."))[-1]), collapse="."), "duplicates"] <- paste(replicates[-n], collapse="///")
+#             assign(as.character(dataset.name), eset)
+#           }
+#         }
+#         for(e in 1:length(dataset.names)){
+#           save(list=as.character(dataset.names[e]), file =paste("esets/mapped_esets2/",dataset.names[e], "_eset.rda", sep=""))
+#         }
+#       }
 
