@@ -57,7 +57,6 @@ GSEs <- unlist(lapply(readdata.files2, function(x) strsplit(x, sep)[[1]][1]))
   demo$N<-unlist(lapply(as.character(demo$N), function(y) strsplit(y, sep)[[1]][2]))
   demo$grade<-unlist(lapply(as.character(demo$grade), function(y) strsplit(y, sep)[[1]][2]))
   demo$grade<-unlist(lapply(as.character(demo$grade), function(y) strsplit(y, "=")[[1]][1]))
-  demo$t.dmfs<-as.numeric(unlist(lapply(as.character(demo$t.dmfs), function(x) strsplit(x, sep)[[1]][2])))
   demo$e.dmfs<-as.numeric(unlist(lapply(as.character(demo$e.dmfs), function(x) strsplit(x, sep)[[1]][2])))
   demo$esr1_status<-unlist(lapply(as.character(demo$esr1_status), function(y) strsplit(y, sep)[[1]][2]))
   demo$erbb2_status<-unlist(lapply(as.character(demo$erbb2_status), function(y) strsplit(y, sep)[[1]][2]))
@@ -67,6 +66,10 @@ GSEs <- unlist(lapply(readdata.files2, function(x) strsplit(x, sep)[[1]][1]))
   demo$dlda30_prediction<-unlist(lapply(as.character(demo$dlda30_prediction), function(y) strsplit(y, sep)[[1]][2]))
   demo$RCB_prediction<-unlist(lapply(as.character(demo$RCB_prediction), function(y) strsplit(y, sep)[[1]][2]))
   
+  demo$t.dmfs<-as.numeric(unlist(lapply(as.character(demo$t.dmfs), function(x) strsplit(x, sep)[[1]][2])))
+  days.per.year <- 365.242 
+  sep=": "
+  demo$t.dmfs<-demo$t.dmfs*days.per.year
   
   # Assume drfs (distant relapse free survival) equates with dmfs (distant metastasis free survival)
   demo$er[demo$er == "P"]<-1
@@ -170,7 +173,7 @@ GSEs <- unlist(lapply(readdata.files2, function(x) strsplit(x, sep)[[1]][1]))
   demo$T<-unlist(lapply(as.character(demo$T), function(y) strsplit(y, sep)[[1]][2]))
   demo$N<-unlist(lapply(as.character(demo$N), function(y) strsplit(y, sep)[[1]][2]))
   demo$grade<-unlist(lapply(as.character(demo$grade), function(y) strsplit(y, sep)[[1]][2]))
-  demo$vital_status<-unlist(lapply(as.character(demo$vital_status), function(y) strsplit(y, sep)[[1]][2]))
+  demo$e.dmfs<-unlist(lapply(as.character(demo$vital_status), function(y) strsplit(y, sep)[[1]][2]))
   demo$tumor_size<-unlist(lapply(as.character(demo$tumor_size), function(y) strsplit(y, sep)[[1]][2]))
   
   demo$chemo<-unlist(lapply(as.character(demo$chemo), function(y) strsplit(y, sep)[[1]][2]))
@@ -188,7 +191,7 @@ GSEs <- unlist(lapply(readdata.files2, function(x) strsplit(x, sep)[[1]][1]))
   #Assume TIME variable represents days_to_death
   days.per.year <- 365.242 
   sep=": "
-  demo$days_to_death<-demo$days_to_death*days.per.year
+  demo$t.dmfs<-demo$t.dmfs*days.per.year
   
   #HOW TO DEAL WITH ANNOT?!
   

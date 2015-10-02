@@ -111,9 +111,9 @@ for(ds.name in ds.names){
 	  ##For SUPERTAM_HGU133A.csv and TRANSBIG, ignore the id column
 	  if(ds.name %in% c("DFHCC2", "MDA4")){
 	      curated$unique_patient_ID <- uncurated$id
-	  }else if(!ds.name %in% c("SUPERTAM_HGU133A", "TRANSBIG")) {
-	      curated$alt_sample_name <- uncurated$id
-	  }  #don't use uncurated$id at all for SUPERTAM_HGU133A and TRANSBIG.
+	  }else if (!ds.name %in% c("SUPERTAM_HGU133A", "TRANSBIG")){
+	      if(ds.name %in% c("GSE25066","GSE58644")) curated$alt_sample_name <- uncurated$alt_sample_name
+	      else curated$alt_sample_name <- uncurated$id } ##don't use uncurated$id at all for SUPERTAM_HGU133A and TRANSBIG.
 	
 	  ##er
 	  curated$er[uncurated$er==0] <- "negative"
@@ -135,6 +135,7 @@ for(ds.name in ds.names){
 	  
 	  if(ds.name %in% c("GSE32646","GSE25066","GSE48091","GSE58644")){
 	    curated$tumor_size<-NA}
+	  else if (ds.name %in% c("GSE58644")){curated$tumor_size<-uncurated$tumor_size}
 	  else{
 	  ##tumor_size
 	  tmp <- uncurated$size
@@ -193,6 +194,19 @@ for(ds.name in ds.names){
 	  
 	  ##series
 	  curated$batch <- uncurated$series
+	  
+	  #Other vars
+	  if(ds.name %in% c("GSE58644")){
+	    curated$chemo<-uncurated$chemo
+	    curated$tamoxifen<-uncurated$tamoxifen
+	    curated$herceptin<-uncurated$herceptin}
+	  
+	  if(ds.name %in% c("GSE2066")){
+	    curated$chemosensitivity_prediction<-uncurated$chemosensitivity_prediction
+	    curated$GGI_prediction<-uncurated$GGI_prediction
+	    curated$PAM50_prediction<-uncurated$PAM50_prediction
+	    curated$dlda30_prediction<-uncurated$dlda30_prediction
+	    curated$RCB_prediction<-uncurated$RCB_prediction}
 	
 	  # For consistency of the definition of dmfs and rfs across datasets: for TRANSBIG, if the days_to_death and recurrence/distant metastasis are the same, then set recurrence/distant metastasis to "no event" (i.e. death is not an event)
 	  if(ds.name == "TRANSBIG") {
