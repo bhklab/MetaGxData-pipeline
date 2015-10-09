@@ -1,4 +1,4 @@
-# UPDATED OCTOBER 1, 2015
+# UPDATED OCTOBER 9, 2015
 # Gendoo et al
 
 # MetaGxData Package Compendium
@@ -39,7 +39,7 @@ Currently manipulates data from A Three-Gene Model to Robustly Identify Breast C
 
 Includes TCGA and METABRIC
 
-Total number of expression sets: 37
+Total number of expression sets: 39
 
 MetaGxOvarian
 
@@ -47,4 +47,4 @@ Currently manipulates data from FULLVcuratedOvarianData (http://bcb.dfci.harvard
 
 Includes TCGA
 
-Total number of expression sets: 22
+Total number of expression sets: 25
