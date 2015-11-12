@@ -201,7 +201,7 @@ for(ds.name in ds.names){
 	    curated$tamoxifen<-uncurated$tamoxifen
 	    curated$herceptin<-uncurated$herceptin}
 	  
-	  if(ds.name %in% c("GSE2066")){
+	  if(ds.name %in% c("GSE25066")){
 	    curated$chemosensitivity_prediction<-uncurated$chemosensitivity_prediction
 	    curated$GGI_prediction<-uncurated$GGI_prediction
 	    curated$PAM50_prediction<-uncurated$PAM50_prediction
