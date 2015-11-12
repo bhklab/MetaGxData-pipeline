@@ -84,8 +84,8 @@ uncurated_author_metadata:
        88 character character 
 
 duplicates: 
-KOO.KOO_KF_0110  KOO.KOO_KF_155 KOO.KOO_T92_058 KOO.KOO_T95_028            NA's 
-              1               1               1               1              84 
+   Length     Class      Mode 
+       88 character character 
 
 }}
 \source{ Unavailable }

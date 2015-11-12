@@ -42,8 +42,8 @@ Overall survival time-to-event summary (in years):
 Call: survfit(formula = Surv(time, cens) ~ -1)
 
    42 observations deleted due to missingness 
-records   n.max n.start  events  median 0.95LCL 0.95UCL 
-    295     295     295      79      NA      NA      NA 
+      n  events  median 0.95LCL 0.95UCL 
+    295      79      NA      NA      NA 
 
 --------------------------- 
 Available sample meta-data: 

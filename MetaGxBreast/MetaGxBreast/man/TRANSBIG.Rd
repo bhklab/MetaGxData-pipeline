@@ -41,8 +41,8 @@ Platform type:
 Overall survival time-to-event summary (in years):
 Call: survfit(formula = Surv(time, cens) ~ -1)
 
-records   n.max n.start  events  median 0.95LCL 0.95UCL 
-  198.0   198.0   198.0    56.0      NA    17.1      NA 
+      n  events  median 0.95LCL 0.95UCL 
+  198.0    56.0      NA    17.1      NA 
 
 --------------------------- 
 Available sample meta-data: 
