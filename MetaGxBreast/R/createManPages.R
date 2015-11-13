@@ -10,12 +10,12 @@ eset.files <- dir(eset.dir,pattern="^.*\\.rda$")
 
 for (iFile in 1:length(eset.files)){
   load(paste(eset.dir,eset.files[iFile],sep="/"))  #load the eset
-  eset <- get(sub("_eset.rda","",eset.files[iFile],fixed=TRUE))  #call it eset
-  accessionID <- sub("_eset.rda","",eset.files[iFile])
+  eset <- get(sub("_eset.rda","",eset.files[iFile],fixed=TRUE))  #call it eset **
+  accessionID <- sub("_eset.rda","",eset.files[iFile]) #**
   eset.name <- sub(".rda","",eset.files[iFile])
   print(accessionID)
   ##  eset$batch <- factor(eset$batch)    #Make sure this is a factor ##ovarian specific
-  do.call(rm, list(sub("_eset.rda","", eset.files[iFile], fixed=TRUE)))  #remove the original
+  do.call(rm, list(sub("_eset.rda","", eset.files[iFile], fixed=TRUE)))  #remove the original **
   ##pdata.nonblank will contain pdata columns with any non-missing values:
   pdata.nonblank <- pData(eset)
   pdata.nonblank <- pdata.nonblank[,apply(pdata.nonblank,2,function(x) sum(!is.na(x)) > 0)]
@@ -31,6 +31,11 @@ for (iFile in 1:length(eset.files)){
   cat("\n")
   if (abstract(eset) != ""){
     cat(paste("\\description{", cleanText(experimentData(eset)@abstract), "}"))
+    cat("\n")
+  }
+  else
+  {
+    cat(paste("\\description{ ExpressionSet for the ",eset.name, " Dataset}"))
     cat("\n")
   }
   cat(paste("\\usage{data(", cleanText(eset.name), ")}"))
