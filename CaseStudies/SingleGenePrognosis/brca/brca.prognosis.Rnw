@@ -2,7 +2,7 @@
 
 <<setup, include=FALSE, cache=FALSE>>=
 # Set options
-knitr::opts_chunk$set(include=TRUE, results="hide", fig.width=8, fig.height=8, fig.path='figures/', fig.align='center', fig.show='hold',warning=FALSE, echo=FALSE, message=FALSE, cache=FALSE)
+knitr::opts_chunk$set(include=TRUE, results="hide", fig.width=8, fig.height=8, fig.path='figures/', fig.align='center', fig.show='hold',warning=FALSE, echo=FALSE, message=FALSE, cache=TRUE)
 options(replace.assign=TRUE,width=90)
 days.per.month <- 30.4368
 days.per.year <- 365.242
@@ -16,6 +16,7 @@ library(genefu)
 library(reshape2)
 library(hgu133plus2.db)
 library(metafor)
+library(devtools)
 
 strata.term <- TRUE
 meta.analysis <- TRUE
@@ -126,6 +127,7 @@ xtable(data.counts)
 @
 
 <<single_gene, cache=FALSE, include=FALSE>>=
+set.seed(500)
 knitr.text <- lapply(1:length(entrez.ids), function(current.index) knit_expand(file='brca.single.gene.template.Rnw'))
 
 fixed.effects.pval <- c()
@@ -188,5 +190,13 @@ abline(h=0.5, lwd=1)
 \pagebreak
 
 \Sexpr{knitr.out}
+
+\pagebreak
+
+\section{R SessionInfo}
+
+<<r_session_info, include=TRUE, echo=TRUE, results='markup'>>=
+devtools::session_info()
+@
 
 \end{document}
