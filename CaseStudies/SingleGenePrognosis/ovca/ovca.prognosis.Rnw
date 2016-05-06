@@ -175,7 +175,7 @@ knitr.out <- knit(text=unlist(knitr.text))
     
     p <- ggplot(stat.matrix.m, aes_string("Dataset", "Gene")) + 
       geom_tile(aes(fill = HR), colour = "white") + 
-      scale_fill_gradient2(low="#ef8a62", mid="#f7f7f7", high="#67a9cf", trans="log", breaks=c(0.5,1,2), limits=exp(c(-1.31,1.31))) + 
+      scale_fill_gradient2(low="#67a9cf", mid="#f7f7f7", high="#ef8a62", trans="log", breaks=c(0.5,1,2), limits=exp(c(-1.31,1.31))) + 
       theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(), panel.background = element_blank(), axis.text.x = element_text(angle = 90, hjust = 1))
     
       #geom_text(label=as.character(contingency.matrix), colour="white")
