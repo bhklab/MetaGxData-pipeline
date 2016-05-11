@@ -2,7 +2,7 @@
 
 <<setup, include=FALSE, cache=FALSE>>=
 # Set options
-knitr::opts_chunk$set(include=TRUE, results="hide", fig.width=8, fig.height=8, fig.path='figures/', fig.align='center', fig.show='hold',warning=FALSE, echo=FALSE, message=FALSE, cache=TRUE)
+knitr::opts_chunk$set(include=TRUE, results="hide", fig.width=8, fig.height=8, fig.path='figures/', fig.align='center', fig.show='hold',warning=FALSE, echo=FALSE, message=FALSE, cache=FALSE)
 options(replace.assign=TRUE,width=90)
 days.per.month <- 30.4368
 days.per.year <- 365.242
@@ -17,10 +17,6 @@ library(reshape2)
 library(hgu133plus2.db)
 library(metafor)
 library(devtools)
-
-strata.term <- TRUE
-meta.analysis <- TRUE
-basal.only <- TRUE
 @
 
 
@@ -57,7 +53,7 @@ basal.only <- TRUE
 
 
 
-<<load_data, cache=FALSE>>=
+<<load_data, cache=TRUE>>=
 source(system.file("extdata", "patientselection.config", package="MetaGxBreast"))
 source(system.file("extdata", "createEsetList.R", package="MetaGxBreast"))
 
@@ -130,10 +126,10 @@ xtable(data.counts)
 set.seed(500)
 knitr.text <- lapply(1:length(entrez.ids), function(current.index) knit_expand(file='brca.single.gene.template.Rnw'))
 
-fixed.effects.pval <- c()
-fixed.effects.estimate <- c()
-fixed.effects.lower <- c()
-fixed.effects.upper <- c()
+random.effects.pval <- c()
+random.effects.estimate <- c()
+random.effects.lower <- c()
+random.effects.upper <- c()
 rma.objs <- list()
 
 hr.matrix <- matrix(nrow=length(gene.names), ncol=length(esets.rfs))
@@ -165,7 +161,7 @@ knitr.out <- knit(text=unlist(knitr.text))
 
 \section{Summary of Results}
 <<summary_table, results='asis'>>=
-summary.table <- data.frame(gene=gene.names, pval=sprintf("%.5f", fixed.effects.pval), hr.text=sprintf("%.2f [%.2f, %.2f]", fixed.effects.estimate, fixed.effects.lower, fixed.effects.upper))
+summary.table <- data.frame(gene=gene.names, pval=sprintf("%.5f", random.effects.pval), hr.text=sprintf("%.2f [%.2f, %.2f]", random.effects.estimate, random.effects.lower, random.effects.upper))
 colnames(summary.table) <- c("Gene Name", "P-value", "Hazard Ratio")
 print(xtable(summary.table),include.rownames=FALSE)
 
@@ -178,13 +174,19 @@ print(xtable(summary.table),include.rownames=FALSE)
 @
 
 
-<<summary_forestplot, fig.width=5, fig.height=8>>=
+<<summary_forestplot, fig.width=8, fig.height=10>>=
 estimates <- sapply(rma.objs, coef)
 variances <- sapply(rma.objs, vcov)
 
-forest(estimates, variances, atransf=exp, psize=1, efac=0, slab=names(rma.objs), xlab="Hazard Ratio",xlim=c(-2,2), at=log(c(0.25,0.5,1,2,4)))
+#forest(estimates, variances, atransf=exp, psize=1, efac=0, slab=names(rma.objs), xlab="Hazard Ratio",xlim=c(-2,2), at=log(c(0.25,0.5,1,2,4)))
+forest(estimates, variances, atransf=exp, psize=1, efac=0, slab=names(rma.objs), xlab="Hazard Ratio",xlim=c(-2,3.5), at=log(c(0.25,0.5,1,2,4)), ilab = sprintf("%.2e", random.effects.pval), ilab.xpos = 1.5)
+op <- par(cex=1, font=2)
+text(-2, length(gene.names) + 1.5, "Gene", pos=4)
+text(1.5, length(gene.names) + 1.5, "p-value")
+text(3.5, length(gene.names) + 1.5, "Hazard Ratio [95% CI]", pos=2)
 addpoly(estimates, variances, rows=length(rma.objs):1, atransf=exp, annotate=FALSE)
 abline(h=0.5, lwd=1)
+par(op)
 @
 
 \pagebreak
