@@ -106,6 +106,15 @@ esets.os <- lapply(esets, function(eset) eset[,!is.na(eset$vital_status) & !is.n
 ## Remove datasets that are empty
 esets.rfs <- esets.rfs[sapply(esets.rfs, function(x) ncol(exprs(x)) > 0)]
 esets.os <- esets.os[sapply(esets.os, function(x) ncol(exprs(x)) > 0)]
+
+esets.with.all.genes <- esets[
+    sapply(esets, function(eset) {
+      return(all(entrez.ids %in% as.character(fData(eset)$EntrezGene.ID)))
+      })
+  ]
+
+MetaGx::datasetMerging(
+
 rm(esets)
 @
 
