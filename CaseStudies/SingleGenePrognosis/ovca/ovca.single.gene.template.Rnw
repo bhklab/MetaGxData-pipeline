@@ -107,11 +107,11 @@ km.coxph.plot(as.formula(paste0("surv.obj ~ geneid.", entrez.ids[{{current.index
 o.text <- paste(sprintf("HR: %.3f [%.3f,%.3f]\n", exp(rma.random$b), exp(rma.random$ci.lb), exp(rma.random$ci.ub)), sprintf("p = %.1E", rma.random$pval))
 text(0,0.05, o.text, cex=0.85, pos=4)
 
-fixed.effects.pval[{{current.index}}] <- rma.random$pval
+random.effects.pval[{{current.index}}] <- rma.random$pval
 # create.forest.plot returns log2(HR)
-fixed.effects.estimate[{{current.index}}] <- exp(as.vector(rma.random$b))
-fixed.effects.lower[{{current.index}}] <- exp(rma.random$ci.lb)
-fixed.effects.upper[{{current.index}}] <- exp(rma.random$ci.ub)
+random.effects.estimate[{{current.index}}] <- exp(as.vector(rma.random$b))
+random.effects.lower[{{current.index}}] <- exp(rma.random$ci.lb)
+random.effects.upper[{{current.index}}] <- exp(rma.random$ci.ub)
 @
 
 
