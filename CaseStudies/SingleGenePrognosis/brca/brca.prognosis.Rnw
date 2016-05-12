@@ -77,6 +77,7 @@ names(esets) <- eset.names
 gene.table <- read.table("brca.genes.tsv", sep="\t", header=TRUE, stringsAsFactors = FALSE)
 gene.names <- gene.table$Gene.name
 entrez.ids <- gene.table$Entrez.ID
+names(entrez.ids) <- gene.names
 
 # For each dataset: if it contains some patients with the genes, remove patients with NA values for these genes
 #esets <- lapply(esets, function(eset) {
@@ -99,7 +100,37 @@ esets.rfs <- lapply(esets, function(eset) eset[,!is.na(eset$recurrence_status) &
 ## Remove datasets that are empty
 esets.os <- esets.os[sapply(esets.os, function(x) ncol(exprs(x)) > 0)]
 esets.rfs <- esets.rfs[sapply(esets.rfs, function(x) ncol(exprs(x)) > 0)]
-rm(esets)
+
+esets.with.all.genes <- esets[
+    sapply(esets, function(eset) {
+      return(all(entrez.ids %in% as.character(fData(eset)$EntrezGene.ID)))
+      })
+  ]
+
+# Get pairwise coexpression matrix
+
+pairwise.coexpression.matrices <- lapply(esets, function(eset) {
+  gene.indices <- sapply(entrez.ids, function(entrez.id) {
+    index <- which(fData(eset)$EntrezGene.ID == entrez.id)
+      if(length(index) > 1) {
+        stop("Found a different number than one matching Entrez ID")
+      } else if(length(index) == 0) {
+        return(NA)
+        }
+      return(index)
+    })
+  names(gene.indices) <- gene.names
+  pairwise.correlation.matrix <- sapply(gene.indices, function(index1) {
+    return(sapply(gene.indices, function(index2) 
+      cor(exprs(eset)[index1,], exprs(eset)[index2,], method = 'pearson')
+      ))
+    })
+  })
+
+
+
+esets.merged <- MetaGx::datasetMerging(esets.with.all.genes)
+
 @
 
 \tableofcontents
