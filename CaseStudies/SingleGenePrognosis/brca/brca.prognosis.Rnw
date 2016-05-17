@@ -62,10 +62,10 @@ esets <- lapply(esets, function(x) {
   pData(x)[factor.indices] <- lapply(pData(x)[factor.indices], as.character)
   return(x)
   })
-#esets <- lapply(esets, function(x) {
-#  x <- subtypeClassification(x, model = "scmod2")
-#  return(x)
-#  })
+esets <- lapply(esets, function(x) {
+  x <- subtypeClassification(x, model = "scmod2")
+  return(x)
+  })
 eset.names <- names(esets)
 esets <- lapply(names(esets), function(x) {
   eset.toreturn <- esets[[x]]
@@ -108,6 +108,14 @@ esets.with.all.genes <- esets[
   ]
 
 # Get pairwise coexpression matrix
+get.meta.correlation <- function(pcc, n) {
+  fisher.z <- 0.5 * log( (1 + pcc) / (1 - pcc) )
+  fisher.z.var <- 1 / (n - 3)
+  fisher.z.sd <- sqrt(fisher.z.var)
+  fisher.z.meta <- survcomp::combine.est(fisher.z, fisher.z.sd, hetero=TRUE, na.rm=TRUE)$estimate
+  pcc.meta <- (exp(2*fisher.z.meta) - 1) / (exp(2*fisher.z.meta) + 1)
+  return(pcc.meta)
+}
 
 pairwise.coexpression.matrices <- lapply(esets, function(eset) {
   gene.indices <- sapply(entrez.ids, function(entrez.id) {
@@ -128,8 +136,26 @@ pairwise.coexpression.matrices <- lapply(esets, function(eset) {
   })
 
 
+meta.coexpression.matrix <- sapply(1:length(gene.names), function(x) sapply(1:length(gene.names), function(y) {
+  coexp.vals <- sapply(pairwise.coexpression.matrices, function(coexp.matrix) coexp.matrix[x,y])
+  meta.coexp <- get.meta.correlation(coexp.vals, sapply(esets, ncol))
+  }))
 
-esets.merged <- MetaGx::datasetMerging(esets.with.all.genes)
+rownames(meta.coexpression.matrix) <- gene.names
+colnames(meta.coexpression.matrix) <- gene.names
+
+hclust.ord <- hclust(dist(meta.coexpression.matrix))$ord
+
+meta.coexpression.matrix <- meta.coexpression.matrix[hclust.ord, rev(hclust.ord)]
+
+meta.coexpression.matrix.m <- melt(meta.coexpression.matrix)
+
+ggplot(meta.coexpression.matrix.m, aes(Var1, Var2)) + 
+    geom_tile(aes(fill = value), colour = "black") + 
+    scale_fill_gradient2(name="Correlation", low="#2166ac", mid="white", high="#b2182b", limits=c(-1,1)) +
+    theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(), panel.background = element_blank(), axis.text.y = element_text(angle = 90), axis.title.x = element_blank(), axis.title.y = element_blank()) 
+
+#esets.merged <- MetaGx::datasetMerging(esets.with.all.genes)
 
 @
 
