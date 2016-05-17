@@ -8,6 +8,7 @@ days.per.month <- 30.4368
 days.per.year <- 365.242
 par.original <- par()
 library(knitr)
+library(MetaGx)
 library(gdata)
 library(annotate)
 library(ggplot2)
@@ -107,6 +108,50 @@ esets.with.all.genes <- esets[
       })
   ]
 
+
+#esets.merged <- MetaGx::datasetMerging(esets.with.all.genes)
+
+@
+
+\tableofcontents
+\pagebreak
+\section{Datasets}
+
+\subsection{All Datasets}
+
+<<get_num_genes_datasets>>=
+num.patients <- sum(sapply(esets, function(x) ncol(exprs(x))))
+num.datasets <- length(esets)
+
+num.patients.survival <- sum(sapply(esets.rfs, function(x) ncol(exprs(x))))
+num.datasets.survival <- length(esets.rfs)
+@
+
+For gene coexpression and GSEA, we used \Sexpr{num.patients} patients from \Sexpr{num.datasets} datasets:
+<<Dataset_table, results='asis'>>=
+data.counts <- as.data.frame(sapply(esets, function(x) ncol(exprs(x))))
+colnames(data.counts) <- "Number of samples"
+data.counts <- rbind(data.counts, sum(data.counts[,1]))
+rownames(data.counts)[nrow(data.counts)] <- "Sum"
+xtable(data.counts)
+@
+
+\pagebreak
+
+\subsection{Datasets for Survival Analysis}
+
+For survival analysis, we selected patients from studies which tracked recurence-free survival. When recurrence-free survival was unavailable, we used distant metastatis-free survival.  We identified \Sexpr{num.patients} patients from \Sexpr{num.datasets} datasets.
+<<Dataset_table_survival, results='asis'>>=
+data.counts <- as.data.frame(sapply(esets.rfs, function(x) ncol(exprs(x))))
+colnames(data.counts) <- "Number of samples"
+data.counts <- rbind(data.counts, sum(data.counts[,1]))
+rownames(data.counts)[nrow(data.counts)] <- "Sum"
+xtable(data.counts)
+@
+
+\section{Pairwise Coexpression}
+
+<<Pairwise_coexpression, fig.width=6, fig.height=6, out.width="0.6\\textwidth">>=
 # Get pairwise coexpression matrix
 get.meta.correlation <- function(pcc, n) {
   fisher.z <- 0.5 * log( (1 + pcc) / (1 - pcc) )
@@ -153,32 +198,8 @@ meta.coexpression.matrix.m <- melt(meta.coexpression.matrix)
 ggplot(meta.coexpression.matrix.m, aes(Var1, Var2)) + 
     geom_tile(aes(fill = value), colour = "black") + 
     scale_fill_gradient2(name="Correlation", low="#2166ac", mid="white", high="#b2182b", limits=c(-1,1)) +
-    theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(), panel.background = element_blank(), axis.text.y = element_text(angle = 90), axis.title.x = element_blank(), axis.title.y = element_blank()) 
-
-#esets.merged <- MetaGx::datasetMerging(esets.with.all.genes)
-
+    theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(), panel.background = element_blank(), axis.text.y = element_text(angle = 90), axis.title.x = element_blank(), axis.title.y = element_blank(), legend.position='none') + geom_text(label=as.numeric(sprintf("%.2f", meta.coexpression.matrix)), colour="black")
 @
-
-\tableofcontents
-\pagebreak
-\section{Datasets}
-
-<<get_num_genes_datasets>>=
-num.patients <- sum(sapply(esets.rfs, function(x) ncol(exprs(x))))
-num.datasets <- length(esets.rfs)
-
-@
-
-
-From MetaGxBreast, we selected patients from studies which tracked recurence-free survival. When recurrence-free survival was unavailable, we used distant metastatis-free survival.  We identified \Sexpr{num.patients} patients from \Sexpr{num.datasets} datasets.
-<<Dataset_table, results='asis'>>=
-data.counts <- as.data.frame(sapply(esets.rfs, function(x) ncol(exprs(x))))
-colnames(data.counts) <- "Number of samples"
-data.counts <- rbind(data.counts, sum(data.counts[,1]))
-rownames(data.counts)[nrow(data.counts)] <- "Sum"
-xtable(data.counts)
-@
-
 <<single_gene, cache=FALSE, include=FALSE>>=
 set.seed(500)
 knitr.text <- lapply(1:length(entrez.ids), function(current.index) knit_expand(file='brca.single.gene.template.Rnw'))
@@ -196,7 +217,41 @@ colnames(hr.matrix) <- names(esets.rfs)
 knitr.out <- knit(text=unlist(knitr.text))
 @
 
-<<hr_heatmap>>=
+\section{Gene Set Enrichment Analysis}
+
+<<GSEA_computation>>=
+entrez.id <- 79679
+lapply(esets, function(eset) {
+  if(!(entrez.id %in%fData(eset)$EntrezGene.ID)) {
+    return(NA)
+  }
+  entrez.id.index <- which(fData(eset)$EntrezGene.ID == entrez.id)
+  cor.vals <- apply(exprs(eset), 1, function(gene.exp.vals) cor(gene.exp.vals, exprs(eset)[entrez.id.index,], method='pearson'))
+  
+  names(cor.vals) <- sub("geneid.", "", names(cor.vals))
+  
+  c5.bp.geneset <- loadGSC("c5.bp.v5.1.entrez.gmt")
+  
+  out <- runGSA(cor.vals, geneSetStat = "gsea", gsc=c5.bp.geneset)
+  
+  
+  })
+
+@
+
+\section{Survival Analysis}
+
+\subsection{Summary of Results}
+
+<<summary_table, results='asis'>>=
+summary.table <- data.frame(gene=gene.names, pval=sprintf("%.5f", random.effects.pval), hr.text=sprintf("%.2f [%.2f, %.2f]", random.effects.estimate, random.effects.lower, random.effects.upper))
+colnames(summary.table) <- c("Gene Name", "P-value", "Hazard Ratio")
+print(xtable(summary.table),include.rownames=FALSE)
+
+
+@
+
+<<summary_heatmap, fig.width=13, fig.height=5>>= 
 .getHeatmap <- function(stat.matrix) {
     stat.matrix.m <- melt(stat.matrix)
     #if(cluster==TRUE) {
@@ -214,22 +269,9 @@ knitr.out <- knit(text=unlist(knitr.text))
       #geom_text(label=as.character(contingency.matrix), colour="white")
     return(p)
 }
-@
-
-\section{Summary of Results}
-<<summary_table, results='asis'>>=
-summary.table <- data.frame(gene=gene.names, pval=sprintf("%.5f", random.effects.pval), hr.text=sprintf("%.2f [%.2f, %.2f]", random.effects.estimate, random.effects.lower, random.effects.upper))
-colnames(summary.table) <- c("Gene Name", "P-value", "Hazard Ratio")
-print(xtable(summary.table),include.rownames=FALSE)
-
-
-@
-
-<<summary_heatmap, fig.width=13, fig.height=5>>= 
 
 .getHeatmap(exp(hr.matrix))
 @
-
 
 <<summary_forestplot, fig.width=8, fig.height=10>>=
 estimates <- sapply(rma.objs, coef)
