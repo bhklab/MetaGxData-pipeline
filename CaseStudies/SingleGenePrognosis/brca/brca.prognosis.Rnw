@@ -162,6 +162,11 @@ get.meta.correlation <- function(pcc, n) {
   return(pcc.meta)
 }
 
+get.meta.correlation.hunter.schmidt <- function(pcc, n) {
+  pcc.meta <- sum(n * pcc) / sum(n)
+  return(pcc.meta)
+}
+
 pairwise.coexpression.matrices <- lapply(esets, function(eset) {
   gene.indices <- sapply(entrez.ids, function(entrez.id) {
     index <- which(fData(eset)$EntrezGene.ID == entrez.id)
@@ -220,54 +225,44 @@ knitr.out <- knit(text=unlist(knitr.text))
 \section{Gene Set Enrichment Analysis}
 
 <<GSEA_computation>>=
-entrez.id <- 79679
-
-# For each dataset: if it contains some patients with the genes, remove patients with NA values for these genes
-esets.with.gene <- lapply(esets, function(eset) {
-  eset <- eset[complete.cases(exprs(eset)),]
-  return(eset)
+gsa.matrix <- sapply(entrez.ids, function(entrez.id) {
+  # For each dataset: if it contains some patients with the genes, remove patients with NA values for these genes
+  esets.with.gene <- lapply(esets, function(eset) {
+    eset <- eset[complete.cases(exprs(eset)),]
+    return(eset)
+  })
+  # Remove any dataset with fewer than 10000 features
+  esets.with.gene <- esets.with.gene[sapply(esets.with.gene, function(eset) nrow(eset) > 10000)]
+  
+  # only keep esets with the gene
+  esets.with.gene <- esets.with.gene[sapply(esets.with.gene, function(eset) entrez.id %in% fData(eset)$EntrezGene.ID )]
+  
+  intersecting.entrez.ids <- Reduce(intersect, sapply(esets.with.gene, function(eset) as.character(fData(eset)$EntrezGene.ID)))
+  intersecting.entrez.ids <- as.numeric(intersecting.entrez.ids)
+  
+  correlation.matrix <- sapply(esets.with.gene, function(eset) {
+      gene.of.interest.index <- which(fData(eset)$EntrezGene.ID == entrez.id)
+      entrez.id.exprs.vals <- exprs(eset)[gene.of.interest.index,]
+      eset <- eset[fData(eset)$EntrezGene.ID %in% intersecting.entrez.ids,]
+      cor.values <- apply(exprs(eset), 1, function(gene.exp.vals) cor(gene.exp.vals, entrez.id.exprs.vals, method='pearson'))
+      cor.values <- cor.values[match(as.numeric(as.character(fData(eset)$EntrezGene.ID)), intersecting.entrez.ids)]
+      return(cor.values)
+    })
+  
+  meta.correlation.vals <- apply(correlation.matrix, 1, function(gene.correlation.vals) get.meta.correlation.hunter.schmidt(pcc = gene.correlation.vals, n=sapply(esets.with.gene, ncol)))
+  
+  names(meta.correlation.vals) <- sub("geneid.", "", names(meta.correlation.vals))
+  
+  c5.bp.geneset <- piano::loadGSC("c5.bp.v5.1.entrez.gmt")
+  
+  gsa.out <- runGSA(meta.correlation.vals, gsc=c5.bp.geneset, ncpus = 4)
+  
+  gsa.up.vals <- gsa.out$pAdjDistinctDirUp
+  
+  rownames(gsa.up.vals) <- names(gsa.out$gsc)
+  
+  return(gsa.up.vals)
 })
-
-# only keep esets with the gene
-esets.with.gene <- esets.with.gene[sapply(esets.with.gene, function(eset) entrez.id %in% fData(eset)$EntrezGene.ID )]
-
-intersecting.entrez.ids <- Reduce(intersect, sapply(esets.with.gene, function(eset) as.character(fData(eset)$EntrezGene.ID)))
-intersecting.entrez.ids <- as.numeric(intersecting.entrez.ids)
-
-correlation.matrix <- sapply(esets.with.gene, function(eset) {
-    gene.of.interest.index <- which(fData(eset)$EntrezGene.ID == entrez.id)
-    entrez.id.exprs.vals <- exprs(eset)[gene.of.interest.index,]
-    eset <- eset[fData(eset)$EntrezGene.ID %in% intersecting.entrez.ids,]
-    cor.values <- apply(exprs(eset), 1, function(gene.exp.vals) cor(gene.exp.vals, entrez.id.exprs.vals, method='pearson'))
-    cor.values <- cor.values[match(as.numeric(as.character(fData(eset)$EntrezGene.ID)), intersecting.entrez.ids)]
-    return(cor.values)
-  })
-
-meta.correlation.vals <- apply(correlation.matrix, 1, function(gene.correlation.vals) get.meta.correlation(pcc = gene.correlation.vals, n=sapply(esets.with.gene, ncol)))
-
-lapply(esets, function(eset) {
-  if(!(entrez.id %in%fData(eset)$EntrezGene.ID)) {
-    return(NA)
-  }
-  entrez.id.index <- which(fData(eset)$EntrezGene.ID == entrez.id)
-  
-  entrez.id.exprs.vals <- exprs(eset)[entrez.id.index,]
-  
-  # Subset to the top 1000 genes by variance
-  variance.vals <- apply(exprs(eset), 1, var)
-  genes.to.keep <- variance.vals >= sort(variance.vals, decreasing = TRUE)[1000]
-  eset <- eset[genes.to.keep,]
-  
-  cor.vals <- apply(exprs(eset), 1, function(gene.exp.vals) cor(gene.exp.vals, entrez.id.exprs.vals, method='pearson'))
-  
-  names(cor.vals) <- sub("geneid.", "", names(cor.vals))
-  
-  c5.bp.geneset <- loadGSC("c5.bp.v5.1.entrez.gmt")
-  
-  out <- runGSA(cor.vals, geneSetStat = "gsea", gsc=c5.bp.geneset, ncpus = 4)
-  
-  
-  })
 
 @
 
