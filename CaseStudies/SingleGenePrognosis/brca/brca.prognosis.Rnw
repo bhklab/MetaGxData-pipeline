@@ -245,7 +245,7 @@ gsa.matrix <- sapply(entrez.ids, function(entrez.id) {
       entrez.id.exprs.vals <- exprs(eset)[gene.of.interest.index,]
       eset <- eset[fData(eset)$EntrezGene.ID %in% intersecting.entrez.ids,]
       cor.values <- apply(exprs(eset), 1, function(gene.exp.vals) cor(gene.exp.vals, entrez.id.exprs.vals, method='pearson'))
-      cor.values <- cor.values[match(as.numeric(as.character(fData(eset)$EntrezGene.ID)), intersecting.entrez.ids)]
+      cor.values <- cor.values[match(intersecting.entrez.ids, as.numeric(as.character(fData(eset)$EntrezGene.ID)))]
       return(cor.values)
     })
   
