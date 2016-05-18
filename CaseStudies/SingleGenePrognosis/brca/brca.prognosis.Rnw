@@ -18,6 +18,8 @@ library(reshape2)
 library(hgu133plus2.db)
 library(metafor)
 library(devtools)
+library(piano)
+library(snow)
 @
 
 
