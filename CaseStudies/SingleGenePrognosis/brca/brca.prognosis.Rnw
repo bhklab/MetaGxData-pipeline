@@ -63,6 +63,8 @@ esets <- lapply(esets, function(x) {
   pData(x)[factor.indices] <- lapply(pData(x)[factor.indices], as.character)
   return(x)
   })
+# For TCGA, remove any genes that are all zero
+exprs(esets$TCGA) <- exprs(esets$TCGA)[apply(exprs(esets$TCGA), 1, function(row) !all(row==0)),]
 esets <- lapply(esets, function(x) {
   x <- subtypeClassification(x, model = "scmod2")
   return(x)
