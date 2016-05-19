@@ -66,7 +66,7 @@ esets <- lapply(esets, function(x) {
   return(x)
   })
 # For TCGA, remove any genes that are all zero
-exprs(esets$TCGA) <- exprs(esets$TCGA)[apply(exprs(esets$TCGA), 1, function(row) !all(row==0)),]
+esets$TCGA <- esets$TCGA[apply(exprs(esets$TCGA), 1, function(row) !all(row==0)),]
 esets <- lapply(esets, function(x) {
   x <- subtypeClassification(x, model = "scmod2")
   return(x)
@@ -157,7 +157,7 @@ xtable(data.counts)
 
 <<Pairwise_coexpression, fig.width=6, fig.height=6, out.width="0.6\\textwidth">>=
 # Get pairwise coexpression matrix
-get.meta.correlation <- function(pcc, n) {
+get.meta.correlation.hedges <- function(pcc, n) {
   fisher.z <- 0.5 * log( (1 + pcc) / (1 - pcc) )
   fisher.z.var <- 1 / (n - 3)
   fisher.z.sd <- sqrt(fisher.z.var)
@@ -166,7 +166,11 @@ get.meta.correlation <- function(pcc, n) {
   return(pcc.meta)
 }
 
-get.meta.correlation.hunter.schmidt <- function(pcc, n) {
+get.meta.correlation.hunter.schmidt <- function(pcc, n, na.rm=FALSE) {
+  if(na.rm) {
+    n <- n[!is.na(pcc)]
+    pcc <- pcc[!is.na(pcc)]
+    }
   pcc.meta <- sum(n * pcc) / sum(n)
   return(pcc.meta)
 }
@@ -192,7 +196,7 @@ pairwise.coexpression.matrices <- lapply(esets, function(eset) {
 
 meta.coexpression.matrix <- sapply(1:length(gene.names), function(x) sapply(1:length(gene.names), function(y) {
   coexp.vals <- sapply(pairwise.coexpression.matrices, function(coexp.matrix) coexp.matrix[x,y])
-  meta.coexp <- get.meta.correlation(coexp.vals, sapply(esets, ncol))
+  meta.coexp <- get.meta.correlation.hunter.schmidt(coexp.vals, sapply(esets, ncol), na.rm=TRUE)
   }))
 
 rownames(meta.coexpression.matrix) <- gene.names
@@ -243,8 +247,9 @@ gsa.matrix <- sapply(entrez.ids, function(entrez.id) {
   
   intersecting.entrez.ids <- Reduce(intersect, sapply(esets.with.gene, function(eset) as.character(fData(eset)$EntrezGene.ID)))
   intersecting.entrez.ids <- as.numeric(intersecting.entrez.ids)
-  
+  count <- 0
   correlation.matrix <- sapply(esets.with.gene, function(eset) {
+      count <<- count + 1
       gene.of.interest.index <- which(fData(eset)$EntrezGene.ID == entrez.id)
       entrez.id.exprs.vals <- exprs(eset)[gene.of.interest.index,]
       eset <- eset[fData(eset)$EntrezGene.ID %in% intersecting.entrez.ids,]
