@@ -1,7 +1,7 @@
 \pagebreak
 \subsection{\Sexpr{gene.names[{{current.index}}]}}
 
-<<Single_gene_metaanalysis_load_data_{{current.index}}, include=FALSE, cache=FALSE>>=
+<<Single_gene_metaanalysis_load_data_{{current.index}}, include=FALSE, cache=TRUE>>=
 # Remove patients with NA values for that gene
 
 esets.with.gene <- esets.rfs[sapply(esets.rfs, function(x) entrez.ids[{{current.index}}] %in% fData(x)$EntrezGene.ID)]
@@ -68,7 +68,7 @@ survival.df.list <- lapply(esets.with.gene, function(eset) {
 
 
 
-<<singlegene_metaanalysis_forestplot_{{current.index}}, fig.width=5, fig.height=7, out.width="0.5\\textwidth", cache=FALSE>>=
+<<singlegene_metaanalysis_forestplot_{{current.index}}, fig.width=5, fig.height=7, out.width="0.5\\textwidth", cache=TRUE>>=
 xlim=c(-3,3)
 alim=c(-3,3)
 at=log(c(.25, 0.5, 1, 2, 4))
@@ -89,7 +89,7 @@ hr.matrix[gene.names[{{current.index}}],names(hr.stat.vals)] <- hr.stat.vals
 hr.rma.objs[[gene.names[{{current.index}}]]] <- hr.rma.random
 @
 
-<<survival_curve_{{current.index}}, fig.width=5, fig.height=5.5, out.width="0.5\\textwidth", cache=FALSE>>=
+<<survival_curve_{{current.index}}, fig.width=5, fig.height=5.5, out.width="0.5\\textwidth", cache=TRUE>>=
 survival.df.combined <- do.call(rbind, survival.df.list)
 
 survival.df.combined$surv.obj <- Surv(time = survival.df.combined$years_to_event, event = survival.df.combined$event_status)
@@ -108,7 +108,7 @@ hr.random.effects.upper[{{current.index}}] <- exp(hr.rma.random$ci.ub)
 @
 
 
-<<compute_d_index_{{current.index}}, cache=FALSE>>=
+<<compute_d_index_{{current.index}}, cache=TRUE>>=
 d.index.stat.objects <- lapply(survival.df.list, function(survival.df) {
     survcomp::D.index(x=survival.df[[paste0("geneid.", entrez.ids[{{current.index}}], ".expression")]], surv.time=survival.df$years_to_event, surv.event=survival.df$event_status)
     })
@@ -125,6 +125,8 @@ d.index.random.effects.pval[{{current.index}}] <- d.index.rma.random$pval
 d.index.random.effects.estimate[{{current.index}}] <- exp(as.vector(d.index.rma.random$b))
 d.index.random.effects.lower[{{current.index}}] <- exp(d.index.rma.random$ci.lb)
 d.index.random.effects.upper[{{current.index}}] <- exp(d.index.rma.random$ci.ub)
+
+survival.sample.sizes[{{current.index}}] <- sum(sapply(survival.df.list, nrow))
 @
 
 \noindent Random effects model:
