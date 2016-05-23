@@ -288,49 +288,37 @@ rownames(gsa.up.matrix) <- names(c5.bp.geneset$gsc)
 rownames(gsa.down.matrix) <- names(c5.bp.geneset$gsc)
 @
 
-<<GSA_heatmap_up>>=
-save(gsa.up.matrix, file = "gsa.up.matrix.RData")
-save(gsa.down.matrix, file = "gsa.down.matrix.RData")
-gsa.up.matrix.toplot <- gsa.up.matrix
+<<GSA_heatmap>>=
+gsa.nondirectional.matrix <- sapply(gsa.out, function(gsa.out.current) {
+  gsa.down.vals <- gsa.out.current$pAdjNonDirectional
+  rownames(gsa.down.vals) <- names(gsa.out.current$gsc)
+  return(gsa.down.vals)
+  })
+rownames(gsa.nondirectional.matrix) <- names(c5.bp.geneset$gsc)
+
+gsa.nondirectional.matrix.toplot <- gsa.nondirectional.matrix
 # Only keep rows that have a p-value less than 0.05
-gsa.up.matrix.toplot <- gsa.up.matrix.toplot[rowMin(gsa.up.matrix.toplot) < 0.05,]
+gsa.nondirectional.matrix.toplot <- gsa.nondirectional.matrix.toplot[rowMin(gsa.nondirectional.matrix.toplot) < 0.05,]
 
 # Cluster
-gsa.up.matrix.toplot.geneset.ord <- hclust(dist(gsa.up.matrix.toplot))$ord
-gsa.up.matrix.toplot.gene.ord <- hclust(dist(t(gsa.up.matrix.toplot)))$ord
+gsa.nondirectional.matrix.toplot.geneset.ord <- hclust(dist(gsa.nondirectional.matrix.toplot))$ord
+gsa.nondirectional.matrix.toplot.gene.ord <- hclust(dist(t(gsa.nondirectional.matrix.toplot)))$ord
 
-gsa.up.matrix.toplot <- gsa.up.matrix.toplot[gsa.up.matrix.toplot.geneset.ord, gsa.up.matrix.toplot.gene.ord]
+gsa.nondirectional.matrix.toplot <- gsa.nondirectional.matrix.toplot[gsa.nondirectional.matrix.toplot.geneset.ord, gsa.nondirectional.matrix.toplot.gene.ord]
 
-gsa.up.matrix.m <- melt(gsa.up.matrix.toplot)
-colnames(gsa.up.matrix.m) <- c("GO.Biological.Process", "Gene", "p.adj")
+gsa.nondirectional.matrix.m <- melt(gsa.nondirectional.matrix.toplot)
+colnames(gsa.nondirectional.matrix.m) <- c("GO.Biological.Process", "Gene", "p.adj")
 
 # Retain original order of columns
-gsa.up.matrix.m$Gene <- factor(gsa.up.matrix.m$Gene, levels = colnames(gsa.up.matrix.toplot))
+gsa.nondirectional.matrix.m$Gene <- factor(gsa.nondirectional.matrix.m$Gene, levels = colnames(gsa.nondirectional.matrix.toplot))
  
 #Retain original order of rows
-gsa.up.matrix.m$GO.Biological.Process <- factor(gsa.up.matrix.m$GO.Biological.Process, levels = rownames(gsa.up.matrix.toplot))
+gsa.nondirectional.matrix.m$GO.Biological.Process <- factor(gsa.nondirectional.matrix.m$GO.Biological.Process, levels = rownames(gsa.nondirectional.matrix.toplot))
 
-#gsa.up.matrix.m$GO.Biological.Process <- paste0(gsa.up.matrix.m$GO.Biological.Process, 1:nrow(gsa.up.matrix.m))
+#gsa.nondirectional.matrix.m$GO.Biological.Process <- paste0(gsa.nondirectional.matrix.m$GO.Biological.Process, 1:nrow(gsa.nondirectional.matrix.m))
 
-ggplot(gsa.up.matrix.m, aes(Gene, GO.Biological.Process)) + 
+ggplot(gsa.nondirectional.matrix.m, aes(Gene, GO.Biological.Process)) + 
     geom_tile(aes(fill = p.adj), colour = "black") + theme(axis.text.y = element_text(size=2))  
-@
-
-<<GSA_heatmap_down>>=
-gsa.down.matrix.toplot <- gsa.down.matrix
-# Only keep rows that have a p-value less than 0.05
-gsa.down.matrix.toplot <- gsa.down.matrix.toplot[rowMin(gsa.down.matrix.toplot) < 0.05,]
-
-# Cluster
-gsa.down.matrix.toplot.geneset.ord <- hclust(dist(gsa.down.matrix.toplot))$ord
-gsa.down.matrix.toplot.gene.ord <- hclust(dist(t(gsa.down.matrix.toplot)))$ord
-
-gsa.down.matrix.toplot <- gsa.down.matrix.toplot[gsa.down.matrix.toplot.geneset.ord, gsa.down.matrix.toplot.gene.ord]
-gsa.down.matrix.m <- melt(gsa.down.matrix.toplot)
-colnames(gsa.down.matrix.m) <- c("GO.Biological.Process", "Gene", "p.adj")
-gsa.down.matrix.m$GO.Biological.Process <- substr(gsa.down.matrix.m$GO.Biological.Process, 1, 30)
-ggplot(gsa.down.matrix.m, aes(Gene, GO.Biological.Process)) + 
-    geom_tile(aes(fill = p.adj), colour = "black") + theme(axis.text.y = element_text(size=5))  
 @
 
 \section{Survival Analysis}
