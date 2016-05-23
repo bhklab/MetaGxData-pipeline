@@ -2,7 +2,7 @@
 
 <<setup, include=FALSE, cache=FALSE>>=
 # Set options
-knitr::opts_chunk$set(include=TRUE, results="hide", fig.width=8, fig.height=8, fig.path='figures/', fig.align='center', fig.show='hold',warning=FALSE, echo=FALSE, message=FALSE, cache=TRUE)
+knitr::opts_chunk$set(include=TRUE, results="hide", fig.width=8, fig.height=8, fig.path='figures/', fig.align='center', fig.show='hold',warning=FALSE, echo=FALSE, message=FALSE, cache=FALSE)
 options(replace.assign=TRUE,width=90)
 days.per.month <- 30.4368
 days.per.year <- 365.242
@@ -300,9 +300,18 @@ gsa.up.matrix.toplot.geneset.ord <- hclust(dist(gsa.up.matrix.toplot))$ord
 gsa.up.matrix.toplot.gene.ord <- hclust(dist(t(gsa.up.matrix.toplot)))$ord
 
 gsa.up.matrix.toplot <- gsa.up.matrix.toplot[gsa.up.matrix.toplot.geneset.ord, gsa.up.matrix.toplot.gene.ord]
+
 gsa.up.matrix.m <- melt(gsa.up.matrix.toplot)
 colnames(gsa.up.matrix.m) <- c("GO.Biological.Process", "Gene", "p.adj")
-gsa.up.matrix.m$GO.Biological.Process <- substr(gsa.up.matrix.m$GO.Biological.Process, 1, 30)
+
+# Retain original order of columns
+gsa.up.matrix.m$Gene <- factor(gsa.up.matrix.m$Gene, levels = colnames(gsa.up.matrix.toplot))
+ 
+#Retain original order of rows
+gsa.up.matrix.m$GO.Biological.Process <- factor(gsa.up.matrix.m$GO.Biological.Process, levels = rownames(gsa.up.matrix.toplot))
+
+#gsa.up.matrix.m$GO.Biological.Process <- paste0(gsa.up.matrix.m$GO.Biological.Process, 1:nrow(gsa.up.matrix.m))
+
 ggplot(gsa.up.matrix.m, aes(Gene, GO.Biological.Process)) + 
     geom_tile(aes(fill = p.adj), colour = "black") + theme(axis.text.y = element_text(size=2))  
 @
@@ -329,7 +338,7 @@ ggplot(gsa.down.matrix.m, aes(Gene, GO.Biological.Process)) +
 \subsection{Summary of Results}
 
 <<summary_table, results='asis'>>=
-summary.table <- data.frame(gene=gene.names, pval=sprintf("%.5f", random.effects.pval), hr.text=sprintf("%.2f [%.2f, %.2f]", random.effects.estimate, random.effects.lower, random.effects.upper))
+summary.table <- data.frame(gene=gene.names, pval=sprintf("%.2e", random.effects.pval), hr.text=sprintf("%.2f [%.2f, %.2f]", random.effects.estimate, random.effects.lower, random.effects.upper))
 colnames(summary.table) <- c("Gene Name", "P-value", "Hazard Ratio")
 print(xtable(summary.table),include.rownames=FALSE)
 
