@@ -1,7 +1,7 @@
 \pagebreak
-\section{\Sexpr{gene.names[{{current.index}}]}}
+\subsection{\Sexpr{gene.names[{{current.index}}]}}
 
-<<Single_gene_metaanalysis_load_data_{{current.index}}, include=FALSE, cache=FALSE>>=
+<<Single_gene_metaanalysis_load_data_{{current.index}}, include=FALSE, cache=TRUE>>=
 # Remove patients with NA values for that gene
 
 esets.with.gene <- esets.rfs[sapply(esets.rfs, function(x) entrez.ids[{{current.index}}] %in% fData(x)$EntrezGene.ID)]
@@ -68,7 +68,7 @@ survival.df.list <- lapply(esets.with.gene, function(eset) {
 
 
 
-<<singlegene_metaanalysis_forestplot_{{current.index}}, fig.width=5, fig.height=7, out.width="0.5\\textwidth", cache=FALSE>>=
+<<singlegene_metaanalysis_forestplot_{{current.index}}, fig.width=5, fig.height=7, out.width="0.5\\textwidth", cache=TRUE>>=
 xlim=c(-3,3)
 alim=c(-3,3)
 at=log(c(.25, 0.5, 1, 2, 4))
@@ -89,7 +89,7 @@ hr.matrix[gene.names[{{current.index}}],names(stat.vals)] <- stat.vals
 rma.objs[[gene.names[{{current.index}}]]] <- rma.random
 @
 
-<<survival_curve_{{current.index}}, fig.width=5, fig.height=5.5, out.width="0.5\\textwidth", cache=FALSE>>=
+<<survival_curve_{{current.index}}, fig.width=5, fig.height=5.5, out.width="0.5\\textwidth", cache=TRUE>>=
 survival.df.combined <- do.call(rbind, survival.df.list)
 
 survival.df.combined$surv.obj <- Surv(time = survival.df.combined$years_to_event, event = survival.df.combined$event_status)

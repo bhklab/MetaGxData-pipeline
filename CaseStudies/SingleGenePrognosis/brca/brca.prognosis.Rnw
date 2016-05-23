@@ -212,7 +212,7 @@ meta.coexpression.matrix.m <- melt(meta.coexpression.matrix)
 
 ggplot(meta.coexpression.matrix.m, aes(Var1, Var2)) + 
     geom_tile(aes(fill = value), colour = "black") + 
-    scale_fill_gradient2(name="Correlation", low="#2166ac", mid="white", high="#b2182b", limits=c(-1,1)) +
+    scale_fill_gradient2(name="Correlation", low="#276419", mid="white", high="#8e0152", limits=c(-1,1)) +
     theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(), panel.background = element_blank(), axis.text.y = element_text(angle = 90), axis.title.x = element_blank(), axis.title.y = element_blank(), legend.position='none') + geom_text(label=as.numeric(sprintf("%.2f", meta.coexpression.matrix)), colour="black")
 @
 <<single_gene, cache=FALSE, include=FALSE>>=
@@ -233,6 +233,10 @@ knitr.out <- knit(text=unlist(knitr.text))
 @
 
 \section{Gene Set Analysis}
+
+We performed pathway-level analysis of the genes of interest. For each gene, the following was performed datasets with over 10000 genes (including the gene of interest) were included. We computed Pearson's Correlation Coefficient between the gene of interest and all genes present in all included datasets. A meta-analytic estimate of correlation coefficients was computed using the method of Hunter and Schmidt (1982). Gene Set Analysis was performed using the meta-analytic correlation coefficients, using \texttt{R} package \texttt{piano} with default parameters (\texttt{geneSetStat='mean'}). Gene sets from the Gene Ontology Biological Processes were downloaded from MSigDB. 
+
+In the heatmap below, hierarchical clustering was performed on both rows and columns. Biological processes with at least FDR-adjusted p-value of less than 0.05 are shown; p-values are non-directional.
 
 <<GSA_computation, cache=TRUE>>=
 set.seed(100)
