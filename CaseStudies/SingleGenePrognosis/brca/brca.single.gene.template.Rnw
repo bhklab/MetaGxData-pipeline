@@ -1,7 +1,7 @@
 \pagebreak
 \subsection{\Sexpr{gene.names[{{current.index}}]}}
 
-<<Single_gene_metaanalysis_load_data_{{current.index}}, include=FALSE, cache=TRUE>>=
+<<Single_gene_metaanalysis_load_data_{{current.index}}, include=FALSE, cache=FALSE>>=
 # Remove patients with NA values for that gene
 
 esets.with.gene <- esets.rfs[sapply(esets.rfs, function(x) entrez.ids[{{current.index}}] %in% fData(x)$EntrezGene.ID)]
@@ -68,28 +68,28 @@ survival.df.list <- lapply(esets.with.gene, function(eset) {
 
 
 
-<<singlegene_metaanalysis_forestplot_{{current.index}}, fig.width=5, fig.height=7, out.width="0.5\\textwidth", cache=TRUE>>=
+<<singlegene_metaanalysis_forestplot_{{current.index}}, fig.width=5, fig.height=7, out.width="0.5\\textwidth", cache=FALSE>>=
 xlim=c(-3,3)
 alim=c(-3,3)
 at=log(c(.25, 0.5, 1, 2, 4))
 
-stat.objects <- lapply(survival.df.list, function(survival.df) {
+hr.stat.objects <- lapply(survival.df.list, function(survival.df) {
     survcomp::hazard.ratio(x=survival.df[[paste0("geneid.", entrez.ids[{{current.index}}], ".quantile")]], surv.time=survival.df$years_to_event, surv.event=survival.df$event_status)
     })
 
-stat.vals <- sapply(stat.objects, function(x) x$coef)
-stat.se <- sapply(stat.objects, function(x) x$se)  
-rma.random <- rma(stat.vals, sei=stat.se, method="REML", slab=names(survival.df.list))
+hr.stat.vals <- sapply(hr.stat.objects, function(x) x$coef)
+hr.stat.se <- sapply(hr.stat.objects, function(x) x$se)  
+hr.rma.random <- rma(hr.stat.vals, sei=hr.stat.se, method="REML", slab=names(survival.df.list))
 
-forest(rma.random, xlab="Hazard Ratio", atransf=exp, refline = 0, annotate=FALSE, addfit=FALSE, ylim=c(-2.5,length(stat.vals) + 3), at=log(c(0.25,0.5,1,2,4)), xlim=xlim, alim=alim, main=paste0("Meta-analysis: ", gene.names[{{current.index}}]))
+forest(hr.rma.random, xlab="Hazard Ratio", atransf=exp, refline = 0, annotate=FALSE, addfit=FALSE, ylim=c(-2.5,length(hr.stat.vals) + 3), at=log(c(0.25,0.5,1,2,4)), xlim=xlim, alim=alim, main=paste0("Meta-analysis: ", gene.names[{{current.index}}]))
 abline(h=0, lwd=1)
-addpoly(rma.random, mlab="Random Effects Estimate", row=-1, atransf=exp, annotate=TRUE)
+addpoly(hr.rma.random, mlab="Random Effects Estimate", row=-1, atransf=exp, annotate=TRUE)
 
-hr.matrix[gene.names[{{current.index}}],names(stat.vals)] <- stat.vals
-rma.objs[[gene.names[{{current.index}}]]] <- rma.random
+hr.matrix[gene.names[{{current.index}}],names(hr.stat.vals)] <- hr.stat.vals
+hr.rma.objs[[gene.names[{{current.index}}]]] <- hr.rma.random
 @
 
-<<survival_curve_{{current.index}}, fig.width=5, fig.height=5.5, out.width="0.5\\textwidth", cache=TRUE>>=
+<<survival_curve_{{current.index}}, fig.width=5, fig.height=5.5, out.width="0.5\\textwidth", cache=FALSE>>=
 survival.df.combined <- do.call(rbind, survival.df.list)
 
 survival.df.combined$surv.obj <- Surv(time = survival.df.combined$years_to_event, event = survival.df.combined$event_status)
@@ -97,16 +97,38 @@ survival.df.combined$surv.obj <- Surv(time = survival.df.combined$years_to_event
 main.title = paste0("Pooled survival: ", gene.names[{{current.index}}])
 km.coxph.plot(as.formula(paste0("surv.obj ~ geneid.", entrez.ids[{{current.index}}], ".quantile")), survival.df.combined, x.label="Time (years)", y.label = "Recurrence-free survival", main.title=main.title, show.n.risk = FALSE, leg.text = levels(survival.df.combined[[paste0("geneid.", entrez.ids[{{current.index}}], ".quantile")]]), leg.pos="topright", leg.bty="n", leg.inset=0, n.risk.cex=0.85, cex=0.4, o.text="")
 
-o.text <- paste(sprintf("HR: %.3f [%.3f,%.3f]\n", exp(rma.random$b), exp(rma.random$ci.lb), exp(rma.random$ci.ub)), sprintf("p = %.1E", rma.random$pval))
+o.text <- paste(sprintf("HR: %.3f [%.3f,%.3f]\n", exp(hr.rma.random$b), exp(hr.rma.random$ci.lb), exp(hr.rma.random$ci.ub)), sprintf("p = %.1E", hr.rma.random$pval))
 text(0,0.05, o.text, cex=0.85, pos=4)
 
-random.effects.pval[{{current.index}}] <- rma.random$pval
+hr.random.effects.pval[{{current.index}}] <- hr.rma.random$pval
 # create.forest.plot returns log2(HR)
-random.effects.estimate[{{current.index}}] <- exp(as.vector(rma.random$b))
-random.effects.lower[{{current.index}}] <- exp(rma.random$ci.lb)
-random.effects.upper[{{current.index}}] <- exp(rma.random$ci.ub)
+hr.random.effects.estimate[{{current.index}}] <- exp(as.vector(hr.rma.random$b))
+hr.random.effects.lower[{{current.index}}] <- exp(hr.rma.random$ci.lb)
+hr.random.effects.upper[{{current.index}}] <- exp(hr.rma.random$ci.ub)
 @
 
 
+<<compute_d_index_{{current.index}}, cache=FALSE>>=
+d.index.stat.objects <- lapply(survival.df.list, function(survival.df) {
+    survcomp::D.index(x=survival.df[[paste0("geneid.", entrez.ids[{{current.index}}], ".expression")]], surv.time=survival.df$years_to_event, surv.event=survival.df$event_status)
+    })
+
+d.index.stat.vals <- sapply(d.index.stat.objects, function(x) x$coef)
+d.index.stat.se <- sapply(d.index.stat.objects, function(x) x$se)  
+d.index.rma.random <- rma(d.index.stat.vals, sei=d.index.stat.se, method="REML", slab=names(survival.df.list))
+
+d.index.matrix[gene.names[{{current.index}}],names(d.index.stat.vals)] <- d.index.stat.vals
+d.index.rma.objs[[gene.names[{{current.index}}]]] <- d.index.rma.random
+
+d.index.random.effects.pval[{{current.index}}] <- d.index.rma.random$pval
+# create.forest.plot returns log2(d.index)
+d.index.random.effects.estimate[{{current.index}}] <- exp(as.vector(d.index.rma.random$b))
+d.index.random.effects.lower[{{current.index}}] <- exp(d.index.rma.random$ci.lb)
+d.index.random.effects.upper[{{current.index}}] <- exp(d.index.rma.random$ci.ub)
+@
+
 \noindent Random effects model:
-\Sexpr{sprintf("%.02f [%.02f, %.02f], p = %.1E", exp(as.vector(rma.random$b)), exp(rma.random$ci.lb), exp(rma.random$ci.ub), rma.random$pval)}
+
+\Sexpr{sprintf("HR: %.02f [%.02f, %.02f], p = %.1E", exp(as.vector(hr.rma.random$b)), exp(hr.rma.random$ci.lb), exp(hr.rma.random$ci.ub), hr.rma.random$pval)}
+
+\Sexpr{sprintf("D-Index: %.02f [%.02f, %.02f], p = %.1E", exp(as.vector(d.index.rma.random$b)), exp(d.index.rma.random$ci.lb), exp(d.index.rma.random$ci.ub), d.index.rma.random$pval)}
