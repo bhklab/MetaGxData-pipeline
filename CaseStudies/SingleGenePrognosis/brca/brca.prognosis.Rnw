@@ -300,7 +300,7 @@ gsa.nondirectional.matrix.m$GO.Biological.Process <- factor(gsa.nondirectional.m
 #gsa.nondirectional.matrix.m$GO.Biological.Process <- paste0(gsa.nondirectional.matrix.m$GO.Biological.Process, 1:nrow(gsa.nondirectional.matrix.m))
 
 ggplot(gsa.nondirectional.matrix.m, aes(Gene, GO.Biological.Process)) + 
-    geom_tile(aes(fill = p.adj), colour = "black") + theme(axis.text.y = element_text(size=2))  
+    geom_tile(aes(fill = p.adj), colour = "black") + theme(axis.text.y = element_text(size=3))  
 @
 
 \pagebreak
@@ -310,6 +310,9 @@ ggplot(gsa.nondirectional.matrix.m, aes(Gene, GO.Biological.Process)) +
 <<single_gene_survival, cache=FALSE, include=FALSE>>=
 set.seed(500)
 knitr.text <- lapply(1:length(entrez.ids), function(current.index) knit_expand(file='brca.single.gene.template.Rnw'))
+
+# Store the total number of samples for which each gene is present
+survival.sample.sizes <- c()
 
 hr.random.effects.pval <- c()
 hr.random.effects.estimate <- c()
@@ -349,13 +352,38 @@ xtable(data.counts)
 
 \subsection{Summary of Results}
 
-<<summary_table, results='asis'>>=
-summary.table <- data.frame(gene=gene.names, pval=sprintf("%.2e", hr.random.effects.pval), hr.text=sprintf("%.2f [%.2f, %.2f]", hr.random.effects.estimate, hr.random.effects.lower, hr.random.effects.upper))
-colnames(summary.table) <- c("Gene Name", "P-value", "Hazard Ratio")
-print(xtable(summary.table),include.rownames=FALSE)
+<<summary_forestplot, fig.width=9, fig.height=7, out.width="0.8\\textwidth">>=
+hr.estimates <- sapply(hr.rma.objs, coef)
+hr.variances <- sapply(hr.rma.objs, vcov)
 
-
+#forest(estimates, variances, atransf=exp, psize=1, efac=0, slab=names(rma.objs), xlab="Hazard Ratio",xlim=c(-2,2), at=log(c(0.25,0.5,1,2,4)))
+forest(hr.estimates, hr.variances, atransf=exp, psize=1, efac=0, slab=names(hr.rma.objs), xlab="Hazard Ratio",xlim=c(-2,3.5), at=log(c(0.25,0.5,1,2,4)), ilab = cbind(survival.sample.sizes, sprintf("%.2e", hr.random.effects.pval)), ilab.xpos = c(-1,1.5))
+op <- par(cex=1, font=2)
+text(-2, length(gene.names) + 1.5, "Gene", pos=4)
+text(-1, length(gene.names) + 1.5, "n")
+text(1.5, length(gene.names) + 1.5, "p-value")
+text(3.5, length(gene.names) + 1.5, "Hazard Ratio [95% CI]", pos=2)
+addpoly(hr.estimates, hr.variances, rows=length(hr.rma.objs):1, atransf=exp, annotate=FALSE)
+abline(h=0.5, lwd=1)
+par(op)
 @
+
+<<summary_forestplot_d_index, fig.width=9, fig.height=7, out.width="0.8\\textwidth">>=
+d.index.estimates <- sapply(d.index.rma.objs, coef)
+d.index.variances <- sapply(d.index.rma.objs, vcov)
+
+#forest(estimates, variances, atransf=exp, psize=1, efac=0, slab=names(rma.objs), xlab="Hazard Ratio",xlim=c(-2,2), at=log(c(0.25,0.5,1,2,4)))
+forest(d.index.estimates, d.index.variances, atransf=exp, psize=1, efac=0, slab=names(d.index.rma.objs), xlab="Hazard Ratio",xlim=c(-2,3.5), at=log(c(0.25,0.5,1,2,4)), ilab = cbind(survival.sample.sizes, sprintf("%.2e", d.index.random.effects.pval)), ilab.xpos = c(-1,1.5))
+op <- par(cex=1, font=2)
+text(-2, length(gene.names) + 1.5, "Gene", pos=4)
+text(-1, length(gene.names) + 1.5, "n")
+text(1.5, length(gene.names) + 1.5, "p-value")
+text(3.5, length(gene.names) + 1.5, "D-Index [95% CI]", pos=2)
+addpoly(d.index.estimates, d.index.variances, rows=length(d.index.rma.objs):1, atransf=exp, annotate=FALSE)
+abline(h=0.5, lwd=1)
+par(op)
+@
+\pagebreak
 
 <<summary_heatmap, fig.width=13, fig.height=5>>= 
 .getHeatmap <- function(stat.matrix) {
@@ -379,37 +407,6 @@ print(xtable(summary.table),include.rownames=FALSE)
 .getHeatmap(exp(hr.matrix))
 @
 
-\pagebreak
-
-<<summary_forestplot, fig.width=9, fig.height=7, out.width="0.8\\textwidth">>=
-hr.estimates <- sapply(hr.rma.objs, coef)
-hr.variances <- sapply(hr.rma.objs, vcov)
-
-#forest(estimates, variances, atransf=exp, psize=1, efac=0, slab=names(rma.objs), xlab="Hazard Ratio",xlim=c(-2,2), at=log(c(0.25,0.5,1,2,4)))
-forest(hr.estimates, hr.variances, atransf=exp, psize=1, efac=0, slab=names(hr.rma.objs), xlab="Hazard Ratio",xlim=c(-2,3.5), at=log(c(0.25,0.5,1,2,4)), ilab = sprintf("%.2e", hr.random.effects.pval), ilab.xpos = 1.5)
-op <- par(cex=1, font=2)
-text(-2, length(gene.names) + 1.5, "Gene", pos=4)
-text(1.5, length(gene.names) + 1.5, "p-value")
-text(3.5, length(gene.names) + 1.5, "Hazard Ratio [95% CI]", pos=2)
-addpoly(hr.estimates, hr.variances, rows=length(hr.rma.objs):1, atransf=exp, annotate=FALSE)
-abline(h=0.5, lwd=1)
-par(op)
-@
-
-<<summary_forestplot_d_index, fig.width=9, fig.height=7, out.width="0.8\\textwidth">>=
-d.index.estimates <- sapply(d.index.rma.objs, coef)
-d.index.variances <- sapply(d.index.rma.objs, vcov)
-
-#forest(estimates, variances, atransf=exp, psize=1, efac=0, slab=names(rma.objs), xlab="Hazard Ratio",xlim=c(-2,2), at=log(c(0.25,0.5,1,2,4)))
-forest(d.index.estimates, d.index.variances, atransf=exp, psize=1, efac=0, slab=names(d.index.rma.objs), xlab="D-Index",xlim=c(-2,3.5), at=log(c(0.25,0.5,1,2,4)), ilab = sprintf("%.2e", d.index.random.effects.pval), ilab.xpos = 1.5)
-op <- par(cex=1, font=2)
-text(-2, length(gene.names) + 1.5, "Gene", pos=4)
-text(1.5, length(gene.names) + 1.5, "p-value")
-text(3.5, length(gene.names) + 1.5, "D-Index [95% CI]", pos=2)
-addpoly(d.index.estimates, d.index.variances, rows=length(d.index.rma.objs):1, atransf=exp, annotate=FALSE)
-abline(h=0.5, lwd=1)
-par(op)
-@
 \pagebreak
 
 \Sexpr{knitr.out}
