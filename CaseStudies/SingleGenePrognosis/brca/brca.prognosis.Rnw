@@ -374,7 +374,11 @@ d.index.estimates <- sapply(d.index.rma.objs, coef)
 d.index.variances <- sapply(d.index.rma.objs, vcov)
 
 #forest(estimates, variances, atransf=exp, psize=1, efac=0, slab=names(rma.objs), xlab="Hazard Ratio",xlim=c(-2,2), at=log(c(0.25,0.5,1,2,4)))
+<<<<<<< HEAD
 forest(d.index.estimates, d.index.variances, atransf=exp, psize=1, efac=0, slab=names(d.index.rma.objs), xlab="D-Index",xlim=c(-2,3.5), at=log(c(0.25,0.5,1,2,4)), ilab = cbind(survival.sample.sizes, sprintf("%.2e", d.index.random.effects.pval)), ilab.xpos = c(-1,1.5))
+=======
+forest(d.index.estimates, d.index.variances, atransf=exp, psize=1, efac=0, slab=names(d.index.rma.objs), xlab="Hazard Ratio",xlim=c(-2,3.5), at=log(c(0.25,0.5,1,2,4)), ilab = cbind(survival.sample.sizes, sprintf("%.2e", d.index.random.effects.pval)), ilab.xpos = c(-1,1.5))
+>>>>>>> b85b8e415e5c654333210fada1bf6d1e9d149cad
 op <- par(cex=1, font=2)
 text(-2, length(gene.names) + 1.5, "Gene", pos=4)
 text(-1, length(gene.names) + 1.5, "n")
