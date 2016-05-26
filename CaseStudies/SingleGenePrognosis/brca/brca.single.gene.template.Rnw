@@ -68,8 +68,8 @@ survival.df.list <- lapply(esets.with.gene, function(eset) {
 
 
 
-<<singlegene_metaanalysis_forestplot_{{current.index}}, fig.width=5, fig.height=7, out.width="0.5\\textwidth", cache=TRUE>>=
-xlim=c(-4.5,3)
+<<singlegene_metaanalysis_forestplot_{{current.index}}, fig.width=7, fig.height=7, out.width="0.7\\textwidth", cache=TRUE>>=
+xlim=c(-5.5,3)
 alim=c(-3,3)
 at=log(c(.25, 0.5, 1, 2, 4))
 
@@ -81,7 +81,12 @@ hr.stat.vals <- sapply(hr.stat.objects, function(x) x$coef)
 hr.stat.se <- sapply(hr.stat.objects, function(x) x$se)  
 hr.rma.random <- rma(hr.stat.vals, sei=hr.stat.se, method="REML", slab=names(survival.df.list))
 
-forest(hr.rma.random, xlab="Hazard Ratio", atransf=exp, refline = 0, annotate=FALSE, addfit=FALSE, ylim=c(-2.5,length(hr.stat.vals) + 3), at=log(c(0.25,0.5,1,2,4)), xlim=xlim, alim=alim, main=paste0("Meta-analysis: ", gene.names[{{current.index}}]))
+forest(hr.rma.random, xlab="Hazard Ratio", atransf=exp, refline = 0, annotate=FALSE, addfit=FALSE, ylim=c(-2.5,length(hr.stat.vals) + 3), at=log(c(0.25,0.5,1,2,4)), xlim=xlim, alim=alim, main=paste0("Meta-analysis: ", gene.names[{{current.index}}]), ilab=sapply(survival.df.list, nrow), ilab.xpos = -4)
+
+op <- par(cex=1, font=2)
+text(-5.5, length(hr.stat.vals) + 1.5, "Dataset", pos=4)
+text(-4, length(hr.stat.vals) + 1.5, "n")
+par(op)
 abline(h=0, lwd=1)
 addpoly(hr.rma.random, mlab="Random Effects Estimate", row=-1, atransf=exp, annotate=TRUE)
 
@@ -97,7 +102,7 @@ survival.df.combined$surv.obj <- Surv(time = survival.df.combined$years_to_event
 main.title = paste0("Pooled survival: ", gene.names[{{current.index}}])
 km.coxph.plot(as.formula(paste0("surv.obj ~ geneid.", entrez.ids[{{current.index}}], ".quantile")), survival.df.combined, x.label="Time (years)", y.label = "Recurrence-free survival", main.title=main.title, show.n.risk = FALSE, leg.text = levels(survival.df.combined[[paste0("geneid.", entrez.ids[{{current.index}}], ".quantile")]]), leg.pos="topright", leg.bty="n", leg.inset=0, n.risk.cex=0.85, cex=0.4, o.text="")
 
-o.text <- paste(sprintf("HR: %.3f [%.3f,%.3f]\n", exp(hr.rma.random$b), exp(hr.rma.random$ci.lb), exp(hr.rma.random$ci.ub)), sprintf("p = %.1E", hr.rma.random$pval))
+o.text <- paste0(sprintf("HR: %.3f [%.3f,%.3f]\n", exp(hr.rma.random$b), exp(hr.rma.random$ci.lb), exp(hr.rma.random$ci.ub)), sprintf("p = %.1E\n", hr.rma.random$pval), sprintf("n = %d", nrow(survival.df.combined)))
 text(0,0.05, o.text, cex=0.85, pos=4)
 
 hr.random.effects.pval[{{current.index}}] <- hr.rma.random$pval
