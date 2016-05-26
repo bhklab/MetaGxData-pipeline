@@ -306,6 +306,43 @@ ggplot(gsa.nondirectional.matrix.m, aes(Gene, GO.Biological.Process)) + geom_til
 
 \pagebreak
 
+\section{Subtype-Specific Expression}
+
+\pagebreak
+
+<<>>=
+esets.scaled <- lapply(esets, function(eset) {
+  exprs(eset) <- t(scale(t(exprs(eset))))
+  return(eset)
+  })
+
+expression.val.list <- lapply(esets, function(eset) {
+  gene.indices <- sapply(entrez.ids, function(entrez.id) {
+    index <- which(fData(eset)$EntrezGene.ID == entrez.id)
+      if(length(index) > 1) {
+        stop("Found a different number than one matching Entrez ID")
+      } else if(length(index) == 0) {
+        return(NA)
+        }
+      return(index)
+    })
+  names(gene.indices) <- gene.names
+  expression.vals <- as.data.frame(sapply(gene.indices, function(gene.index) exprs(eset)[gene.index,]))
+  
+  return(expression.vals)
+})
+
+expression.val.list <- lapply(1:length(names(esets.scaled)), function(i) {
+  expression.vals <- expression.val.list[[i]]
+  expression.vals$data.source <- names(esets.scaled)[i]
+  expression.vals$subtype <- esets.scaled[[i]]$subtype
+  return(expression.vals)
+  })
+
+expression.val.df <- do.call(rbind, expression.val.list)
+
+@
+
 \section{Survival Analysis}
 
 <<single_gene_survival, cache=FALSE, include=FALSE>>=
