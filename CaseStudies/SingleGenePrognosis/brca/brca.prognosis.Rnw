@@ -148,7 +148,10 @@ xtable(data.counts)
 Using our compendium of breast cancer datasets, we evaluated pairwise coexpression of the genes of interst. For each gene pair, we computed Pearson's Correlation Coefficient in all datasets for which both genes were present. We used the meta-analytic method of Hunter and Schmidt (1982) to compute a summary estimate, shown in the below heatmap. 
 
 <<Pairwise_coexpression, fig.width=6, fig.height=6, out.width="0.6\\textwidth">>=
-# Get pairwise coexpression matrix
+
+# See PMID: 11411440
+# In the future, we may wish to estimate standard deviations, compute 95% CIs, make forest plots, etc.
+# Note that the Fisher's z transformation has a divide-by-zero when the correlation is 1
 get.meta.correlation.hedges <- function(pcc, n) {
   fisher.z <- 0.5 * log( (1 + pcc) / (1 - pcc) )
   fisher.z.var <- 1 / (n - 3)
@@ -167,6 +170,7 @@ get.meta.correlation.hunter.schmidt <- function(pcc, n, na.rm=FALSE) {
   return(pcc.meta)
 }
 
+# This produces a list of matrices; each matrix is the pairwise Pearson coexpression matrix from each individual dataset
 pairwise.coexpression.matrices <- lapply(esets, function(eset) {
   gene.indices <- sapply(entrez.ids, function(entrez.id) {
     index <- which(fData(eset)$EntrezGene.ID == entrez.id)
@@ -185,7 +189,7 @@ pairwise.coexpression.matrices <- lapply(esets, function(eset) {
     })
   })
 
-
+# Use the Hunter-Schmidt method to compute pairwise correlation.
 meta.coexpression.matrix <- sapply(1:length(gene.names), function(x) sapply(1:length(gene.names), function(y) {
   coexp.vals <- sapply(pairwise.coexpression.matrices, function(coexp.matrix) coexp.matrix[x,y])
   meta.coexp <- get.meta.correlation.hunter.schmidt(coexp.vals, sapply(esets, ncol), na.rm=TRUE)
@@ -198,6 +202,7 @@ diag(meta.coexpression.matrix) <- NA
 
 hclust.ord <- hclust(dist(meta.coexpression.matrix))$ord
 
+# meta.coexpression.matrix is the main data output. Perhaps this can be the output of a get.meta.correlation() function
 meta.coexpression.matrix <- meta.coexpression.matrix[hclust.ord, rev(hclust.ord)]
 
 meta.coexpression.matrix.m <- melt(meta.coexpression.matrix)
@@ -357,7 +362,8 @@ expression.val.df <- do.call(rbind, expression.val.list)
 
 <<single_gene_survival, cache=FALSE, include=FALSE>>=
 set.seed(500)
-knitr.text <- lapply(1:length(entrez.ids), function(current.index) knit_expand(file='brca.single.gene.template.Rnw'))
+
+## These objects will be populated by running brca.single.gene.template.Rnw
 
 # Store the total number of samples for which each gene is present
 survival.sample.sizes <- c()
@@ -382,6 +388,7 @@ d.index.matrix <- matrix(nrow=length(gene.names), ncol=length(esets.rfs))
 rownames(d.index.matrix) <- gene.names
 colnames(d.index.matrix) <- names(esets.rfs)
 
+knitr.text <- lapply(1:length(entrez.ids), function(current.index) knit_expand(file='brca.single.gene.template.Rnw'))
 knitr.out <- knit(text=unlist(knitr.text))
 @
 
