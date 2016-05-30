@@ -310,13 +310,23 @@ ggplot(gsa.nondirectional.matrix.m, aes(Gene, GO.Biological.Process)) + geom_til
 
 \pagebreak
 
-<<>>=
-esets.scaled <- lapply(esets, function(eset) {
-  exprs(eset) <- t(scale(t(exprs(eset))))
+<<Subtype_specific_expression, eval=FALSE>>=
+
+## This is a work in progress.
+
+# Rescale per patient, across genes. So gene expressions vals for each patients are centered as 0 with variance 1
+esets.scaled.per.patient <- lapply(esets, function(eset) {
+  exprs(eset) <- scale(exprs(eset))
   return(eset)
   })
 
-expression.val.list <- lapply(esets, function(eset) {
+esets.quantiles <- lapply(esets, function(eset) {
+  ## Perhaps a better analysis would be to work on quantiles per gene (as opposed to per patient, below)
+  exprs(eset)[] <- apply(exprs(eset), 2, function(x) ecdf(x)(x))
+  return(eset)
+  })
+
+expression.val.list <- lapply(esets.quantiles, function(eset) {
   gene.indices <- sapply(entrez.ids, function(entrez.id) {
     index <- which(fData(eset)$EntrezGene.ID == entrez.id)
       if(length(index) > 1) {
