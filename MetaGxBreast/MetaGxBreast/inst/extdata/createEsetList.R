@@ -172,9 +172,16 @@ for (strEset in strEsets){
     #     }
     # }
   if(exists("probe.gene.mapping") && probe.gene.mapping){
-    Biobase::exprs(eset) <- exprs(eset)[fData(eset)$best_probe,]
-    Biobase::fData(eset) <- fData(eset)[fData(eset)$best_probe,]
-    rownames(fData(eset)) <- rownames(exprs(eset)) <- paste("geneid.", fData(eset)$EntrezGene.ID, sep="")
+    exprs.temp <- Biobase::exprs(eset)[fData(eset)$best_probe, , drop=FALSE]
+    fdata.temp <- Biobase::fData(eset)[fData(eset)$best_probe, , drop=FALSE]
+    rownames(exprs.temp) <- rownames(fdata.temp) <- paste("geneid.", fdata.temp$EntrezGene.ID, sep="")
+    ### create new ExpressionSet
+    eset <- Biobase::ExpressionSet(exprs.temp,
+             phenoData=AnnotatedDataFrame(pData(eset)),
+             featureData=AnnotatedDataFrame(fdata.temp),
+             experimentData=MIAME(),
+             protocolData=protocolData(eset),
+             annotation=annotation(eset))
   }
 
     ## Run ComBat
