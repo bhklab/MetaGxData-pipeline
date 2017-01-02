@@ -327,7 +327,7 @@ checkClinical (mydatasets, "VDX")
 checkSubtyping(mydatasets, "VDX")
 checkPrognosis(mydatasets, "VDX", survType=c("rfs", "dmfs"), time.cens=10 * 365)
 
-rm(c("eset", "data", "annot", "demo"))
+rm(list=c("eset", "data", "annot", "demo"))
 gc(T)
 
 ########################
@@ -348,7 +348,7 @@ checkClinical (mydatasets, "NKI")
 checkSubtyping(mydatasets, "NKI")
 checkPrognosis(mydatasets, "NKI", survType=c("rfs", "dmfs"), time.cens=10 * 365)
 
-rm(c("eset", "data", "annot", "demo"))
+rm(list=c("eset", "data", "annot", "demo"))
 gc(T)
 
 ########################
@@ -369,7 +369,7 @@ checkClinical (mydatasets, "MAINZ")
 checkSubtyping(mydatasets, "MAINZ")
 checkPrognosis(mydatasets, "MAINZ", survType=c("rfs", "dmfs"), time.cens=10 * 365)
 
-rm(c("eset", "data", "annot", "demo"))
+rm(list=c("eset", "data", "annot", "demo"))
 gc(T)
 
 ########################
@@ -394,7 +394,7 @@ checkClinical (mydatasets, "METABRIC")
 checkSubtyping(mydatasets, "METABRIC")
 checkPrognosis(mydatasets, "METABRIC", survType=c("os"), time.cens=10 * 365)
 
-rm(c("eset", "data", "annot", "demo"))
+rm(list=c("eset", "data", "annot", "demo"))
 gc(T)
 
 
